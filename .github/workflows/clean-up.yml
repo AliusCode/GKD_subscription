@@ -52,9 +52,6 @@ jobs:
         run: |
           set -euo pipefail
 
-          echo "等待60秒，确保当前运行记录完成..."
-          sleep 60
-
           CUTOFF_DATE=$(date -u -d "${RETENTION_DAYS} days ago" +'%Y-%m-%d %H:%M:%SZ')
           echo "将删除早于以下时间的运行记录: $CUTOFF_DATE"
 
