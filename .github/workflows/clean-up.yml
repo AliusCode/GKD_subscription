@@ -77,6 +77,8 @@ jobs:
               gh api "repos/${{ github.repository }}/actions/workflows/${WORKFLOW_ID}/runs" \
                 --paginate \
                 --jq ".workflow_runs[]
+                  | select(.status | IN(\"completed\", \"expected\", \"failure\", \"in_progress\", \"pending\", \"queued\", \"requested\", \"startup_failure\", \"waiting\"))
+                  | select(.conclusion | IN(\"action_required\", \"cancelled\", \"failure\", \"neutral\", \"skipped\", \"stale\", \"success\", \"timed_out\"))
                   | select(.created_at < \"$CUTOFF_DATE\")
                   | .id"
             )
