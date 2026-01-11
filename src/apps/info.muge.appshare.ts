@@ -77,9 +77,12 @@ export default defineGkdApp({
           fastQuery: true,
           activityIds: '.MainActivity',
           matches:
-            '@View[clickable=true][childCount=0][visibleToUser=true] < FrameLayout[desc^="dislike"] -2 FrameLayout >3 [text="广告"]',
+            '@View[clickable=true][childCount=0][visibleToUser=true] < FrameLayout[desc^="dislike"] <n * > FrameLayout >2 [text="广告"]',
           exampleUrls: 'https://e.gkd.li/00bf6a60-c461-4970-bb73-b063376cbafd',
-          snapshotUrls: 'https://i.gkd.li/i/24541497',
+          snapshotUrls: [
+            'https://i.gkd.li/i/24541497',
+            'https://i.gkd.li/i/24551719',
+          ],
         },
         {
           key: 3,
@@ -99,20 +102,21 @@ export default defineGkdApp({
           key: 0,
           fastQuery: true,
           activityIds: '.view.main.MainActivity',
-          anyMatches: [
-            '[text="签到"][vid="tvSign"]',
-            '[!(vid="llDaySign")] > [childCount=0][text="签到"]',
-          ],
-          snapshotUrls: [
-            'https://i.gkd.li/i/13931265',
-            'https://i.gkd.li/i/24376300',
-          ],
+          matches: '[text="签到"][vid="tvSign"]',
+          snapshotUrls: 'https://i.gkd.li/i/13931265',
           excludeSnapshotUrls: 'https://i.gkd.li/i/22319703', // 避免点击首页签到按钮
         },
         {
-          preKeys: [0],
+          key: 1,
+          activityIds: '.MainActivity',
+          matches: '[!(vid="llDaySign")] > [childCount=0][text="签到"]',
+          snapshotUrls: 'https://i.gkd.li/i/24376300',
+          excludeSnapshotUrls: 'https://i.gkd.li/i/22319703', // 避免点击首页签到按钮
+        },
+        {
+          preKeys: [0, 1],
           fastQuery: true,
-          activityIds: '.view.main.MainActivity',
+          activityIds: ['.view.main.MainActivity', '.MainActivity'],
           anyMatches: [
             '[text="确定"]',
             '@[clickable=true] > [childCount=0][text="我知道了"]',
