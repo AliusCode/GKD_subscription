@@ -39,7 +39,7 @@ jobs:
         with:
           ref: main  # 明确指定 main 分支
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_GKD_SYNC }}
 
       # 步骤2：配置 Git 用户
       - name: configure git[配置git用户]
@@ -126,7 +126,7 @@ jobs:
         with:
           ref: sync-fork  # 明确指定 sync-fork 分支
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_GKD_SYNC }}
 
       # 步骤2：配置 Git 用户
       - name: configure git[配置git用户]
