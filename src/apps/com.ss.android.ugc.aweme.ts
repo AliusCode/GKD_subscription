@@ -59,22 +59,28 @@ export default defineGkdApp({
     {
       key: 10,
       name: '权限提示-通知权限',
-      desc: '点击[暂不]/[以后再说]',
+      desc: '点击[暂不]/[以后再说]/[禁止]',
       fastQuery: true,
       actionMaximum: 1,
       resetMatch: 'app',
-      activityIds: '.main.MainActivity',
+      activityIds: [
+        '.main.MainActivity',
+        '.profile.ui.UserProfileActivity',
+        '.detail.ui.DetailActivity',
+      ],
       rules: [
         {
           key: 1,
           matches: [
-            '[text^="打开私信通知" || text="开启朋友的消息通知" || text="及时获得消息提醒"][visibleToUser=true]',
-            '[text="以后再说" || text="暂不开启"][visibleToUser=true]',
+            '[text^="打开私信通知" || text="开启朋友的消息通知" || text="及时获得消息提醒" || text$="评论回复提醒"][visibleToUser=true]',
+            '[text="以后再说" || text="暂不开启" || text="禁止"][visibleToUser=true]',
           ],
           snapshotUrls: [
-            'https://i.gkd.li/i/13669790',
+            'https://i.gkd.li/i/13669790', //这些开启通知请求形式全都不一样！
             'https://i.gkd.li/i/18417891',
             'https://i.gkd.li/i/18419574',
+            'https://i.gkd.li/i/25024525',
+            'https://i.gkd.li/i/25063241',
           ],
         },
       ],
@@ -366,6 +372,38 @@ export default defineGkdApp({
           matches: '[vid="iv_back"][visibleToUser=true]',
           exampleUrls: 'https://e.gkd.li/f92c1412-8111-40bc-8188-24f2c004c55c',
           snapshotUrls: 'https://i.gkd.li/i/22761554',
+        },
+      ],
+    },
+    {
+      key: 27,
+      name: '功能类-自动抢口令红包',
+      desc: '点击 ①口令红包 ②弹窗 ③一键发口令',
+      fastQuery: true,
+      activityIds: '.fund.redpacket.RedPacketReceiveActivity',
+      rules: [
+        {
+          key: 1,
+          name: '①点进口令红包',
+          activityIds: '.main.MainActivity',
+          matches: '@ImageView + [text="抖音红包「口令」"][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/25121991',
+        },
+        {
+          key: 2,
+          name: '②弹窗-点击红包',
+          matches: 'ImageView < @[clickable=true] -2 [text="发口令开红包"]',
+          snapshotUrls: 'https://i.gkd.li/i/25122030',
+        },
+        {
+          key: 3,
+          name: '③一键发口令',
+          matches:
+            '[text="发口令开红包"] + LinearLayout >2 [text="一键发送到聊天"][clickable=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/25122077',
+            'https://i.gkd.li/i/25122095',
+          ],
         },
       ],
     },
