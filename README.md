@@ -66,9 +66,9 @@ https://raw.bgithub.xyz/Lin-arm/GKD_subscription/main/dist/gkd.json5
 
 </details><br>
 
-- 当前版本: v415
+- 当前版本: v416
 
-- 当前订阅文件已适配 889 个应用，共有 2098 应用规则组，3 全局规则组
+- 当前订阅文件已适配 891 个应用，共有 2101 应用规则组，3 全局规则组
 
 - 查看 [适配 APP 列表](./dist/README.md)
 
@@ -96,7 +96,7 @@ https://raw.bgithub.xyz/Lin-arm/GKD_subscription/main/dist/gkd.json5
 
 ## 🥇感谢以下开发者的贡献
 
-![img](https://contrib.rocks/image?repo=Lin-arm/GKD_subscription&_v=415)
+![img](https://contrib.rocks/image?repo=Lin-arm/GKD_subscription&_v=416)
 
 ## 📈Star History
 
