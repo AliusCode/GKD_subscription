@@ -190,31 +190,19 @@ export default defineGkdApp({
     },
     {
       key: 10,
-      name: '功能类-自动展开评论',
-      desc: '评论区折叠评论自动展开',
+      name: '功能类-自动展开更多回复',
+      desc: '仅回复评论区有效',
       rules: [
         {
           fastQuery: true,
           activityIds:
             'com.google.android.apps.youtube.app.watchwhile.MainActivity',
           matches:
-            '@Button[text="展开"][clickable=true][visibleToUser=true] <<n [vid="results" || vid="section_list"]',
-          snapshotUrls: 'https://i.gkd.li/i/25462396',
-        },
-      ],
-    },
-    {
-      key: 11,
-      name: '功能类-自动展开回复',
-      desc: '仅回复评论窗口有效',
-      rules: [
-        {
-          fastQuery: true,
-          activityIds:
-            'com.google.android.apps.youtube.app.watchwhile.MainActivity',
-          matches:
-            'Button[childCount=3] < @ViewGroup[clickable=true][visibleToUser=true] <<n [vid="results" || vid="section_list"]',
-          snapshotUrls: 'https://i.gkd.li/i/25462396',
+            'Button[childCount=3] < @ViewGroup[clickable=true][visibleToUser=true] <<n [vid="section_list"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/25462396',
+            'https://i.gkd.li/i/25466817', // En
+          ],
         },
       ],
     },
