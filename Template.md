@@ -35,12 +35,6 @@
 
 复制以下任意一个链接到 GKD 即可使用本订阅规则
 
-<!-- - npmmirror源（国内镜像，推荐大陆用户使用）(暂无) -->
-
-<!-- ```txt
-https://registry.npmmirror.com/@aisouler/gkd_subscription/latest/files/dist/AIsouler_gkd.json5
-``` -->
-
 - CloudFlare源 (国内推荐)
 
 ```txt
@@ -54,7 +48,7 @@ https://raw.githubusercontent.com/Lin-arm/GKD_subscription/main/dist/gkd.json5
 ```
 
 <details>
-<summary>☢️ 点击展开更多备用源</summary><br>
+<summary>☢️ 备用源</summary><br>
 
 - jsdelivr源 (国内可用但可能不稳定,更新滞后24h)
 
@@ -76,15 +70,6 @@ https://raw.bgithub.xyz/Lin-arm/GKD_subscription/main/dist/gkd.json5
 
 - 查看 [适配 APP 列表](./dist/README.md)
 
-- 使用 [GKD订阅模板](https://github.com/gkd-kit/subscription-template) 快速构建自己的订阅
-
-- 如何编写订阅/贡献此项目 -> [CONTRIBUTING.md](./CONTRIBUTING.md)
-
-
-## 🐳交流群
-
-- TG群组：<https://t.me/+8L4eHePgYEZmY2M9>
-
 ## 🌈其他
 
 - 在 [GKD官网](https://gkd.li/) 查看 [GKD基础使用教程](https://gkd.li/guide/) 、[常见问题](https://gkd.li/guide/faq) 以及 [API文档](https://gkd.li/api/)
@@ -92,6 +77,10 @@ https://raw.bgithub.xyz/Lin-arm/GKD_subscription/main/dist/gkd.json5
 - 查看 [规则编写教程](https://github.com/Snoopy1866/notebook/blob/main/04%20Others/GKD%20%E8%A7%84%E5%88%99%E7%BC%96%E5%86%99%E6%95%99%E7%A8%8B/gkd-rule-tutorial.md) By [@Snoopy1866](https://github.com/Snoopy1866)
 
 - 使用 [GKD网页审查工具增强脚本](https://github.com/adproqwq/MakeGKDInspectBetter) 可以高度自定义从网页复制出来的规则，提高规则编写效率
+
+- 使用 [GKD订阅模板](https://github.com/gkd-kit/subscription-template) 快速构建自己的订阅
+
+- 如何编写订阅/贡献此项目 -> 查看 [贡献指南](./CONTRIBUTING.md)
 
 ## 🎉感谢以下项目
 
