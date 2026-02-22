@@ -48,7 +48,7 @@ https://raw.githubusercontent.com/Lin-arm/GKD_subscription/main/dist/gkd.json5
 ```
 
 <details>
-<summary>☢️ 备用源</summary><br>
+<summary>☢️ 备用源</summary>
 
 - jsdelivr源 (国内可用但可能不稳定,更新滞后24h)
 
@@ -62,7 +62,7 @@ https://cdn.jsdelivr.net/gh/Lin-arm/GKD_subscription@main/dist/gkd.json5
 https://raw.bgithub.xyz/Lin-arm/GKD_subscription/main/dist/gkd.json5
 ```
 
-</details><br>
+</details>
 
 - 当前版本: v{{VERSION}}
 
