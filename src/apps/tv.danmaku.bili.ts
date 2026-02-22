@@ -32,7 +32,7 @@ export default defineGkdApp({
           fastQuery: true,
           excludeActivityIds: [
             'com.bilibili.bililive.room.ui.roomv3.LiveRoomActivityV3',
-            'tv.danmaku.bili.MainActivityV2',
+            '.MainActivityV2',
           ],
           matches:
             'LinearLayout[id="tv.danmaku.bili:id/ad_tint_frame"] > ImageView[id="tv.danmaku.bili:id/close"][desc="关闭"]',
@@ -48,7 +48,7 @@ export default defineGkdApp({
       name: '分段广告-动态推荐卡片广告',
       desc: '点击卡片右上角[广告]按钮-点击不感兴趣',
       fastQuery: true,
-      activityIds: 'tv.danmaku.bili.MainActivityV2',
+      activityIds: '.MainActivityV2',
       rules: [
         {
           key: 1,
@@ -70,7 +70,7 @@ export default defineGkdApp({
       resetMatch: 'app',
       activityIds: [
         'com.bilibili.app.preferences.BiliPreferencesActivity',
-        'tv.danmaku.bili.ui.splash.ad.page.HotSplashActivity',
+        '.ui.splash.ad.page.HotSplashActivity',
         '.MainActivityV2',
       ],
       rules: [
@@ -269,7 +269,7 @@ export default defineGkdApp({
       resetMatch: 'app',
       rules: [
         {
-          activityIds: 'tv.danmaku.bili.MainActivityV2',
+          activityIds: '.MainActivityV2',
           matches:
             '[text="开启个性化内容推荐"] +3 [id="tv.danmaku.bili:id/close_button"]',
           snapshotUrls: 'https://i.gkd.li/i/13448905',
@@ -288,7 +288,7 @@ export default defineGkdApp({
           key: 1,
           //action: 'clickCenter', 此种点击方式在部分应用版本会造成误触，需点击 clickable=true 节点
           activityIds: [
-            'tv.danmaku.bili.MainActivityV2',
+            '.MainActivityV2',
             'com.bilibili.vip.web.VipWebActivity',
             'com.bilibili.module.vip.web.VipWebActivity',
           ],
@@ -307,7 +307,7 @@ export default defineGkdApp({
         {
           key: 4,
           activityIds: [
-            'tv.danmaku.bili.MainActivityV2',
+            '.MainActivityV2',
             'com.bilibili.vip.web.VipWebActivity',
           ],
           matches:
@@ -339,7 +339,7 @@ export default defineGkdApp({
       rules: [
         {
           fastQuery: true,
-          activityIds: 'tv.danmaku.bili.ui.splash.ad.page.HotSplashActivity',
+          activityIds: '.ui.splash.ad.page.HotSplashActivity',
           matches: '[vid="poster_share_cancel"][visibleToUser=true]',
           exampleUrls:
             'https://m.gkd.li/57941037/80e5730d-6634-4a0a-9c58-c57f7ad5e58c',
@@ -696,6 +696,23 @@ export default defineGkdApp({
           activityIds: '.MainActivityV2',
           matches: '[vid="animation_close"][clickable=true]',
           snapshotUrls: 'https://i.gkd.li/i/25357810',
+        },
+      ],
+    },
+    {
+      key: 28,
+      name: '权限提示-悬浮窗权限',
+      desc: '点击[暂不开启]小窗模式',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds:
+            'com.bilibili.ship.theseus.detail.UnitedBizDetailsActivity',
+          matches: [
+            '[text^="开启悬浮窗"]',
+            '[text="暂不开启"][clickable=true]',
+          ],
+          snapshotUrls: 'https://i.gkd.li/i/25470098',
         },
       ],
     },
