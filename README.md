@@ -4,10 +4,10 @@
 
 [![SVG Banners](https://svg-banners.vercel.app/api?type=origin&text1=GKD第三方订阅规则&text2=💖%20GKD_subscription&width=800&height=350)](https://github.com/Lin-arm/GKD_subscription)
 
-[![Release](https://img.shields.io/badge/release-v416-blue)](https://github.com/Lin-arm/GKD_subscription/releases/latest)
-[![已适配应用](https://img.shields.io/badge/已适配应用-891-brightgreen)](./dist/README.md#应用规则)
+[![Release](https://img.shields.io/badge/release-v417-blue)](https://github.com/Lin-arm/GKD_subscription/releases/latest)
+[![已适配应用](https://img.shields.io/badge/已适配应用-893-brightgreen)](./dist/README.md#应用规则)
 [![全局规则组](https://img.shields.io/badge/全局规则组-3-blueviolet)](./dist/README.md#全局规则)
-[![应用规则组](https://img.shields.io/badge/应用规则组-2102-orange)](./dist/README.md#应用规则)
+[![应用规则组](https://img.shields.io/badge/应用规则组-2108-orange)](./dist/README.md#应用规则)
 [![Telegram Chat](https://img.shields.io/badge/Telegram-Chat-blue.svg?logo=telegram)](https://t.me/+8L4eHePgYEZmY2M9)
 
 ## 📢声明
@@ -48,7 +48,7 @@ https://raw.githubusercontent.com/Lin-arm/GKD_subscription/main/dist/gkd.json5
 ```
 
 <details>
-<summary>☢️ 备用源</summary>
+<summary>☢️ 备用源</summary><br>
 
 - jsdelivr源 (国内可用但可能不稳定,更新滞后24h)
 
@@ -62,11 +62,11 @@ https://cdn.jsdelivr.net/gh/Lin-arm/GKD_subscription@main/dist/gkd.json5
 https://raw.bgithub.xyz/Lin-arm/GKD_subscription/main/dist/gkd.json5
 ```
 
-</details>
+</details><br>
 
-- 当前版本: v416
+- 当前版本: v417
 
-- 当前订阅文件已适配 891 个应用，共有 2102 应用规则组，3 全局规则组
+- 当前订阅文件已适配 893 个应用，共有 2108 应用规则组，3 全局规则组
 
 - 查看 [适配 APP 列表](./dist/README.md)
 
@@ -89,7 +89,7 @@ https://raw.bgithub.xyz/Lin-arm/GKD_subscription/main/dist/gkd.json5
 
 ## 🥇感谢以下开发者的贡献
 
-![img](https://contrib.rocks/image?repo=Lin-arm/GKD_subscription&_v=416)
+![img](https://contrib.rocks/image?repo=Lin-arm/GKD_subscription&_v=417)
 
 ## 📈Star History
 
