@@ -736,6 +736,7 @@ export default defineGkdApp({
       desc: '自动点击展开',
       rules: [
         {
+          key: 0,
           fastQuery: true,
           activityIds:
             'com.bilibili.upper.module.uppercenter.activity.UpperCenterMainActivityV4',
@@ -743,6 +744,15 @@ export default defineGkdApp({
             '[vid="tv_expand"][text!="收起"][clickable=true][visibleToUser=true]',
           snapshotUrls: 'https://i.gkd.li/i/25563935',
           excludeSnapshotUrls: 'https://i.gkd.li/i/25563937', // 已展开状态
+        },
+        {
+          key: 1,
+          fastQuery: true,
+          activityIds: 'tv.danmaku.bili.ui.webview.MWebActivity',
+          matches:
+            'Image - @TextView[text="展开更多" || text!="收起"] < View[childCount=2][visibleToUser=true] <<n View[id="app"] <<3 [vid="webview"]',
+          snapshotUrls: 'https://i.gkd.li/i/25564200',
+          excludeSnapshotUrls: 'https://i.gkd.li/i/25564199', // 已展开状态
         },
       ],
     },
