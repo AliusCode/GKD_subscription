@@ -167,5 +167,36 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 8,
+      name: '功能类-Web登录自动授权',
+      desc: '登录确认-打勾-确认登录',
+      fastQuery: true,
+      activityIds: 'com.taobao.login4android.scan.QrScanActivity',
+      rules: [
+        {
+          key: 0,
+          matches:
+            '@[vid="confirm_container"][clickable=true][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/25619592', // 未打勾_纯手拍快照
+          exampleUrls: 'https://e.gkd.li/776c84ba-fac3-4f67-a68d-9cf50232124f',
+        },
+        {
+          preKeys: [0],
+          matches: '[text="确认登录"][clickable=true][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/25619593', // 已打勾_黑屏
+          exampleUrls: 'https://e.gkd.li/96f9d38a-ee0a-4d63-9fb7-fbcc6d777abb', // 已打勾_黑屏
+        },
+        {
+          key: 1,
+          matches: '[text="确认登录"][clickable=true][visibleToUser=true]', // 适配旧客户端
+          excludeMatches:
+            '[text^="未注册闲鱼的手机号"] - [vid="confirm_container"][clickable=true][visibleToUser=true]', // 排除打勾误匹配
+          snapshotUrls: 'https://i.gkd.li/i/25619659', // 旧版无勾选版
+          exampleUrls: 'https://e.gkd.li/fabed407-e388-44eb-aaf5-e9fb5060e4cb',
+          excludeSnapshotUrls: 'https://i.gkd.li/i/25619592', // 排除带打勾同意快照
+        },
+      ],
+    },
   ],
 });
