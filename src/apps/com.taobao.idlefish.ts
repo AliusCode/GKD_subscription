@@ -58,8 +58,7 @@ export default defineGkdApp({
       rules: [
         {
           key: 0,
-          activityIds:
-            'com.taobao.idlefish.maincontainer.activity.MainActivity',
+          activityIds: '.maincontainer.activity.MainActivity',
           matches:
             'WebView[text="Rax App"] > [id="root"] >(3,6) View[index=parent.childCount.minus(1)][clickable=true]',
           snapshotUrls: [
@@ -70,8 +69,7 @@ export default defineGkdApp({
         {
           key: 1,
           fastQuery: true,
-          activityIds:
-            'com.taobao.idlefish.search_implement.SearchResultActivity',
+          activityIds: '.search_implement.SearchResultActivity',
           matches:
             '@TextView[width<250 && height<250] - [childCount=0][text="收下红包"] <<n [vid="fish_layer_container_id"]',
           snapshotUrls: 'https://i.gkd.li/i/23125419',
@@ -176,25 +174,33 @@ export default defineGkdApp({
       rules: [
         {
           key: 0,
-          matches:
-            '@[vid="confirm_container"][clickable=true][visibleToUser=true]',
-          snapshotUrls: 'https://i.gkd.li/i/25619592', // 未打勾_纯手拍快照
-          exampleUrls: 'https://e.gkd.li/776c84ba-fac3-4f67-a68d-9cf50232124f',
+          actionMaximum: 1,
+          resetMatch: 'match',
+          matches: '@[clickable=true] > [vid="confirm"][visibleToUser=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/25619592', // 未打勾_纯手拍快照
+            'https://i.gkd.li/i/25620240', // 未打勾
+          ],
         },
         {
-          preKeys: [0],
-          matches: '[text="确认登录"][clickable=true][visibleToUser=true]',
-          snapshotUrls: 'https://i.gkd.li/i/25619593', // 已打勾_黑屏
-          exampleUrls: 'https://e.gkd.li/96f9d38a-ee0a-4d63-9fb7-fbcc6d777abb', // 已打勾_黑屏
+          key: 1, // 目的跟key0一样，只不过以弹窗的形式出现
+          matches: [
+            '[text="服务协议及隐私保护"]',
+            '[text="同意"][clickable=true]',
+          ],
+          snapshotUrls: 'https://i.gkd.li/i/25620304',
         },
         {
-          key: 1,
-          matches: '[text="确认登录"][clickable=true][visibleToUser=true]', // 适配旧客户端
-          excludeMatches:
-            '[text^="未注册闲鱼的手机号"] - [vid="confirm_container"][clickable=true][visibleToUser=true]', // 排除打勾误匹配
-          snapshotUrls: 'https://i.gkd.li/i/25619659', // 旧版无勾选版
-          exampleUrls: 'https://e.gkd.li/fabed407-e388-44eb-aaf5-e9fb5060e4cb',
-          excludeSnapshotUrls: 'https://i.gkd.li/i/25619592', // 排除带打勾同意快照
+          key: 2,
+          matches: [
+            '[text="扫码登录"]',
+            '[text="确认登录"][clickable=true][visibleToUser=true]',
+          ],
+          snapshotUrls: [
+            'https://i.gkd.li/i/25619659', // 旧版,无需打勾
+            'https://i.gkd.li/i/25620267', // 已打勾(节点状态无变化)
+          ],
+          exampleUrls: 'https://e.gkd.li/9394183f-855c-4bd3-b089-272f6e9807ff',
         },
       ],
     },
