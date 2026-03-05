@@ -16,7 +16,7 @@ export default defineGkdApp({
           fastQuery: true,
           activityIds: '.MainActivity',
           matches:
-            '@[text="不强制捐赠，点击即可进入"][visibleToUser=true] -7 [text="支持开发者"] <<2 View[childCount=9] <<n [id="android:id/content"]',
+            '@[text$="点击即可进入"][visibleToUser=true] -7 [text="支持开发者"] <2 View <2 WebView <<3 [id="android:id/content"]',
           exampleUrls: 'https://e.gkd.li/3383969c-2ebb-41c9-96d7-d83655af7aa6',
           snapshotUrls: 'https://i.gkd.li/i/25768081',
         },
