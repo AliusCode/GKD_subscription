@@ -87,7 +87,7 @@ export default defineGkdApp({
           fastQuery: true,
           activityIds: '.reader.ui.ReaderActivity',
           matches:
-            '@ImageView - LinearLayout[visibleToUser=true] >2 [text^="番茄音乐"]',
+            '@ImageView[clickable=true] - LinearLayout[visibleToUser=true] >2 [text^="番茄音乐"]',
           exampleUrls: 'https://e.gkd.li/a9fd956f-1123-4a01-9550-c9de250cc232',
           snapshotUrls: 'https://i.gkd.li/i/25757187',
         },
