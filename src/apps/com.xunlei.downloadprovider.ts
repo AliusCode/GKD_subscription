@@ -90,9 +90,13 @@ export default defineGkdApp({
           key: 0,
           fastQuery: true,
           activityIds: 'com.xunlei.downloadprovider.frame.MainTabActivity',
-          matches: '[vid="close_btn"][visibleToUser=true]',
+          matches:
+            '[vid="close_btn" || id$="/noah_interstitial_close_button"][visibleToUser=true]',
           exampleUrls: 'https://e.gkd.li/71c2dc44-a976-4910-8e44-26e39865406e',
-          snapshotUrls: 'https://i.gkd.li/i/16388890',
+          snapshotUrls: [
+            'https://i.gkd.li/i/16388890',
+            'https://i.gkd.li/i/25843616',
+          ],
         },
         {
           key: 1,
@@ -155,6 +159,12 @@ export default defineGkdApp({
             'https://i.gkd.li/i/23762955',
             'https://i.gkd.li/i/24541418',
           ],
+        },
+        {
+          key: 6,
+          activityIds: 'com.byazt.fl.Stub_Standard_Portrait_Activity',
+          matches: '@[text*="跳过"] <n * - [text="反馈"]',
+          snapshotUrls: 'https://i.gkd.li/i/25843756',
         },
       ],
     },
