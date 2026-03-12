@@ -16,23 +16,29 @@ export default defineGkdApp({
             '@ImageView[index=parent.childCount.minus(1)][clickable=true][visibleToUser=true] < ViewGroup <3 ViewGroup <2 ViewGroup +5 [text="Learn more"]',
             '@ImageView - ViewGroup >2 [text="AD"][visibleToUser=true]',
             '@[clickable=true] < ViewGroup - * >2 [text="AD · Mintegral"]',
+            '@ImageView[index=parent.childCount.minus(1)][clickable=true][visibleToUser=true] <<3 ViewGroup - *  > * + ViewGroup >2 [text^="AD"]',
           ],
           snapshotUrls: [
             'https://i.gkd.li/i/25241260',
             'https://i.gkd.li/i/25241244',
             'https://i.gkd.li/i/25855014',
+            'https://i.gkd.li/i/25932452',
           ],
         },
         {
           key: 1,
           activityIds: 'sg.bigo.ads.api.LandscapeCompanionAdActivity',
+          action: 'clickCenter', // 关闭按钮不响应无障碍事件
           matches:
             '[vid="inter_native_ad_view"] < [vid="inter_main"] + [vid="inter_btn_close"] >2 [vid="bigo_ad_btn_close"][clickable=true][visibleToUser=true]',
           snapshotUrls: [
             'https://i.gkd.li/i/25854586',
             'https://i.gkd.li/i/25854585',
           ],
-          exampleUrls: 'https://e.gkd.li/a492aa5b-9dc7-45c6-afee-23bc2f9a4458',
+          exampleUrls: [
+            'https://e.gkd.li/a492aa5b-9dc7-45c6-afee-23bc2f9a4458',
+            'https://e.gkd.li/4e52a61f-057e-46d8-9c37-eb20bfcaaf8b',
+          ],
         },
         {
           key: 2,
