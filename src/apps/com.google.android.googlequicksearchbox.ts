@@ -38,5 +38,21 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 3,
+      name: '功能类-Gemini-对话连接中断重试',
+      desc: 'Gemini对话连接中断自动重试',
+      fastQuery: true,
+      rules: [
+        {
+          activityIds:
+            'com.google.android.apps.search.assistant.surfaces.voice.robin.main.MainActivity',
+          matches:
+            '[vid="assistant_robin_main_activity"] + FrameLayout > LinearLayout[childCount=2] > [vid="snackbar_action"][clickable=true][visibleToUser=true]',
+          exampleUrls: 'https://e.gkd.li/3d633f7c-e3df-45dd-995f-b72b218922cd',
+          snapshotUrls: 'https://i.gkd.li/i/26026659',
+        },
+      ],
+    },
   ],
 });
