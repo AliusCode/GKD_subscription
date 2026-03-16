@@ -4,17 +4,17 @@
 
 [![SVG Banners](https://svg-banners.vercel.app/api?type=origin&text1=GKD第三方订阅规则&text2=💖%20GKD_subscription&width=800&height=350)](https://github.com/Lin-arm/GKD_subscription)
 
-[![Release](https://img.shields.io/badge/release-v{{VERSION}}-blue)](https://github.com/Lin-arm/GKD_subscription/releases/latest)
+[![Release](https://img.shields.io/badge/发行版-v{{VERSION}}-blue)](https://github.com/Lin-arm/GKD_subscription/releases/latest)
 [![已适配应用](https://img.shields.io/badge/已适配应用-{{APP_SIZE}}-brightgreen)](./dist/README.md#应用规则)
 [![全局规则组](https://img.shields.io/badge/全局规则组-{{GLOBALGROUP_SIZE}}-blueviolet)](./dist/README.md#全局规则)
 [![应用规则组](https://img.shields.io/badge/应用规则组-{{GROUP_SIZE}}-orange)](./dist/README.md#应用规则)
-[![Telegram Chat](https://img.shields.io/badge/Telegram-Chat-blue.svg?logo=telegram)](https://t.me/+8L4eHePgYEZmY2M9)
+[![Telegram Chat](https://img.shields.io/badge/Telegram-交流群-blue.svg?logo=telegram)](https://t.me/+8L4eHePgYEZmY2M9)
 
 ## 📢声明
 
 - **本仓库为原仓库停更后，由社区续更的Fork版**
 - **禁止在国内平台传播**
-- **本仓库仅供本人学习使用**
+- **本仓库仅供学习交流使用**
 - **精力有限，随缘更新**
 
 ## 📑说明
