@@ -8,14 +8,15 @@ export default defineGkdApp({
       key: 1,
       name: '更新提示',
       fastQuery: true,
-      matchTime: 10000,
       actionMaximum: 1,
       resetMatch: 'app',
       rules: [
         {
-          activityIds: '.StartupActivity',
-          matches: '[text^="腾讯会议新版本"] +3 * > [text="下次安装"]',
-          snapshotUrls: 'https://i.gkd.li/i/14332625',
+          fastQuery: true,
+          activityIds:
+            'com.tencent.wemeet.sdk.meeting.premeeting.home.HomeActivity',
+          matches: '@[text="稍后更新"][clickable=true] + [text="立即更新"]',
+          snapshotUrls: 'https://i.gkd.li/i/26088565',
         },
       ],
     },
