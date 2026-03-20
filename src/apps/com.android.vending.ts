@@ -93,16 +93,16 @@ export default defineGkdApp({
     {
       key: 5,
       name: '评价提示-应用评分',
-      desc: '弹出应用评分-取消',
+      desc: '弹出应用评分-以后再说',
       rules: [
         {
           fastQuery: true,
           activityIds:
             'com.google.android.finsky.inappreviewdialog.InAppReviewActivity',
           matches:
-            '[text$="评价"] <<n LinearLayout + FrameLayout [text="取消"][clickable=true][visibleToUser=true]',
-          snapshotUrls: 'https://i.gkd.li/i/25859701',
-          exampleUrls: 'https://e.gkd.li/6a9d6357-97f7-41d4-8998-7da32c34e3e8',
+            'ViewGroup[childCount=2] + FrameLayout >2 [text="提交"] - [text="以后再说"][clickable=true][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/26145296',
+          exampleUrls: 'https://e.gkd.li/1d9b6d74-9982-46f5-8866-b0585f91cfd1',
         },
       ],
     },
