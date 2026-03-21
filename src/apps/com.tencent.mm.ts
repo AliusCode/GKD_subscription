@@ -926,5 +926,41 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 47,
+      name: '功能类-自动清缓存',
+      desc: '存储空间页-清理x2-完成',
+      actionMaximum: 1,
+      resetMatch: 'app',
+      fastQuery: true,
+      activityIds: '.ui.vas.VASCommonActivity',
+      rules: [
+        {
+          key: 0,
+          name: '清理',
+          matches:
+            '@Button[text^="清" || text="Clear"][clickable=true][visibleToUser=true] -2 [text="缓存" || text="快取" || text="Cache"] < RelativeLayout[childCount=4] - * > * >2 [text="微信已用" || text^="Wechat"]',
+          snapshotUrls: 'https://i.gkd.li/i/26159733',
+          exampleUrls: 'https://e.gkd.li/0e5e1dfa-f0c2-4823-bb3c-33d23ac2d122',
+        },
+        {
+          key: 1,
+          preKeys: [0],
+          name: '确认清理',
+          matches:
+            '@Button[clickable=true] < FrameLayout -2 [text*="估" || text="Estimated"][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/26159823',
+          exampleUrls: 'https://e.gkd.li/ac107188-5b53-4d25-9e81-0f5266470300',
+        },
+        {
+          preKeys: [1],
+          name: '完成',
+          matches:
+            'LinearLayout[childCount=5] > [text="我知道了" || text="Got It"][clickable=true]',
+          snapshotUrls: 'https://i.gkd.li/i/26159824',
+          exampleUrls: 'https://e.gkd.li/a83a2fb8-19ac-4a2f-aa08-03d5921d9328',
+        },
+      ],
+    },
   ],
 });
