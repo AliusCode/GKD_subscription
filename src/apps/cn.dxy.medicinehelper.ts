@@ -160,18 +160,19 @@ export default defineGkdApp({
           activityIds:
             'cn.dxy.drugscomm.business.guide.simple.GuideSimpleComposeActivity',
           matches:
-            '@ImageView[clickable=true][visibleToUser=true][width<102 && height<102] -3 ScrollView <<n [id="android:id/content"]',
+            '@ImageView[clickable=true][visibleToUser=true] - ImageView -n * < View < * < ComposeView < [id="android:id/content"]',
           snapshotUrls: [
             'https://i.gkd.li/i/25460814',
             'https://i.gkd.li/i/25460845',
           ],
         },
         {
+          key: 2,
           fastQuery: true,
           activityIds:
             '.user.biz.subscribe.list.SubscriptionCenterListComposeActivity',
           matches:
-            '@ImageView[clickable=true][visibleToUser=true] - [text="去添加"] <<n [id="android:id/content"]',
+            '@ImageView[clickable=true][visibleToUser=true] - [text="去添加"] <3 View -2 [text="我的订阅"] <(1,2) View <2 * < * < ComposeView < [id="android:id/content"]',
           snapshotUrls: 'https://i.gkd.li/i/25460862',
         },
       ],
