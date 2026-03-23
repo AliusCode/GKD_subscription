@@ -240,10 +240,14 @@ export default defineGkdApp({
       rules: [
         {
           key: 0,
+          fastQuery: true,
           activityIds: '.AlipayLogin',
           matches:
-            'RelativeLayout[childCount=2][desc="全屏广告"] ImageView[desc="关闭"]',
-          snapshotUrls: 'https://i.gkd.li/i/14034152',
+            '@ImageView[desc="关闭"][clickable=true] < LinearLayout - [id="com.alipay.mobile.advertisement:id/standardlayer_contentview"][desc="推荐广告"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/14034152',
+            'https://i.gkd.li/i/26184718',
+          ],
         },
         {
           key: 1,
