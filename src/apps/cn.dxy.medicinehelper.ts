@@ -175,6 +175,16 @@ export default defineGkdApp({
             '@ImageView[clickable=true][visibleToUser=true] - [text="去添加"] <3 View -2 [text="我的订阅"] <(1,2) View <2 * < * < ComposeView < [id="android:id/content"]',
           snapshotUrls: 'https://i.gkd.li/i/25460862',
         },
+        {
+          key: 3,
+          fastQuery: true,
+          activityIds:
+            'cn.dxy.drugscomm.business.drug.detail.DrugDetailComposeActivity',
+          matches:
+            '@ImageView[index=parent.childCount.minus(1)][clickable=true][visibleToUser=true] - * < View[childCount=2] -n * < View < * < ComposeView < [id="android:id/content"]',
+          snapshotUrls: 'https://i.gkd.li/i/26178988',
+          exampleUrls: 'https://e.gkd.li/3795ef23-bcb4-48ac-a60b-52c49c6a3d67',
+        },
       ],
     },
     {
