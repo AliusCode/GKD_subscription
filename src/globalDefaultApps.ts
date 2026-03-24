@@ -360,6 +360,7 @@ export const openAdBlackListAppIDs = new Set([
   'com.taptap', // TapTap
   'com.sankuai.meituan', // 美团 误触 https://i.gkd.li/i/17827264
   'xyz.nextalone.nagram', // Nagram (单独禁用[开屏]和[青少年],需解开[更新提示] https://i.gkd.li/i/25640114 )
+  'eu.smartpatient.mytherapy', // MyTherapy_误触 https://i.gkd.li/i/26222977
 ]);
 
 // 更新提示黑名单
