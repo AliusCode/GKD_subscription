@@ -438,6 +438,7 @@ export default defineGkdApp({
       desc: '点击"验证密码"',
       rules: [
         {
+          action: 'clickCenter', //坐标点击 (clickNode点击不生效)
           activityIds: '.plugin.webview.ui.tools.MMWebViewUI',
           matches:
             'WebView[childCount=6] View[index=4] > [text="验证密码"][clickable=true]',
