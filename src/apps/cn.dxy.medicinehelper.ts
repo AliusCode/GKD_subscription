@@ -152,8 +152,10 @@ export default defineGkdApp({
           activityIds:
             'cn.dxy.drugscomm.business.ebm.EbmContentComposeActivity',
           matches:
-            '@ImageView[clickable=true] <2 View[index=parent.childCount.minus(1)] <n View <<2 ComposeView < [id="android:id/content"]',
+            '@ImageView[clickable=true] - View[text=null] < View[index=parent.childCount.minus(1)] <n View <<2 ComposeView < [id="android:id/content"]',
           snapshotUrls: 'https://i.gkd.li/i/25247624',
+          excludeSnapshotUrls: 'https://i.gkd.li/i/26222550', // 误触增加限定属性
+          exampleUrls: 'https://e.gkd.li/8d879578-6ac6-4252-ab40-5a1101082538',
         },
         {
           key: 1,
@@ -182,8 +184,9 @@ export default defineGkdApp({
           activityIds:
             'cn.dxy.drugscomm.business.drug.detail.DrugDetailComposeActivity',
           matches:
-            '@ImageView[index=parent.childCount.minus(1)][clickable=true][visibleToUser=true] - * < View[childCount=2] -n * < View < * < ComposeView < [id="android:id/content"]',
+            '@ImageView[index=parent.childCount.minus(1)][clickable=true][visibleToUser=true] - View[text=null] < View[childCount=2] -n * < View < * < ComposeView < [id="android:id/content"]',
           snapshotUrls: 'https://i.gkd.li/i/26178988',
+          excludeSnapshotUrls: 'https://i.gkd.li/i/26222375', // 误触增加限定属性
           exampleUrls: 'https://e.gkd.li/3795ef23-bcb4-48ac-a60b-52c49c6a3d67',
         },
         {
