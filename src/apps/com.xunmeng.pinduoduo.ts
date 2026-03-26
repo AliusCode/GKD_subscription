@@ -143,7 +143,11 @@ export default defineGkdApp({
           key: 10,
           activityIds: '.activity.NewPageActivity',
           matches: '[desc="关闭按钮"]',
-          snapshotUrls: 'https://i.gkd.li/i/23383792',
+          action: 'clickCenter', // 此界面不接受无障碍事件
+          snapshotUrls: [
+            'https://i.gkd.li/i/23383792',
+            'https://i.gkd.li/i/26264920',
+          ],
         },
         {
           key: 11,
