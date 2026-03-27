@@ -466,6 +466,7 @@ export default defineGkdApp({
     {
       key: 36,
       name: '功能类-QQ空间不看[官方Qzone]的动态',
+      desc: '点击动态右上角三个点-不看此条动态-确定',
       rules: [
         {
           key: 0,
