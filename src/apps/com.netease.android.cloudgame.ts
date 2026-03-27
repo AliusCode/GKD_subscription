@@ -21,14 +21,14 @@ export default defineGkdApp({
       key: 2,
       name: '局部广告-卡片广告',
       fastQuery: true,
-      activityIds: '.activity.MainActivity',
+      activityIds: ['.activity.MainActivity', '.plugin.ad.AdsRewardActivity'],
       rules: [
         {
           key: 0,
           name: '腾讯sdk',
           anyMatches: [
             '@ImageView[clickable=true] - * < RelativeLayout +n [text="精选推荐"][visibleToUser=true]',
-            '@ImageView[index=parent.childCount.minus(1)] < FrameLayout <3 FrameLayout +2 FrameLayout > LinearLayout > [text="立即下载"][visibleToUser=true]',
+            '@ImageView[index=parent.childCount.minus(1)] < FrameLayout <3 FrameLayout +2 FrameLayout > LinearLayout > [text^="立即" || text$="详情" || text^="了解" || text="去微信看看" || text$="应用" || text="进入小程序" || text="领取优惠" || text="跳转微信"][visibleToUser=true]',
           ],
           snapshotUrls: [
             'https://i.gkd.li/i/25620233',
