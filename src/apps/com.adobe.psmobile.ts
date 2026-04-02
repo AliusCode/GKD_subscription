@@ -10,8 +10,10 @@ export default defineGkdApp({
       desc: '点击[不,谢谢]',
       rules: [
         {
+          fastQuery: true,
           activityIds: '.MainActivity',
-          matches: '[clickable=true][desc="不，谢谢"]',
+          matches:
+            '@[clickable=true][desc="不，谢谢"] < [childCount=2] <4 View[childCount=4] <<5 [id="android:id/custom"]',
           snapshotUrls: 'https://i.gkd.li/i/26115696',
         },
       ],
