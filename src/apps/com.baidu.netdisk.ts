@@ -52,11 +52,16 @@ export default defineGkdApp({
       resetMatch: 'app',
       rules: [
         {
-          activityIds: ['.ui.MainActivity', '.ui.cloudp2p.RichMediaActivity'],
+          activityIds: [
+            '.ui.MainActivity',
+            '.ui.cloudp2p.RichMediaActivity',
+            '.module.sharelink.ChainVerifyActivity',
+          ],
           matches: '[text="立即更新"] -2 [text="下次再说"]', //使用ID会导致误触（例如删除确认https://i.gkd.li/i/13069049）
           snapshotUrls: [
             'https://i.gkd.li/i/16118181',
             'https://i.gkd.li/i/24834209',
+            'https://i.gkd.li/i/26574534',
           ],
         },
       ],
