@@ -61,5 +61,22 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 5,
+      name: '权限提示-通讯录权限',
+      desc: '点击稍后',
+      matchTime: 10000,
+      actionMaximum: 1,
+      resetMatch: 'app',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: 'org.telegram.ui.LaunchActivity',
+          matches:
+            '@[text="Not now" || text^="稍后"] < [childCount=2] - ScrollView >2 [text*="contacts" || text*="联系人"][text.length>20]',
+          snapshotUrls: 'https://i.gkd.li/i/26602366',
+        },
+      ],
+    },
   ],
 });
