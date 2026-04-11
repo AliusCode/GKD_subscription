@@ -51,7 +51,7 @@ export default defineGkdApp({
           exampleUrls: 'https://e.gkd.li/6cef22b5-89f0-4a39-ab01-4df740d1556b',
         },
         {
-          preKeys: [0],
+          key: 1, // 快捷方式进入后失效,不能用prekeys
           matches:
             'ScrollView > TextView + @View[clickable=true] > TextView[visibleToUser=true]',
           snapshotUrls: 'https://i.gkd.li/i/26223492',
