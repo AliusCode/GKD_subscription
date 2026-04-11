@@ -41,7 +41,7 @@ body:
         快照是一个 zip 文件，快照链接是类似 "https://i.gkd.li/i/XXXXXXXX" 的文本，按照如下方式可获得快照信息
 
         按照下面的截图示例来获取界面快照，上传文件或者生成链接并粘贴到下面的输入框\
-        ![img](https://raw.githubusercontent.com/Lin-arm/GKD_subscription/refs/heads/main/Snapshot.webp)
+        ![img](https://raw.githubusercontent.com/Lin-arm/GKD_subscription/refs/heads/main/docs/images/Snapshot.webp)
     validations:
       required: true
 
