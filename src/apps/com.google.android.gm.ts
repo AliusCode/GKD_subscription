@@ -11,6 +11,7 @@ export default defineGkdApp({
       rules: [
         {
           key: 1,
+          actionMaximum: 1, // https://github.com/Lin-arm/GKD_subscription/issues/119
           matches:
             '[vid="basic_ad_teaser_info_icon" || vid="button_chip_ad_teaser_info_icon"][clickable=true]',
           snapshotUrls: [
