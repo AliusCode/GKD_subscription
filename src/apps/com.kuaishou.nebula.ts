@@ -43,15 +43,19 @@ export default defineGkdApp({
       rules: [
         {
           fastQuery: true,
-          activityIds: 'com.yxcorp.gifshow.HomeActivity',
+          activityIds: [
+            'com.yxcorp.gifshow.HomeActivity',
+            'com.yxcorp.plugin.search.SearchActivity',
+          ],
           matches:
-            '@ImageView[clickable=true] -(1,2) ViewGroup > [text="点击立得奖励" || text^="邀请"]',
+            '@[clickable=true][index=parent.childCount.minus(1)] -(1,2) ViewGroup > [text="点击立得奖励" || text^="邀请" || text="红包"]',
           exampleUrls:
             'https://m.gkd.li/101449500/f7bbd1db-f519-4ff9-96cb-4cb5b2f483a2',
           snapshotUrls: [
-            'https://i.gkd.li/i/14879912',
+            'https://i.gkd.li/i/14879912', //点击立得奖励
             'https://i.gkd.li/i/15061662', //邀请4个新用户
             'https://i.gkd.li/i/25200787', //邀请新用户
+            'https://i.gkd.li/i/26675794', //新人 红包
           ],
         },
       ],
