@@ -354,9 +354,11 @@ export default defineGkdApp({
           matchRoot: true,
           actionCd: 500,
           matches:
-            '@TextView[text*="跳过"] < View < * < WebView < * < * < * < * < * < * < * < * < * <2 FrameLayout[childCount=2] < * < [id="android:id/content"]',
-          // matches: '@TextView[text*="跳过"][text.length<10][height<150] <<12 * <2 FrameLayout[childCount=2] < * < [id="android:id/content"]',  // 用 << 会被GKD判为缓慢查询,等类似的多了再用吧
-          snapshotUrls: 'https://i.gkd.li/i/26677309',
+            '@TextView[text*="跳过"][text.length<10][height<150] <<(25-n) FrameLayout[childCount=2] <(1,2) * < [id="android:id/content"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/26677309',
+            'https://i.gkd.li/i/26747393',
+          ],
         },
       ],
     },
