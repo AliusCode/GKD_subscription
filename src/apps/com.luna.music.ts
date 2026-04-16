@@ -123,10 +123,8 @@ export default defineGkdApp({
           actionMaximum: 1,
           priorityTime: 5000,
           resetMatch: 'app',
-          matches: [
-            '[vid="ui"] > [childCount=6] >2 [text="今日畅听"] + [text^="第" || text$="个"]',
-            '@[clickable=true][index=parent.childCount.minus(1)] < * <3 FrameLayout < [vid="ui"]',
-          ],
+          matches:
+            '[vid="ui"] >3 @[clickable=true] < ViewGroup +3 View > [text="今日畅听"] + [text^="第" || text$="个"]',
           snapshotUrls: 'https://i.gkd.li/i/26758188',
           exampleUrls: 'https://e.gkd.li/194773d6-a9c0-48c4-84bf-e1a57449434b',
         },
@@ -262,10 +260,8 @@ export default defineGkdApp({
           actionMaximum: 1,
           priorityTime: 5000,
           resetMatch: 'app',
-          matches: [
-            '[vid="ui"] > [childCount=6] >2 [text="今日畅听"] + [text^="第" || text$="个"]',
-            '@[clickable=true][index=parent.childCount.minus(1)] < * <3 FrameLayout < [vid="ui"]',
-          ],
+          matches:
+            '[vid="ui"] >3 @[clickable=true] < ViewGroup +3 View > [text="今日畅听"] + [text^="第" || text$="个"]',
           snapshotUrls: 'https://i.gkd.li/i/26758188',
           exampleUrls: 'https://e.gkd.li/194773d6-a9c0-48c4-84bf-e1a57449434b',
         },
