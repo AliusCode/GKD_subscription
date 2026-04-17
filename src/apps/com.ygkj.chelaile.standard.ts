@@ -170,5 +170,19 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 6,
+      name: '功能类-网络错误自动重试',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: 'dev.xesam.chelaile.app.module.PanelHostActivity',
+          matches:
+            '@[vid="cll_comp_action"] <2 [childCount=2] < [vid="error_page_home_fg"][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/26838549',
+          exampleUrls: 'https://e.gkd.li/1afd52fe-9d69-489f-9a79-68eb2d8ed82d',
+        },
+      ],
+    },
   ],
 });
