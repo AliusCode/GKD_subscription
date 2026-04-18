@@ -268,9 +268,9 @@ export default defineGkdApp({
       key: 18,
       name: '更新提示-消息页面-顶部',
       fastQuery: true,
-      matchTime: 10000,
-      actionMaximum: 1,
-      resetMatch: 'app',
+      // matchTime: 10000, // 不止刚进QQ的时候出现
+      // actionMaximum: 1,
+      // resetMatch: 'app',
       rules: [
         {
           key: 0,
