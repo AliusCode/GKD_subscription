@@ -7,6 +7,7 @@ export default defineGkdApp({
     {
       key: -1,
       name: '开屏广告',
+      desc: '⚠️[跳过]广告前可能有多次无效点击,属于正常现象',
       fastQuery: true,
       matchTime: 10000,
       // actionMaximum: 2,
@@ -38,7 +39,7 @@ export default defineGkdApp({
         // 坐标点击的放后面, 从上往下依次点击按钮[跳过]附近的坐标, 总有一个能点中[跳过]
         {
           key: 10,
-          name: '坐标点击①',
+          name: '点击坐标①',
           // actionMaximum: 1, // 打开豆瓣-->启动白屏-->显示开屏广告, 只点1次会在白屏阶段被触发掉, 导致后续不再触发
           position: {
             left: 'width * 0.875',
@@ -50,7 +51,7 @@ export default defineGkdApp({
         {
           key: 11,
           preKeys: [10],
-          name: '坐标点击②',
+          name: '点击坐标②',
           position: {
             left: 'width * 0.875',
             top: 'width * 0.135',
@@ -66,7 +67,7 @@ export default defineGkdApp({
         {
           key: 12,
           preKeys: [11],
-          name: '坐标点击③',
+          name: '点击坐标③',
           position: {
             left: 'width * 0.875',
             top: 'width * 0.17',
@@ -84,7 +85,7 @@ export default defineGkdApp({
         {
           key: 13,
           preKeys: [12],
-          name: '坐标点击④',
+          name: '点击坐标④',
           position: {
             left: 'width * 0.875',
             top: 'width * 0.20',
