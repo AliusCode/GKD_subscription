@@ -65,10 +65,26 @@ export default defineGkdApp({
           matches:
             'FrameLayout[childCount=5] > @FrameLayout[childCount=1][visibleToUser=true][width<50 && height<50] > ImageView[childCount=0] <<n [vid="adContainer" || vid="adView" || vid="cardAd"]',
           snapshotUrls: [
-            'https://i.gkd.li/i/14382413',
-            'https://i.gkd.li/i/25124086',
-            'https://i.gkd.li/i/25124059',
+            'https://i.gkd.li/i/14382413', // 应用详情页
+            'https://i.gkd.li/i/25124086', // 应用详情页
+            'https://i.gkd.li/i/25124059', // 搜索页
           ],
+        },
+        {
+          key: 1,
+          fastQuery: true,
+          activityIds: '.MainActivity',
+          matches:
+            '@[clickable=true][width<90] < FrameLayout -2 * >3 [text="广告"]',
+          snapshotUrls: 'https://i.gkd.li/i/26870176', // 搜索页
+        },
+        {
+          key: 2,
+          fastQuery: true,
+          activityIds: '.MainActivity',
+          matches:
+            '@[name$="ImageView" || clickable=true][width<90 && height<78] < FrameLayout[childCount=1] <3 FrameLayout[childCount>2] <<(9,11) ViewFactoryHolder <4 View[childCount>2] <<5 [id="android:id/content"]',
+          snapshotUrls: 'https://i.gkd.li/i/26870429', // 搜索页
         },
       ],
     },
