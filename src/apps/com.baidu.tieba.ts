@@ -162,6 +162,7 @@ export default defineGkdApp({
             '@View[clickable=true][visibleToUser=true] - [text^="选择不喜欢"]',
             '[text="已经看过"][clickable=true]',
           ],
+          action: 'clickCenter', // [App不响应无障碍事件](https://github.com/Lin-arm/GKD_subscription/issues/123)
           exampleUrls: [
             'https://e.gkd.li/67a159e7-59ea-45f6-909c-7a681c4d3838',
             'https://e.gkd.li/5f9ebe98-dfd1-41a4-bb93-b1a45aa00549',
