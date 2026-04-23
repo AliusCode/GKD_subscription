@@ -123,7 +123,7 @@ export default defineGkdApp({
         {
           key: 0,
           action: 'longClick',
-          name: '长按"赞助"/"广告"卡片',
+          name: '①长按"赞助"/"广告"卡片',
           excludeMatches: 'RecyclerView > LinearLayout > [text^="不喜欢"]',
           matches:
             '@FrameLayout[clickable=true] > LinearLayout TextView[text="赞助"||text="广告"][visibleToUser=true]',
@@ -134,8 +134,26 @@ export default defineGkdApp({
           ],
         },
         {
-          preKeys: [0],
-          name: '点"不感兴趣"',
+          key: 1,
+          action: 'longClick',
+          name: '①长按"广告"卡片_2',
+          matches:
+            '@[childCount=4] > [vid="adsCoverImage"] +3 [vid="adsLogoText"][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/27015032',
+          exampleUrls: 'https://e.gkd.li/255822f2-7f48-4b1e-83bd-50411727bd29',
+        },
+        {
+          key: 2,
+          action: 'longClick',
+          name: '①长按"广告"卡片_3',
+          matches:
+            '@[vid="card_view"] >3 [vid="tv_ad_desc"][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/27015306',
+          exampleUrls: 'https://e.gkd.li/0034d36d-f3a3-4255-991f-c3d6c258c8ae',
+        },
+        {
+          preKeys: [0, 1, 2],
+          name: '②点"不感兴趣"',
           anyMatches: [
             'RecyclerView > @LinearLayout[index=0] > TextView[text^="不喜欢"]',
             'ViewGroup > @[childCount=2] > TextView[text="不喜欢"][visibleToUser=true]',
