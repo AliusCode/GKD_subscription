@@ -292,6 +292,7 @@ export default defineGkdApp({
       desc: '点击关闭',
       rules: [
         {
+          key: 0,
           fastQuery: true,
           activityIds: 'com.alipay.android.msp.ui.views.MspContainerActivity',
           matches: [
@@ -306,6 +307,17 @@ export default defineGkdApp({
             'https://i.gkd.li/i/15050300',
             'https://i.gkd.li/i/20684144',
           ],
+        },
+        {
+          key: 1,
+          name: '花呗开通提示',
+          fastQuery: true,
+          activityIds: 'com.alipay.android.msp.ui.views.MspContainerActivity',
+          matches: [
+            '[text^="开通"][text*="花呗"]',
+            '@[clickable=true] > [text="关闭"]',
+          ],
+          snapshotUrls: 'https://i.gkd.li/i/27007114',
         },
       ],
     },
