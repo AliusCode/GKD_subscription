@@ -177,11 +177,12 @@ export default defineGkdApp({
       fastQuery: true,
       actionMaximum: 1,
       resetMatch: 'app',
+      forcedTime: 4000, // 规则概率性无响应
       rules: [
         {
           action: 'back',
           activityIds: 'com.xingin.lurker.appscore.ui.AppScoreDialogActivity',
-          matches: '[text="您对小红书的评分如何?"]',
+          matches: '[text="您对小红书的评分如何?"][visibleToUser=true]',
           exampleUrls:
             'https://m.gkd.li/57941037/9727815d-b881-4904-bbdc-19ade426977e',
           snapshotUrls: 'https://i.gkd.li/i/15281458',
