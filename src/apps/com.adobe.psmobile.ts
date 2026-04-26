@@ -11,9 +11,10 @@ export default defineGkdApp({
       rules: [
         {
           fastQuery: true,
+          action: 'clickCenter', // 用 clickNode 点击无效
           activityIds: '.MainActivity',
           matches:
-            '@[clickable=true][desc="不，谢谢"] < [childCount=2] <4 View[childCount=4] <<5 [id="android:id/custom"]',
+            '@[desc="不，谢谢"] < [childCount=2] <4 View[childCount=4] < View < WebView < * < * < [id="android:id/custom"]',
           snapshotUrls: 'https://i.gkd.li/i/26115696',
         },
       ],
