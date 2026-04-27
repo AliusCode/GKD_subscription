@@ -5,6 +5,22 @@ export default defineGkdApp({
   name: '移动爱家',
   groups: [
     {
+      key: 1,
+      name: '更新提示',
+      matchTime: 10000,
+      actionMaximum: 1,
+      resetMatch: 'app',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.appupdate.view.UpdateDialogActivity',
+          matches:
+            '@[vid="tvCancel"] + * >3 [text*="新版本"][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/27128807',
+        },
+      ],
+    },
+    {
       key: 5,
       name: '全屏广告-弹窗广告',
       fastQuery: true,
