@@ -191,11 +191,12 @@ export default defineGkdApp({
           resetMatch: 'app',
           activityIds: '.app.MediaActivity',
           matches:
-            'ViewGroup > FrameLayout >2 FrameLayout[childCount=2] > FrameLayout > FrameLayout[childCount=2] > ImageView[index=1][clickable=true][childCount=0][width<80&&height<80]',
+            '@[clickable=true][width<113][height<113] <(1,2) [childCount=2] > ImageView[desc=null][focusable=true][visibleToUser=true][width>120 && width<210][height>120 && height<210]',
           exampleUrls: 'https://e.gkd.li/2b240676-4dac-4375-b238-2d570962efd1',
           snapshotUrls: [
             'https://i.gkd.li/i/17004903',
             'https://i.gkd.li/i/18057265',
+            'https://i.gkd.li/i/27167415',
           ],
         },
       ],
