@@ -438,5 +438,22 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 23,
+      name: '功能类-订单详页-展开更多',
+      desc: '自动展开更多信息',
+      activityIds: '.activity.NewPageActivity',
+      rules: [
+        {
+          action: 'clickCenter',
+          anyMatches: [
+            'Button[text="查看更多订单信息"]', // 不响应无障碍事件
+            'View[text^="收货人信息"] > [text="展开"][visibleToUser=true]',
+          ],
+          snapshotUrls: 'https://i.gkd.li/i/27208567',
+          exampleUrls: 'https://e.gkd.li/fb06904f-b996-49a8-8db3-3e44059d704d',
+        },
+      ],
+    },
   ],
 });
