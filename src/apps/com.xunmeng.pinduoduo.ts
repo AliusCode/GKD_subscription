@@ -455,5 +455,21 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 24,
+      name: '功能类-仅看此规格评价',
+      desc: '快速点击[仅看当前商品规格的评价]',
+      actionCd: 5000, // 防止想点举报点不了
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.activity.NewPageActivity',
+          matches:
+            '[text^="发表时间"] +2 [text="仅看当前规格的评价"][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/27209280',
+          exampleUrls: 'https://e.gkd.li/5e17d2de-bca9-4462-8276-7269b0ea5f49',
+        },
+      ],
+    },
   ],
 });
