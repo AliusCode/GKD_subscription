@@ -1,0 +1,208 @@
+name: sync upstream
+
+on:
+  # 修改为手动和定时触发，因为重写后会强制覆盖分支导致不断触发推送机制一直循环
+  # push:
+  #  branches:
+  #    - sync-fork
+
+  # 每小时检查一次，凌晨4点到早上8点不检查
+  schedule:
+    - cron: '30 1-19 * * *'
+  
+  # 手动触发同步（不在默认分支，不可选）
+  workflow_dispatch:
+    inputs:
+      skip-check:
+        description: '跳过检查，强制同步'
+        required: false
+        default: false
+        type: boolean
+
+# 权限设置，允许写入内容以推送更改
+permissions:
+    contents: write
+
+# 工作流作业定义
+jobs:
+  # 工作流，强制拉取上游仓库到main分支
+  force-sync-main:
+    name: force sync main branch[强制同步main分支]
+    # 仅在 fork 仓库运行
+    if: github.event.repository.fork
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      # 步骤1：检出 main 分支（重要！）
+      - name: checkout main branch[检出main分支]
+        uses: actions/checkout@v4
+        with:
+          ref: main  # 明确指定 main 分支
+          fetch-depth: 0
+          token: ${{ secrets.PAT_GKD_SYNC }}
+
+      # 步骤2：配置 Git 用户
+      - name: configure git[配置git用户]
+        run: |
+          git config user.name "github-actions[bot]"
+          echo "已将用户名设置为 "github-actions[bot]""
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          echo "已将用户邮箱设置为 "github-actions[bot]@users.noreply.github.com""
+
+      # 步骤3：添加上游仓库（替换为你实际的上游）
+      - name: add/fetch upstream[添加/获取上游仓库]
+        run: |
+          # 请确认这是你的上游仓库地址
+          UPSTREAM_URL="https://github.com/Lin-arm/GKD_subscription.git"
+          echo "上游仓库地址: $UPSTREAM_URL"
+          git remote remove upstream 2>/dev/null || true
+          echo "已安全地移除 Git 远程仓库 "upstream""
+          git remote add upstream $UPSTREAM_URL
+          echo "已添加 Git 远程仓库 "upstream": $UPSTREAM_URL"
+          git fetch upstream --quiet
+          echo "上游仓库已成功添加并获取"
+
+      # 步骤4：检查是否有更新
+      - name: check for upstream changes[检查上游更改]
+        id: check
+        run: |
+          # 获取 main 分支当前提交和上游 main 分支提交
+          CURRENT_COMMIT=$(git rev-parse HEAD)
+          echo "当前 main 分支提交: ${CURRENT_COMMIT:0:8}"
+          UPSTREAM_COMMIT=$(git rev-parse upstream/main)
+          echo "上游 main 分支提交: ${UPSTREAM_COMMIT:0:8}"
+          
+          if [ "$CURRENT_COMMIT" = "$UPSTREAM_COMMIT" ] && [ "${{ github.event.inputs.skip-check }}" != "true" ]; then
+            echo "changes_detected=false" >> $GITHUB_OUTPUT
+            echo "main 分支已是最新，无需同步"
+          else
+            echo "changes_detected=true" >> $GITHUB_OUTPUT
+            echo "检测到差异或强制同步模式，开始同步..."
+          fi
+
+      # 步骤5：强制重置到上游（确保完全一致）
+      - name: force reset to upstream[强制重置到上游]
+        if: steps.check.outputs.changes_detected == 'true'
+        run: |
+          echo "正在强制重置 main 分支到上游状态..."
+          
+          # 强制将本地 main 分支重置到与上游完全一致
+          git reset --hard upstream/main
+          
+          # 验证重置结果
+          echo "重置后的提交哈希: $(git rev-parse --short HEAD)"
+          echo "main 分支已重置为上游最新状态"
+
+      # 步骤6：强制推送到远程 main 分支
+      - name: force push to remote[强制推送到远程main分支]
+        if: steps.check.outputs.changes_detected == 'true'
+        run: |
+          echo "正在强制推送到远程 main 分支..."
+          
+          git push origin main --force-with-lease
+          
+          echo "::notice title=分支已同步::已将 main 分支强制同步至上游提交 $(git rev-parse --short HEAD)"
+          echo "同步完成！main 分支现在与上游完全一致"
+
+      # 步骤7：无更新时的日志
+      - name: skip log [无更新时的日志]
+        if: steps.check.outputs.changes_detected == 'false'
+        run: echo "上游无新更新，本轮检查跳过"
+  
+  
+  # 工作流，同步sync_fork分支
+  sync-fork-branch:
+    name: sync sync-fork branch[同步sync-fork分支]
+    needs: force-sync-main
+    # 仅在 fork 仓库运行
+    if: github.event.repository.fork
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      # 步骤1：检出 sync-fork 分支
+      - name: checkout sync-fork branch[检出sync-fork分支]
+        uses: actions/checkout@v4
+        with:
+          ref: sync-fork
+          fetch-depth: 0
+          token: ${{ secrets.PAT_GKD_SYNC }}
+
+      # 步骤2：配置 Git 用户
+      - name: configure git[配置git用户]
+        run: |
+          git config user.name "github-actions[bot]"
+          echo "已将用户名设置为 "github-actions[bot]""
+
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          echo "已将用户邮箱设置为 "github-actions[bot]@users.noreply.github.com""
+
+      # 步骤3：添加上游仓库
+      - name: add/fetch upstream[添加/获取上游仓库]
+        run: |
+          # 请确认这是你的上游仓库地址
+          UPSTREAM_URL="https://github.com/Lin-arm/GKD_subscription.git"
+          echo "上游仓库地址: $UPSTREAM_URL"
+          git remote remove upstream 2>/dev/null || true
+          echo "已安全地移除 Git 远程仓库 "upstream""
+          git remote add upstream $UPSTREAM_URL
+          echo "已添加 Git 远程仓库 "upstream": $UPSTREAM_URL"
+          git fetch upstream --quiet
+          echo "上游仓库已成功添加并获取"
+
+      # 步骤4：全量同步并精确恢复指定文件
+      - name: sync and restore specific files[全量同步并恢复指定文件]
+        id: sync
+        run: |
+          # 记录当前的 commit，稍后从这里抢救文件
+          CURRENT_SHA=$(git rev-parse HEAD)
+          echo "当前 sync-fork 分支提交: ${CURRENT_SHA:0:8}"
+
+          # 强制同步上游仓库文件
+          echo "正在强制同步上游 main 分支的文件..."
+          git reset --hard upstream/main
+
+          # 从当前提交中恢复指定文件
+          echo "正在恢复指定的工作流文件..."
+          git checkout $CURRENT_SHA -- .github/workflows/sync-main.yml || true
+          git checkout $CURRENT_SHA -- .github/workflows/clean-up.yml || true
+          
+
+          # 检查是否有变更需要提交
+          if git status --porcelain | grep -q .; then
+            echo "检测到变更，准备提交..."
+            echo "changes_detected=true" >> $GITHUB_OUTPUT
+          else
+            echo "未检测到变更，无需提交"
+            echo "changes_detected=false" >> $GITHUB_OUTPUT
+          fi
+
+      # 步骤5：提交更改到sync-fork分支
+      - name: commit changes into sync-fork[提交更改到sync-fork]
+        if: steps.sync.outputs.changes_detected == 'true'
+        run: |
+          echo "正在提交更改到 sync-fork 分支"
+          
+          git add .
+          git commit -m "chore: sync upstream while preserving specific workflows"
+          
+          echo "::notice title=分支已更改::已将上游 main 分支的更改到 sync-fork 分支并保留工作流文件"
+          echo "上游 main 分支已提交到 sync-fork 分支并保留工作流文件"
+
+      # 步骤6：推送 sync-fork 分支到远程
+      - name: push sync-fork to remote[推送sync-fork到远程]
+        if: steps.sync.outputs.changes_detected == 'true'
+        run: |
+          echo "正在推送 sync-fork 分支到远程仓库..."
+          
+          # 使用强制推送
+          git push origin sync-fork --force-with-lease
+          
+          echo "::notice title=分支已同步::已将 sync-fork 分支更新至上游 main 分支状态"
+          echo "sync-fork 分支同步完成！"
+      
+      # 步骤7：无更新时的日志
+      - name: skip log [无更新时的日志]
+        if: steps.sync.outputs.changes_detected == 'false'
+        run: echo "上游 main 分支无新更新，本轮检查跳过"
