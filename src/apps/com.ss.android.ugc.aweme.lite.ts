@@ -137,11 +137,13 @@ export default defineGkdApp({
           activityIds: [
             'com.ss.android.ugc.aweme.main.MainActivity',
             'com.ss.android.ugc.aweme.detail.ultra.ui.UltraDetailActivity',
+            'com.ss.android.ugc.aweme.detail.ui.DetailActivity',
           ],
           matches:
             '([text*="广告"][vid="desc"][visibleToUser=true]) || ([text="应用" || text="购物" || text$="游戏" || text="咨询" || text="子薇剧场" || text="预约"][text.length<6][index=1][visibleToUser=true])',
           snapshotUrls: [
             'https://i.gkd.li/i/29214101', // [text*="广告"][vid="desc"]
+            'https://i.gkd.li/i/29579093', // [text*="广告"][vid="desc"]
             'https://i.gkd.li/i/29214002', //游戏
 
             // 选择器参数大部分参考以下抖音快照:
