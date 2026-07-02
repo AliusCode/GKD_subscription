@@ -179,8 +179,11 @@ export default defineGkdApp({
           key: 8,
           activityIds: '.pb.pb.main.PbActivity',
           matches:
-            'ImageView < @[clickable=true][width<82 && height<82] <5 [childCount=5] >2 [text="贴吧游戏"]',
-          snapshotUrls: 'https://i.gkd.li/i/28389197',
+            'ImageView < @[clickable=true][width<82 && height<82] <5 [childCount=5] + [childCount=1] >4 [text="权限" || text="隐私" || text="功能"] -(1,2,3) [text$="有限公司"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/28389197',
+            'https://i.gkd.li/i/29578950',
+          ],
         },
         {
           key: 9,
