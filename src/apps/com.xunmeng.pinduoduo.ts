@@ -475,7 +475,6 @@ export default defineGkdApp({
           matches: '[text="展开"][visibleToUser=true]',
           snapshotUrls: 'https://i.gkd.li/i/29405868',
         },
-        // 无快查
         {
           key: 1,
           name: '[查看更多订单信息]',
@@ -486,10 +485,20 @@ export default defineGkdApp({
         },
         {
           key: 2,
-          name: '通用[展开]',
+          name: '订单页',
           action: 'clickCenter', // 不响应无障碍事件
-          matches: '[text="展开"][visibleToUser=true]',
-          snapshotUrls: 'https://i.gkd.li/i/27208567',
+          matches:
+            '@[text="展开"] <<3 View <n [id="main"] <<2 WebView[text!=null] <<3 FrameLayout <2 ViewGroup -2 FrameLayout >3 [text="交易成功"]',
+          snapshotUrls: 'https://i.gkd.li/i/27208567', // [text="展开"]
+        },
+        {
+          key: 3,
+          name: '商品评论',
+          fastQuery: true,
+          activityIds: '.activity.NewPageActivity',
+          matches:
+            '@[desc="展开"][clickable=true] - FrameLayout > ViewGroup[vid="pdd"][childCount>5] >2 [text^="全部("]',
+          snapshotUrls: 'https://i.gkd.li/i/29604643',
         },
       ],
     },
