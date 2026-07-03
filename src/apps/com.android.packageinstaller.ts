@@ -150,5 +150,23 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 5,
+      name: '功能类-InstallerX自动安装',
+      desc: 'InstallerX无特权情况下自动确认',
+      rules: [
+        {
+          name: '点击[安装/更新]',
+          fastQuery: true,
+          matches:
+            '[id="android:id/button1"][text="更新" || text="安装"][visibleToUser=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/29594607',
+            'https://i.gkd.li/i/29594599',
+          ],
+          activityIds: '.PackageInstallerActivity',
+        },
+      ],
+    },
   ],
 });
