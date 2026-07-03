@@ -302,12 +302,13 @@ export default defineGkdApp({
             'com.baidu.tbadk.browser.TBWebContainerActivity',
           ],
           matches:
-            'WebView[text!=null] > View[childCount=1] > View[childCount=3] > @[visibleToUser=true][index=2]',
+            'WebView[text!=null] > View[childCount=1] > View[childCount=3] > @[visibleToUser=true][index=2][width<150]',
           exampleUrls: 'https://e.gkd.li/ac3d88b7-31a2-441f-a4c8-8a73eaec24b9',
           snapshotUrls: [
             'https://i.gkd.li/i/13060891',
             'https://i.gkd.li/i/16703244',
           ],
+          excludeSnapshotUrls: 'https://i.gkd.li/i/29640529', // [width<150]
         },
       ],
     },
