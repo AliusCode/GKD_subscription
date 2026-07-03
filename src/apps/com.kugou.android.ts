@@ -107,9 +107,6 @@ export default defineGkdApp({
     {
       key: 2,
       name: '全屏广告-VIP弹窗',
-      matchTime: 10000,
-      actionMaximum: 1,
-      resetMatch: 'app',
       rules: [
         {
           key: 0,
@@ -123,19 +120,13 @@ export default defineGkdApp({
           key: 1,
           activityIds: '.app.MediaActivity',
           matches:
-            'WebView[text="开通会员"] >7 @TextView[clickable=true][childCount=0] +2 [text="当前歌曲支持蝰蛇全景声"]',
+            '@[id=null][text="退出页面" || text=""][width<200 && height<200] <(1,3) [childCount>3] >(1,2) [visibleToUser=true][text*="会员" || text*="VIP" || text*="支持蝰蛇"]',
           exampleUrls: 'https://e.gkd.li/86e4a797-5366-4579-81ee-bc5354e95568',
-          snapshotUrls: 'https://i.gkd.li/i/17177377',
-        },
-        {
-          key: 2,
-          activityIds: '.app.MediaActivity',
-          matches:
-            '@[clickable=true][childCount=0] < View <(1,2) View <(1,2) View < WebView < WebView < FrameLayout < FrameLayout < RelativeLayout < RelativeLayout < FrameLayout[!(id="android:id/content")] < FrameLayout < [parent=null]',
-          exampleUrls: 'https://e.gkd.li/f32ed6b7-e396-45a5-9849-f8a8ae99cb99',
           snapshotUrls: [
+            'https://i.gkd.li/i/17177377',
             'https://i.gkd.li/i/18070974',
             'https://i.gkd.li/i/22310624',
+            'https://i.gkd.li/i/29639642',
           ],
         },
       ],
