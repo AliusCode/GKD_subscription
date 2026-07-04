@@ -8,6 +8,7 @@ export default defineGkdApp({
       key: 1,
       name: '更新提示',
       matchTime: 10000,
+      forcedTime: 10000,
       actionMaximum: 1,
       resetMatch: 'app',
       rules: [
@@ -16,7 +17,7 @@ export default defineGkdApp({
           activityIds: '.appupdate.view.UpdateDialogActivity',
           matches:
             '@[vid="tvCancel"] + * >3 [text*="新版本"][visibleToUser=true]',
-          snapshotUrls: 'https://i.gkd.li/i/27128807',
+          snapshotUrls: 'https://i.gkd.li/i/29660021',
         },
       ],
     },
