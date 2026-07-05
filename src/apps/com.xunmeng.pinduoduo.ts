@@ -3,6 +3,7 @@ import { defineGkdApp } from '@gkd-kit/define';
 export default defineGkdApp({
   id: 'com.xunmeng.pinduoduo',
   name: '拼多多',
+  // 根选择器模板:'@View[id="main"] <<2 WebView[text="拼多多"] <<3 FrameLayout[vid!=null] <2 ViewGroup <2 FrameLayout <<3 [id="android:id/content"]'
   groups: [
     {
       key: 0,
@@ -297,12 +298,13 @@ export default defineGkdApp({
             '.ui.activity.HomeActivity',
           ],
           action: 'clickCenter',
-          matches: 'Button[text="关闭弹窗" || desc="关闭弹窗"][clickable=true]',
+          matches:
+            '@Button[text="关闭弹窗" || desc="关闭弹窗"][clickable=true] <n View[childCount>1] <<(1,2) View[id="main"] <<2 WebView[text="拼多多"] <<3 FrameLayout[vid!=null] <2 ViewGroup <2 FrameLayout <<3 [id="android:id/content"]',
           snapshotUrls: [
+            'https://i.gkd.li/i/13308175', // 老快照无vid
             'https://i.gkd.li/i/13927594',
             'https://i.gkd.li/i/14434154',
             'https://i.gkd.li/i/14456017',
-            'https://i.gkd.li/i/13308175',
             'https://i.gkd.li/i/23256823',
           ],
         },
