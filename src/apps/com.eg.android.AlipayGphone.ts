@@ -264,9 +264,12 @@ export default defineGkdApp({
           activityIds:
             'com.alipay.mobile.nebulax.integration.mpaas.activity.NebulaActivity$Main',
           matches:
-            'WebView > View > View > View > View > @TextView[clickable=true][visibleToUser=true][text=""] <<n [id="com.alipay.mobile.nebula:id/h5_pc_container"]',
+            '@TextView[id=desc][text=""][visibleToUser=true][width<110][height<110][top>getPrev(1).height.div(2)] <2 View[childCount=2] <<n [id="com.alipay.mobile.nebula:id/h5_pc_container"]',
           exampleUrls: 'https://e.gkd.li/ebbd606a-0e21-4fc5-b0c3-49e4d87d065c',
-          snapshotUrls: 'https://i.gkd.li/i/16812751',
+          snapshotUrls: [
+            'https://i.gkd.li/i/16812751',
+            'https://i.gkd.li/i/29666442',
+          ],
         },
         {
           key: 2,
