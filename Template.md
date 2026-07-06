@@ -99,14 +99,15 @@
 
 ![img](https://contrib.rocks/image?repo=Lin-arm/GKD_subscription&max=200&_v={{VERSION}})
 
-![Alt](https://repobeats.axiom.co/api/embed/db6f46a4bdc4e760fb51976db276f1febef5bdce.svg "报告分析图")
+<!-- repobeats 已失效 -->
+<!-- ![Alt](https://repobeats.axiom.co/api/embed/db6f46a4bdc4e760fb51976db276f1febef5bdce.svg "报告分析图") -->
 
 ## 📈Star History
 
-<a href="https://www.star-history.com/?repos=Lin-arm%2FGKD_subscription&type=timeline&legend=top-left">
+<a href="https://www.star-history.com/?repos=Lin-arm%2FGKD_subscription&type=date&legend=top-left">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/image?repos=Lin-arm/GKD_subscription&type=timeline&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/image?repos=Lin-arm/GKD_subscription&type=timeline&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/image?repos=Lin-arm/GKD_subscription&type=timeline&legend=top-left" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=Lin-arm/GKD_subscription&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=Lin-arm/GKD_subscription&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=Lin-arm/GKD_subscription&type=date&legend=top-left" />
  </picture>
 </a>
