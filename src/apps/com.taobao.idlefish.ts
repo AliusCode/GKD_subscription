@@ -95,55 +95,67 @@ export default defineGkdApp({
         },
       ],
     },
-    // 该规则可能会出现多次触发一段后才能触发二段的情况，影响正常使用
-    // {
-    //   key: 5,
-    //   name: '分段广告-信息流广告',
-    //   forcedTime: 100000,
-    //   activityIds: [
-    //     'com.idlefish.flutterbridge.flutterboost.boost.FishFlutterBoostTransparencyActivity',
-    //     'com.idlefish.flutterbridge.flutterboost.boost.FishFlutterBoostActivity',
-    //     '.search_implement.SearchResultActivity',
-    //     '.maincontainer.activity.MainActivity',
-    //   ],
-    //   rules: [
-    //     {
-    //       key: 0,
-    //       action: 'longClick',
-    //       matches:
-    //         '@View[longClickable=true][desc$="广告"][visibleToUser=true] > [desc!=null][visibleToUser=true]',
-    //       snapshotUrls: 'https://i.gkd.li/i/19593497',
-    //       excludeSnapshotUrls: 'https://i.gkd.li/i/19604467',
-    //     },
-    //     {
-    //       key: 1,
-    //       fastQuery: true,
-    //       action: 'longClick',
-    //       matches: '@[longClickable=true] >3 [text="广告"][visibleToUser=true]',
-    //       exampleUrls: 'https://e.gkd.li/ca42e088-6fae-4402-a000-06418bf054cf',
-    //       snapshotUrls: 'https://i.gkd.li/i/19603954',
-    //     },
-    //     {
-    //       key: 2,
-    //       fastQuery: true,
-    //       action: 'longClick',
-    //       activityIds: '.maincontainer.activity.MainActivity',
-    //       matches:
-    //         '@[longClickable=true][childCount=0][visibleToUser=true] < FrameLayout > [text="广告"][visibleToUser=true]',
-    //       exampleUrls: 'https://e.gkd.li/738c623e-58fe-45a1-9a28-957f0f812c72',
-    //       snapshotUrls: 'https://i.gkd.li/i/19604324',
-    //     },
-    //     {
-    //       preKeys: [0, 1, 2],
-    //       matches: '[desc="引起不适"][visibleToUser=true]',
-    //       snapshotUrls: [
-    //         'https://i.gkd.li/i/19593500',
-    //         'https://i.gkd.li/i/19603913',
-    //         'https://i.gkd.li/i/19604317',
-    //       ],
-    //     },
-    //   ],
-    // },
+    {
+      key: 5,
+      name: '分段广告-信息流广告',
+      desc: '⚠️含有[长按]操作,滑动太快的慎用', // https://github.com/AIsouler/GKD_subscription/issues/828
+      fastQuery: true,
+      forcedTime: 100000,
+      rules: [
+        {
+          key: 1,
+          action: 'longClick',
+          activityIds: '.search_implement.SearchResultActivity', //搜索结果页面
+          matches: '@[longClickable=true] >3 [text="广告"][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/19603954',
+          exampleUrls: 'https://e.gkd.li/ca42e088-6fae-4402-a000-06418bf054cf',
+        },
+        {
+          key: 2,
+          action: 'longClick',
+          activityIds: [
+            '.maincontainer.activity.MainActivity', //首页
+            '.detail.DetailActivity',
+          ],
+          matches:
+            '@[longClickable=true][childCount=0] < [childCount>1] >(1,4) [text="广告"][visibleToUser=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/19604324',
+            'https://i.gkd.li/i/29751786',
+          ],
+          exampleUrls: 'https://e.gkd.li/738c623e-58fe-45a1-9a28-957f0f812c72',
+        },
+        {
+          key: 3,
+          action: 'longClick',
+          activityIds:
+            'com.idlefish.flutterbridge.flutterboost.boost.FishFlutterBoostActivity',
+          matches:
+            'View[desc$="广告"][longClickable=true][visibleToUser=true][childCount>2]', //无快查
+          snapshotUrls: 'https://i.gkd.li/i/19593497',
+          excludeSnapshotUrls: 'https://i.gkd.li/i/19604467', // [childCount=1]
+        },
+
+        // 第二段
+        {
+          key: 20,
+          name: '②点击[引起不适]',
+          preKeys: [1, 2, 3, 20], //有时候需点击第2次,故包含 key20 自身
+          actionCd: 300,
+          activityIds: [
+            'com.idlefish.flutterbridge.flutterboost.boost.FishFlutterBoostActivity',
+            'com.idlefish.flutterbridge.flutterboost.boost.FishFlutterBoostTransparencyActivity',
+          ],
+          matches: '[desc="引起不适"][visibleToUser=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/19593500',
+            'https://i.gkd.li/i/19603913',
+            'https://i.gkd.li/i/19604317',
+            'https://i.gkd.li/i/29751857',
+          ],
+        },
+      ],
+    },
     {
       key: 6,
       name: '功能类-自动点击[查看原图]',
