@@ -467,6 +467,7 @@ export default defineGkdApp({
       ],
       rules: [
         {
+          key: 0,
           matches: '@[clickable=true] > [text^="展开"][text$="回复"]',
           snapshotUrls: [
             'https://i.gkd.li/i/25356027',
@@ -477,6 +478,15 @@ export default defineGkdApp({
           exampleUrls: [
             'https://e.gkd.li/e9ca5fe1-a60c-4ed8-9974-9d79e32c71d7',
             'https://e.gkd.li/c58e3455-2d7e-4ce2-8c0f-a971386f5ef4', // 排除 [展开更多]
+          ],
+        },
+        {
+          key: 1,
+          matches:
+            '[text^="展开"][text$="回复"] <2 @[clickable=true][childCount=3] <<n ViewPager <(3,4) LinearLayout + [childCount=2] > [desc$="评论区"] + [vid="back_btn"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/29811099',
+            'https://i.gkd.li/i/29811533',
           ],
         },
       ],
