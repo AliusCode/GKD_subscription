@@ -268,8 +268,10 @@ export default defineGkdApp({
         {
           key: 1,
           fastQuery: true,
-          activityIds:
+          activityIds: [
             'com.alipay.mobile.nebulax.integration.mpaas.activity.NebulaActivity$Main',
+            'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity',
+          ],
           matches:
             '@TextView[id=desc][text=""][visibleToUser=true][width<110][height<110][top>getPrev(1).height.div(2)][left<getPrev(1).width.div(2)][right>getPrev(1).width.div(2)] <2 View[childCount=2] <<n [id="com.alipay.mobile.nebula:id/h5_pc_container"]',
           /**
@@ -280,6 +282,7 @@ export default defineGkdApp({
           snapshotUrls: [
             'https://i.gkd.li/i/16812751',
             'https://i.gkd.li/i/29666442',
+            'https://i.gkd.li/i/29814861',
           ],
           excludeSnapshotUrls: 'https://i.gkd.li/i/29814461', // 用 [left<getPrev(1).width.div(2)][right>getPrev(1).width.div(2)] 排除
         },
