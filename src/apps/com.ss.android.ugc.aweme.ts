@@ -61,7 +61,7 @@ export default defineGkdApp({
     {
       key: 10,
       name: '权限提示-通知权限',
-      desc: '点击[暂不]/[以后再说]/[禁止]',
+      desc: '点击[暂不]/[以后再说]/[禁止]/[保持现状]',
       rules: [
         {
           fastQuery: true,
@@ -71,10 +71,11 @@ export default defineGkdApp({
             '.main.MainActivity',
             '.profile.ui.UserProfileActivity',
             '.detail.ui.DetailActivity',
+            '.setting.serverpush.ui.PushSettingManagerActivity',
           ],
           matches: [
             'TextView[text$="提醒" || text$="通知"][text.length>5][visibleToUser=true]',
-            '[text="以后再说" || text="暂不开启" || text="禁止" || text="取消"][clickable=true]',
+            '[text="以后再说" || text="暂不开启" || text="禁止" || text="取消" || text="保持现状"][clickable=true]',
           ],
           snapshotUrls: [
             'https://i.gkd.li/i/13669790', // 及时获得消息提醒
@@ -84,6 +85,7 @@ export default defineGkdApp({
             'https://i.gkd.li/i/29402255', // 及时收到博主更新提醒
             'https://i.gkd.li/i/18419574', // 私信通知
             'https://i.gkd.li/i/18417891', // 朋友消息通知
+            'https://i.gkd.li/i/29828761', // 保持现状
           ],
         },
       ],
