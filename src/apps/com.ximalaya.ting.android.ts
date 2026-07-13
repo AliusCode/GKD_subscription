@@ -94,6 +94,7 @@ export default defineGkdApp({
           activityIds: '.host.activity.MainActivity',
           matches: '[text="你可能感兴趣的专辑"] + [vid="main_iv_close"]',
           snapshotUrls: 'https://i.gkd.li/i/13251713',
+          exampleUrls: 'https://e.gkd.li/8efcd568-13f2-4ac4-872a-fe6fc4affaec',
         },
       ],
     },
@@ -107,6 +108,7 @@ export default defineGkdApp({
           matches:
             '@[vid="host_close_firework"] +2 [vid="host_firework_ad_tag"]',
           snapshotUrls: 'https://i.gkd.li/i/13263421',
+          exampleUrls: 'https://e.gkd.li/4f9a66b8-3bf5-4a8e-8ca6-db35625df270',
         },
       ],
     },
@@ -144,6 +146,19 @@ export default defineGkdApp({
           matches: '[vid="host_iv_close"][visibleToUser=true]',
           exampleUrls: 'https://e.gkd.li/2a7e189b-b935-4bbd-9672-c18f2bf454e9',
           snapshotUrls: 'https://i.gkd.li/i/18326083',
+        },
+      ],
+    },
+    {
+      key: 14,
+      name: '全屏广告-会员弹窗',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.host.activity.MainActivity',
+          matches: '[text*="￥"] -n [vid="main_iv_close"]',
+          snapshotUrls: 'https://i.gkd.li/i/29967591',
+          exampleUrls: 'https://e.gkd.li/f82ca167-35a0-42b4-b955-c5ef6e5d94dd',
         },
       ],
     },
