@@ -62,8 +62,12 @@ export default defineGkdApp({
       key: 4,
       name: '分段广告-首页信息流广告',
       desc: '①点击x掉卡片广告 ②选一个反馈理由',
-      activityIds: '.MainActivity',
       fastQuery: true,
+      activityIds: [
+        '.MainActivity',
+        'com.dongqiudi.data.MixActivity',
+        '.NewsDetailActivity',
+      ],
       rules: [
         {
           key: 1,
@@ -71,20 +75,28 @@ export default defineGkdApp({
           matches:
             '[vid="feedback_close" || vid="ads_download_close"][visibleToUser=true]',
           snapshotUrls: [
-            // 'https://i.gkd.li/i/12620654', // 旧快照,待移除
-            // 'https://i.gkd.li/i/12620788',
             'https://i.gkd.li/i/29957609',
             'https://i.gkd.li/i/29957589',
             'https://i.gkd.li/i/29958236',
+            'https://i.gkd.li/i/29961281',
+            'https://i.gkd.li/i/29965220',
           ],
         },
         {
-          preKeys: [1],
+          key: 2,
+          name: '①x掉',
+          activityIds: '.NewsDetailActivity',
+          matches:
+            '@ImageView < [visibleToUser=true] - LinearLayout > [text^="立即" || text^="了解" || text*="查看" || text*="下载" || text*="领取" || text$="应用" || text$="详情" || text$="小程序"][text.length<6]',
+          snapshotUrls: 'https://i.gkd.li/i/29961284',
+        },
+        {
+          preKeys: [1, 2],
           name: '②选一个反馈理由',
           matches: '[text="诱导点击" || text="不感兴趣"][clickable=true]',
           snapshotUrls: [
-            // 'https://i.gkd.li/i/12620656',
             'https://i.gkd.li/i/29958238',
+            'https://i.gkd.li/i/29965222',
           ],
         },
       ],
