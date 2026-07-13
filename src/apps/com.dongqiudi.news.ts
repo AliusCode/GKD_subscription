@@ -61,27 +61,31 @@ export default defineGkdApp({
     {
       key: 4,
       name: '分段广告-首页信息流广告',
-      desc: '点击卡片广告x关闭按钮-关闭反馈理由弹窗',
+      desc: '①点击x掉卡片广告 ②选一个反馈理由',
       activityIds: '.MainActivity',
       fastQuery: true,
       rules: [
         {
-          preKeys: [1, 2],
-          name: '首页信息流广告-反馈理由',
-          matches: 'TextView[text="诱导点击"][vid="text_item"]',
-          snapshotUrls: 'https://i.gkd.li/i/12620656',
-        },
-        {
           key: 1,
+          name: '①点击x掉',
           matches:
-            'TextView[vid="ads_label"] +(n) ImageView[vid="feedback_close"]',
-          snapshotUrls: 'https://i.gkd.li/i/12620654',
+            '[vid="feedback_close" || vid="ads_download_close"][visibleToUser=true]',
+          snapshotUrls: [
+            // 'https://i.gkd.li/i/12620654', // 旧快照,待移除
+            // 'https://i.gkd.li/i/12620788',
+            'https://i.gkd.li/i/29957609',
+            'https://i.gkd.li/i/29957589',
+            'https://i.gkd.li/i/29958236',
+          ],
         },
         {
-          key: 2,
-          matches:
-            'TextView[vid="ads_title"] +(2) RelativeLayout > ImageView[vid="feedback_close"]',
-          snapshotUrls: 'https://i.gkd.li/i/12620788',
+          preKeys: [1],
+          name: '②选一个反馈理由',
+          matches: '[text="诱导点击" || text="不感兴趣"][clickable=true]',
+          snapshotUrls: [
+            // 'https://i.gkd.li/i/12620656',
+            'https://i.gkd.li/i/29958238',
+          ],
         },
       ],
     },
