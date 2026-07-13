@@ -7,6 +7,7 @@ export default defineGkdApp({
     {
       key: 0,
       name: '开屏广告',
+      fastQuery: true,
       matchTime: 10000,
       actionMaximum: 1,
       resetMatch: 'app',
@@ -16,29 +17,24 @@ export default defineGkdApp({
         {
           // 点击方式为 clickNode 时会误触广告，更改点击方式为 clickCenter https://github.com/AIsouler/GKD_subscription/issues/905
           key: 0,
-          fastQuery: true,
           action: 'clickCenter',
           matches:
             '[text*="跳过"][text.length<10][width<500 && height<300][visibleToUser=true]',
-          exampleUrls: 'https://e.gkd.li/74db13f0-d87d-41a3-bbbb-1b075d8ae7d6',
-          snapshotUrls: 'https://i.gkd.li/i/20218520',
+          snapshotUrls: [
+            'https://i.gkd.li/i/20218520',
+            'https://i.gkd.li/i/29968669',
+          ],
         },
         {
           key: 1,
-          fastQuery: true,
           matches:
             '@View[clickable=true] - [text="互动广告"][visibleToUser=true]',
-          exampleUrls: 'https://e.gkd.li/3b636c88-23de-4e2a-86fd-2846a0f0274b',
           snapshotUrls: 'https://i.gkd.li/i/20262129',
         },
         {
           key: 2,
-          fastQuery: true,
-          anyMatches: [
-            '@View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0] <n FrameLayout[childCount>2][text=null][desc=null] >(n+6) [text*="第三方应用" || text*="扭动手机" || text*="点击或上滑" || text*="省钱好物" || text*="扭一扭"][visibleToUser=true]',
-            'FrameLayout > FrameLayout[childCount>2][text=null][desc=null] > @View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0][visibleToUser=true]',
-          ],
-          exampleUrls: 'https://e.gkd.li/940ce4e2-da5f-4a43-b319-4131a22cb1e0',
+          matches:
+            '@View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0] <n FrameLayout[childCount>2][text=null][desc=null] >(n+6) [text*="第三方应用" || text*="扭动手机" || text*="点击或上滑" || text*="省钱好物" || text*="扭一扭"]',
           snapshotUrls: 'https://i.gkd.li/i/20262130',
         },
       ],
