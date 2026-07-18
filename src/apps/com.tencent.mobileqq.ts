@@ -473,12 +473,18 @@ export default defineGkdApp({
       rules: [
         {
           fastQuery: true,
-          activityIds: '.activity.QQBrowserActivity',
+          activityIds: [
+            '.activity.QQBrowserActivity',
+            '.filebrowser.FileBrowserActivityV2',
+          ],
           matches: [
             '[text$="打开其他应用"]',
             '[text="允许"][clickable=true][visibleToUser=true]',
           ],
-          snapshotUrls: 'https://i.gkd.li/i/25142977',
+          snapshotUrls: [
+            'https://i.gkd.li/i/25142977',
+            'https://i.gkd.li/i/30150628',
+          ],
         },
       ],
     },
