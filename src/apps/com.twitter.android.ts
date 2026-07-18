@@ -237,15 +237,23 @@ export default defineGkdApp({
     },
     {
       key: 7,
-      name: '功能类-自动点击[显示更多帖子]',
+      name: '功能类-自动[显示更多帖子]',
       rules: [
         {
+          key: 0,
           fastQuery: true,
           activityIds: 'com.twitter.app.main.MainActivity',
           matches: '@FrameLayout[clickable=true] > [text="显示更多帖子"]',
           exampleUrls:
             'https://m.gkd.li/57941037/7efa8af7-90d3-42b4-bf5d-3d83775f175a',
           snapshotUrls: 'https://i.gkd.li/i/14189847',
+        },
+        {
+          key: 1,
+          activityIds: 'com.x.android.main.MainActivity',
+          matches:
+            '@[clickable=true] > [visibleToUser=true][text="显示更多帖子"]',
+          snapshotUrls: 'https://i.gkd.li/i/30151597',
         },
       ],
     },
