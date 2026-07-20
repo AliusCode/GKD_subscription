@@ -667,5 +667,21 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 15,
+      name: '功能类-误入直播后自动[退出]',
+      desc: '配合 全自动看广告领VIP 使用',
+      rules: [
+        {
+          name: '点击[右上角x]掉直播间',
+          fastQuery: true,
+          actionDelay: 500,
+          activityIds: 'com.luna.biz.live.plugin.LunaDefaultLivePlayerActivity',
+          matches:
+            '@Button[desc="关闭"] +n [visibleToUser=true] >5 [text="更多直播"]',
+          snapshotUrls: 'https://i.gkd.li/i/30159254',
+        },
+      ],
+    },
   ],
 });
