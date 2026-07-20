@@ -7,10 +7,9 @@ export default defineGkdApp({
     {
       key: -1,
       name: '开屏广告',
+      fastQuery: true,
       matchTime: 10000,
-      actionMaximum: 1,
       resetMatch: 'app',
-      actionMaximumKey: 0,
       priorityTime: 10000,
       excludeActivityIds: [
         // '.view.search.', // 在搜索页面禁用
@@ -20,11 +19,9 @@ export default defineGkdApp({
       rules: [
         {
           key: 0,
-          fastQuery: true,
-          anyMatches: [
-            '@View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0] <n FrameLayout[childCount>2][text=null][desc=null] >(n+6) [text*="第三方应用" || text*="扭动手机" || text*="点击或上滑" || text*="省钱好物" || text*="扭一扭" || text*="Shake"][visibleToUser=true]',
-            'FrameLayout > FrameLayout[childCount>2][text=null][desc=null] > @View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0][visibleToUser=true]',
-          ],
+          actionMaximum: 1,
+          matches:
+            '@View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0] <n FrameLayout[childCount>2][text=null][desc=null] >(n+6) [text*="第三方应用" || text*="扭动手机" || text*="点击或上滑" || text*="省钱好物" || text*="扭一扭" || text*="Shake"]',
           snapshotUrls: [
             'https://i.gkd.li/i/12503773',
             'https://i.gkd.li/i/13247610',
@@ -35,7 +32,8 @@ export default defineGkdApp({
         },
         {
           key: 1,
-          fastQuery: true,
+          actionCd: 300, //可能需点击多次,让二次触发快点
+          actionMaximum: 5, // issues#252
           excludeMatches: '[text*="搜索"]',
           matches:
             '[!(vid="item_view") && !(vid="card_view")] > [text*="跳过" || text*="Skip"][text.length<10][width<500 && height<300][visibleToUser=true]',
@@ -54,7 +52,8 @@ export default defineGkdApp({
         },
         {
           key: 2,
-          fastQuery: true,
+          actionMaximum: 1,
+          actionMaximumKey: 0,
           matches:
             '@ImageView[childCount=0] < ViewGroup < ViewGroup +(2,3) ViewGroup >2 [text="广告"][visibleToUser=true]',
           snapshotUrls: [
