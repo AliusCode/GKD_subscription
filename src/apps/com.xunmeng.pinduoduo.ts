@@ -639,5 +639,24 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 32,
+      name: '功能类-百亿补贴自动[打卡]',
+      desc: '点击[打卡]',
+      rules: [
+        {
+          fastQuery: true,
+          actionMaximum: 1,
+          resetMatch: 'app',
+          activityIds: '.activity.NewPageActivity',
+          matches: [
+            '[vid="tv_title"][text="百亿补贴会员"]',
+            '[id=null][text="打卡"][visibleToUser=true]', //慢查
+          ],
+          exampleUrls: 'https://e.gkd.li/0a6edc27-5a14-4963-8f2c-47419f107bd1',
+          snapshotUrls: 'https://i.gkd.li/i/30271889',
+        },
+      ],
+    },
   ],
 });
