@@ -120,28 +120,29 @@ export default defineGkdApp({
       key: 8,
       name: '功能类-全自动看广告领VIP',
       desc: '⚠️二选一,广告一直看下去直到手动干预退出,适合需要领多天vip的用户,与单日规则互斥',
+      fastQuery: true,
+      activityIds: 'com.ss.android.excitingvideo.ExcitingVideoActivity',
       rules: [
         {
-          // 主页界面
-          name: '开屏自动看视频',
+          // 1️⃣第一段
+          // 开屏时自动去看广告领VIP
           key: 0,
-          fastQuery: true,
-          activityIds: 'com.luna.biz.main.main.MainActivity',
+          name: '①开屏自动看视频',
           actionMaximum: 1,
-          priorityTime: 5000,
           resetMatch: 'app',
+          priorityTime: 5000,
+          activityIds: 'com.luna.biz.main.main.MainActivity',
+          // excludeMatches: 'FrameLayout > ViewGroup[text=null][text.length=null][desc$="畅听"]',
           anyMatches: [
             '[vid="ui"] >3 @[clickable=true] < ViewGroup +3 View > [text="今日畅听"] + [text^="第" || text$="个"]',
             '@[childCount=0][left!=0] < ViewGroup[childCount=1] <n FrameLayout[childCount=5] <<6 FrameLayout <<4 [id="android:id/content"]',
           ],
-          excludeMatches:
-            'FrameLayout > ViewGroup[text=null][text.length=null][desc$="畅听"]',
           snapshotUrls: [
             'https://i.gkd.li/i/26758188',
             'https://i.gkd.li/i/28299711', // 新UI_2026.05.27
           ],
           excludeSnapshotUrls: [
-            'https://i.gkd.li/i/28378061', //观看ad回主页后出现
+            // 'https://i.gkd.li/i/28378061', //观看ad回主页后出现
             'https://i.gkd.li/i/28907374', // FrameLayout[childCount=5]
           ],
           exampleUrls: [
@@ -149,42 +150,81 @@ export default defineGkdApp({
             'https://e.gkd.li/9cd0c931-5ae8-4739-8a1a-481d2d5731f4',
           ],
         },
-        // 视频播放界面
-        // 1. 旧版节点树(轮询法)
+
+        // 2️⃣第二段
+        // 已领取成功,可以x掉
         {
-          key: 1,
-          name: '①x掉-坐标轮询点击', // 反复点击x来判断是否已领取奖励
-          fastQuery: true,
+          key: 20,
+          name: '②领取成功-点击关闭',
+          matches: 'UIView[text="领取成功，关闭，按钮"][clickable=true]',
+          snapshotUrls: 'https://i.gkd.li/i/30266434',
+        },
+        {
+          key: 21,
+          name: '②领取成功-点击x掉',
+          activityIds: 'com.luna.biz.ad.adns.luna.LunaRewardActivity',
+          matches:
+            '@TextView[clickable=true] - [text="领取成功"][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/28300641',
+        },
+        {
+          key: 22,
+          name: '②领取成功-x掉', // 节点树可直接区分状态(版本19.1.0以上)
+          versionCode: { minimum: 100191030 },
+          matchRoot: true,
+          actionDelay: 1200, //稳定节点树时间
+          actionCd: 8000,
+          anyMatches: [
+            '@ImageView[width<56 && height<56][visibleToUser=true] < [childCount=1] <n [childCount>6] <<(6,7) [id="android:id/content"]', //A
+            '@[desc="领取成功，关闭，按钮"] <<3 [index=parent.childCount.minus(1)] <n ViewGroup < ViewGroup <3 FrameLayout <<5 [id="android:id/content"]', //B
+          ],
+          snapshotUrls: [
+            'https://i.gkd.li/i/27359402', //A
+            'https://i.gkd.li/i/27363266', //A
+            'https://i.gkd.li/i/28018493', //B
+          ],
+          excludeSnapshotUrls: 'https://i.gkd.li/i/27272574', //A 未领取 [childCount=2]
+        },
+        {
+          key: 23,
+          name: '②点击[已领取]',
+          activityIds:
+            'com.bytedance.sdk.openadsdk.core.component.reward.activity.TTRewardVideoActivity',
+          matches: '[visibleToUser=true][text="奖励已领取"]',
+          snapshotUrls: 'https://i.gkd.li/i/24522627', // 字节AD-SDK
+        },
+
+        // 3️⃣第三段
+        // 不确定是否已可领取,只好重复x掉
+        {
+          key: 30,
+          name: '③每8秒点击1次[x]掉', // 反复点击x来判断是否已领取奖励
           actionDelay: 8000,
           position: {
             left: 'width * 3.28',
             top: 'width * 0.2',
           },
-          activityIds: 'com.ss.android.excitingvideo.ExcitingVideoActivity',
           matches:
             'FlattenUIText[text="广告"] + [text$="声音"] + [text="反馈"][visibleToUser=true]', // [反馈]相对坐标点击成功率高
           snapshotUrls: [
-            'https://i.gkd.li/i/24521440', // 18s后可领取奖励
-            'https://i.gkd.li/i/26401083', // 38s后？？？
-            'https://i.gkd.li/i/24521423', // 设备1
-            'https://i.gkd.li/i/26401058', // 设备2
-            'https://i.gkd.li/i/26401097', // 设备3
+            'https://i.gkd.li/i/24521440', // 18秒后可领奖励
+            'https://i.gkd.li/i/26401083', // 38秒后可领取奖励
+
+            // 出现[领取成功],但无可用的ui节点
+            'https://i.gkd.li/i/24521423', // v15.7.0
+            'https://i.gkd.li/i/26401058', // v18.6.0
+            'https://i.gkd.li/i/26401097', // v17.9.0
+            'https://i.gkd.li/i/30266460', // v14.6.0
           ],
           exampleUrls: 'https://e.gkd.li/87c7201a-f413-4d82-9198-2dc9455c4f23',
         },
+
+        // 4️⃣第四段
+        // 出现弹窗, 需要继续观看下一个广告视频
         {
-          key: 2, // 老UI(遗弃?)
-          name: '①跳过',
-          activityIds:
-            'com.bytedance.sdk.openadsdk.core.component.reward.activity.TTRewardVideoActivity',
-          matches: '[visibleToUser=true][text="奖励已领取"]',
-          snapshotUrls: 'https://i.gkd.li/i/24522627',
-        },
-        {
-          preKeys: [1, 2], // 轮询判断是否已领取
-          name: '②没结束-继续轮询',
-          fastQuery: true,
-          actionDelay: 500,
+          key: 40,
+          name: '④弹窗-选择[继续观看]',
+          actionDelay: 100,
           activityIds: [
             'com.bytedance.sdk.openadsdk.core.component.reward.activity.TTRewardVideoActivity',
             'com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Portrait_Activity',
@@ -193,104 +233,67 @@ export default defineGkdApp({
           matches:
             '[text="领取奖励" || text^="再看一个" || text="继续观看"][visibleToUser=true]',
           snapshotUrls: [
-            'https://i.gkd.li/i/15140816',
-            'https://i.gkd.li/i/24521416',
-            'https://i.gkd.li/i/24521446',
-            'https://i.gkd.li/i/24521516',
+            'https://i.gkd.li/i/15140816', //再看一个获取1天VIP畅听  (v9.9.0)
+            'https://i.gkd.li/i/24521446', //再看一个获取30分钟
+            'https://i.gkd.li/i/24521416', //领取奖励
+            'https://i.gkd.li/i/24521516', //继续观看
+            // 'https://i.gkd.li/i/30292585', // v19.8.0 无可点击的节点
           ],
           exampleUrls: 'https://e.gkd.li/3b2a0948-3b77-419b-8acf-2166e1cd445c',
         },
-        // 2. 新版本节点树(可直接识别状态领取奖励)
         {
-          key: 3,
-          name: '①x掉-领取成功', // 节点树可直接区分状态(版本19.1.0以上)
+          key: 41,
+          name: '④弹窗2-选择[继续观看]',
           versionCode: { minimum: 100191030 },
-          fastQuery: true,
-          matchRoot: true,
-          actionDelay: 1200, //稳定节点树时间
-          actionCd: 8000,
-          activityIds: [
-            'com.ss.android.excitingvideo.ExcitingVideoActivity',
-            'com.luna.biz.ad.adns.luna.LunaRewardActivity',
-          ],
-          anyMatches: [
-            '@ImageView[width<56 && height<56][visibleToUser=true] < [childCount=1] <n [childCount>6] <<(6,7) [id="android:id/content"]',
-            '@[desc="领取成功，关闭，按钮"] <<3 [index=parent.childCount.minus(1)] <n ViewGroup < ViewGroup <3 FrameLayout <<5 [id="android:id/content"]',
-            '@TextView[clickable=true] - [text="领取成功"][visibleToUser=true]',
-          ],
-          snapshotUrls: [
-            'https://i.gkd.li/i/27359402', // 领取成功
-            'https://i.gkd.li/i/27363266',
-            'https://i.gkd.li/i/28018493', // UI2
-            'https://i.gkd.li/i/28300641', // UI3_2026.05.27
-          ],
-          excludeSnapshotUrls: 'https://i.gkd.li/i/27272574', // 未领取
-        },
-        // 2026_05_01 新UI
-        {
-          preKeys: [3],
-          name: '②领取奖励_2',
-          versionCode: { minimum: 100191030 },
-          fastQuery: true,
-          activityIds: 'com.ss.android.excitingvideo.ExcitingVideoActivity',
           matches:
-            '[desc="领取奖励" || desc^="再看一个" || desc="继续观看"][visibleToUser=true]',
-          snapshotUrls: 'https://i.gkd.li/i/28021222',
+            '[visibleToUser=true][desc="领取奖励" || desc^="再看一个" || desc="继续观看"]',
+          snapshotUrls: 'https://i.gkd.li/i/28021222', //领取奖励
         },
-        // 3. 旧版
-        // 领取奖励继续看视频(到第14个Ad后由order1接管)
         {
-          preKeys: [3],
-          name: '②领取奖励',
+          key: 42,
+          preKeys: [22],
+          name: '④弹窗-坐标点击[领取奖励]',
           versionCode: { minimum: 100191030 },
-          fastQuery: true,
-          activityIds: 'com.ss.android.excitingvideo.ExcitingVideoActivity',
-          actionMaximum: 13, // 限制次数
-          order: 0,
-          matches:
-            '@[childCount=2] + ImageView[index=parent.childCount.minus(1)] <n [childCount=5] <<5 [id="android:id/content"]',
+          actionMaximum: 13, //领取奖励继续看视频(到第14个Ad后由 key42 接管)
           position: {
             left: 'width * 0.50',
             top: 'width * 0.85',
           },
-          snapshotUrls: 'https://i.gkd.li/i/27359717',
-        },
-        // 接管最后一个Ad观看点击结束
-        {
-          preKeys: [3],
-          name: '③结束^_^',
-          versionCode: { minimum: 100191030 },
-          order: 1,
-          fastQuery: true,
-          activityIds: 'com.ss.android.excitingvideo.ExcitingVideoActivity',
           matches:
             '@[childCount=2] + ImageView[index=parent.childCount.minus(1)] <n [childCount=5] <<5 [id="android:id/content"]',
+          snapshotUrls: 'https://i.gkd.li/i/27359717',
+        },
+        {
+          key: 43, //接管最后一个Ad观看点击结束
+          preKeys: [22],
+          name: '④弹窗-坐标点击[退出]',
+          versionCode: { minimum: 100191030 },
+          order: 1,
           position: {
             left: 'width * 0.50',
             top: 'width * 1.00',
           },
+          matches:
+            '@[childCount=2] + ImageView[index=parent.childCount.minus(1)] <n [childCount=5] <<5 [id="android:id/content"]',
           snapshotUrls: 'https://i.gkd.li/i/27359717',
         },
-        //视频内二级全屏Ad
+
+        // 5️⃣第五段
+        // 其他
         {
-          key: 98, // 这个UI太多了,用排除法只匹配x吧
-          name: '视频内二级全屏Ad',
-          activityIds: 'com.ss.android.excitingvideo.ExcitingVideoActivity',
+          key: 98,
+          name: '⑤视频中的弹窗-x掉',
+          excludeMatches:
+            '[desc$="日免费听" || desc="领取奖励" || desc^="再看一个" || desc="继续观看"][visibleToUser=true]',
           matches:
             'ViewGroup[index=parent.childCount.minus(1)][width<60 && height<60][text=null][id=null][desc=null][visibleToUser=true][childCount=0]',
-          excludeMatches: [
-            '[desc$="日免费听"][visibleToUser=true]',
-            '[desc="领取奖励" || desc^="再看一个" || desc="继续观看"][visibleToUser=true]',
-          ],
           snapshotUrls: 'https://i.gkd.li/i/28302996',
+          excludeSnapshotUrls: 'https://i.gkd.li/i/28021222',
           exampleUrls: 'https://e.gkd.li/e55793b3-e443-4cd1-80b5-aaa6cd7f88aa',
         },
-        //其他情况-无视频
         {
           key: 99,
-          name: '无视频',
-          fastQuery: true,
-          activityIds: 'com.ss.android.excitingvideo.ExcitingVideoActivity',
+          name: '⑤当前无新视频-退出',
           matches:
             '@[clickable=true][width<120 && height<120] + LinearLayout > [text="当前无新视频"][visibleToUser=true]',
           snapshotUrls: 'https://i.gkd.li/i/24522244',
