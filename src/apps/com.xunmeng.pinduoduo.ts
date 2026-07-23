@@ -658,5 +658,18 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 33,
+      name: '功能类-自动加入抽福袋',
+      desc: '点击[立即加入抽福袋]',
+      rules: [
+        {
+          activityIds: '.activity.NewPageActivity',
+          matches: '[id=null][text="立即加入抽福袋"][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/30295232',
+          exampleUrls: 'https://e.gkd.li/a057d535-db79-4faa-9c8f-69069dee91f6',
+        },
+      ],
+    },
   ],
 });
