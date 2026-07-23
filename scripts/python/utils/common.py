@@ -20,6 +20,7 @@ SNAPSHOT_KINDS = {"gkd", "github_attachment", "unreachable_snapshot", "gkd_proxy
 # 新增域名只需追加一行，所有正则自动适配
 GKD_DOMAINS = [
     "i.gkd.li",
+    "li.chenge.eu.org",
     # "mirror.example.com",  # 示例：取消注释即可添加
 ]
 
