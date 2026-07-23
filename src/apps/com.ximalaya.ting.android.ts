@@ -51,6 +51,7 @@ export default defineGkdApp({
           ],
         },
         {
+          key: 10,
           preKeys: [0],
           matches:
             '@[clickable=true] > [text="屏蔽" || text="直接关闭" || text="不喜欢此内容"]',
@@ -61,6 +62,12 @@ export default defineGkdApp({
             'https://i.gkd.li/i/17111452',
             'https://i.gkd.li/i/24589005',
           ],
+        },
+        {
+          key: 11,
+          preKeys: [0],
+          matches: '[text="直接关闭" || text="不喜欢此内容"][clickable=true]',
+          snapshotUrls: 'https://i.gkd.li/i/30309831',
         },
       ],
     },
