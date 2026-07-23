@@ -42,45 +42,45 @@ scripts/python/
 
 ### core/ - 核心功能层
 
-| 文件 | 职责 | 主要函数 |
-|------|------|---------|
-| `extractor.py` | 从文本提取链接 | `extract_links(text)`, `extract_links_from_bot_comment(text)` |
-| `checker.py` | 检查链接可访问性 | `check_network_links(url)`, `gkd_to_gh_attachment_url(url)`, `check_urls_concurrent(urls)` |
-| `converter.py` | 链接格式转换 | `convert_github_attachments(links)` |
-| `snapshot_parser.py` | 下载解析快照zip | `download_and_parse(url)` |
+| 文件                 | 职责             | 主要函数                                                                                   |
+| -------------------- | ---------------- | ------------------------------------------------------------------------------------------ |
+| `extractor.py`       | 从文本提取链接   | `extract_links(text)`, `extract_links_from_bot_comment(text)`                              |
+| `checker.py`         | 检查链接可访问性 | `check_network_links(url)`, `gkd_to_gh_attachment_url(url)`, `check_urls_concurrent(urls)` |
+| `converter.py`       | 链接格式转换     | `convert_github_attachments(links)`                                                        |
+| `snapshot_parser.py` | 下载解析快照zip  | `download_and_parse(url)`                                                                  |
 
 ### utils/ - 工具模块层
 
-| 文件 | 职责 | 主要函数/类 |
-|------|------|------------|
-| `models.py` | 数据结构定义 | `LinkInfo`, `NetworkResult`, `SnapshotInfo`, `CheckReport` |
-| `common.py` | 通用工具函数 | `SNAPSHOT_KINDS`, `extract_filename()`, `short_activity_name()`, `merge_links_dedup()` |
-| `cache.py` | 缓存管理 | `SnapshotCache`, `get_ci_cache()`, `get_debug_cache()` |
-| `utils.py` | 工具函数 | `write_output()` |
+| 文件        | 职责               | 主要函数/类                                                                                                                                |
+| ----------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `models.py` | 数据结构定义       | `LinkInfo`, `NetworkResult`, `SnapshotInfo`, `CheckReport`                                                                                 |
+| `common.py` | 通用工具函数与常量 | `SNAPSHOT_KINDS`, `GKD_DOMAINS`, `gkd_regex()`, `GKD_PROXY_TEMPLATE`, `extract_filename()`, `short_activity_name()`, `merge_links_dedup()` |
+| `cache.py`  | 缓存管理           | `SnapshotCache`, `get_ci_cache()`, `get_debug_cache()`                                                                                     |
+| `utils.py`  | 工具函数           | `write_output()`                                                                                                                           |
 
 ### api/ - 高层 API 层
 
-| 文件 | 职责 | 主要函数/类 |
-|------|------|------------|
-| `base.py` | URL 检查器基类 | `URLChecker` 抽象类（支持继承扩展） |
+| 文件               | 职责             | 主要函数/类                                 |
+| ------------------ | ---------------- | ------------------------------------------- |
+| `base.py`          | URL 检查器基类   | `URLChecker` 抽象类（支持继承扩展）         |
 | `issue_checker.py` | Issue 场景检查器 | `IssueChecker` 类, `check_issue()` 便捷函数 |
 
 ### entry/ - 入口脚本层
 
-| 文件 | 职责 | 主要函数 |
-|------|------|---------|
+| 文件             | 职责             | 主要函数 |
+| ---------------- | ---------------- | -------- |
 | `check_issue.py` | Issue 场景主入口 | `main()` |
 
 ### tests/ - 测试层
 
-| 文件 | 职责 |
-|------|------|
-| `test_extractor.py` | extractor.py 单元测试（13 个用例） |
-| `test_converter.py` | converter.py 单元测试（6 个用例） |
-| `test_formatter.py` | formatter.py 单元测试（20 个用例） |
-| `run_tests.sh` | 条件运行脚本（对比 origin/main，仅 Python/YAML 变更时触发） |
-| `verify.py` | 本地验证脚本（端到端集成验证） |
-| `test_scenarios.json` | 测试场景配置 |
+| 文件                  | 职责                                                        |
+| --------------------- | ----------------------------------------------------------- |
+| `test_extractor.py`   | extractor.py 单元测试（13 个用例）                          |
+| `test_converter.py`   | converter.py 单元测试（6 个用例）                           |
+| `test_formatter.py`   | formatter.py 单元测试（20 个用例）                          |
+| `run_tests.sh`        | 条件运行脚本（对比 origin/main，仅 Python/YAML 变更时触发） |
+| `verify.py`           | 本地验证脚本（端到端集成验证）                              |
+| `test_scenarios.json` | 测试场景配置                                                |
 
 ## 使用方式
 
@@ -227,8 +227,8 @@ utils/common.py (无依赖)
 utils/cache.py (依赖 utils/models.py)
 utils/utils.py (无依赖)
     ↓
-core/extractor.py → utils/models.py
-core/checker.py → utils/models.py
+core/extractor.py → utils/models.py, utils/common.py
+core/checker.py → utils/models.py, utils/common.py
 core/converter.py → utils/models.py, utils/common.py
 core/snapshot_parser.py → utils/models.py
 formatter.py → utils/models.py, utils/common.py
