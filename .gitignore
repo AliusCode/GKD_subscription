@@ -24,4 +24,4 @@ yarn.lock
 
 __pycache__/
 *.pyc
-scripts/python/test_results.json
+
