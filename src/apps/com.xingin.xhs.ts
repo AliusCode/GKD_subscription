@@ -86,7 +86,6 @@ export default defineGkdApp({
       key: 2,
       name: '更新提示',
       fastQuery: true,
-      matchTime: 10000,
       actionMaximum: 1,
       resetMatch: 'app',
       actionMaximumKey: 0,
@@ -110,7 +109,7 @@ export default defineGkdApp({
           exampleUrls: 'https://e.gkd.li/7064a569-fcdd-44e2-b4d1-c55e093f4a02',
           snapshotUrls: [
             'https://i.gkd.li/i/15283162',
-            'https://i.gkd.li/i/18289347',
+            'https://i.gkd.li/i/30352967',
           ],
         },
       ],
