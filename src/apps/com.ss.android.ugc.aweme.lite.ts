@@ -159,5 +159,20 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 14,
+      name: '局部广告-商品卡片',
+      desc: '点击x掉',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: 'com.ss.android.ugc.aweme.main.MainActivity',
+          matches:
+            '@ImageView[clickable=true] + [focusable=true] >4 [text="购买"][index=1][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/30344666',
+          exampleUrls: 'https://e.gkd.li/b7f062ff-1bff-4990-bb67-72bd0818e5d8',
+        },
+      ],
+    },
   ],
 });
