@@ -120,7 +120,7 @@ export default defineGkdApp({
     {
       key: 7,
       name: '功能类-刷到推广视频时[上滑]',
-      desc: '广告/购物/游戏/汽车/咨询/一键出片/品牌活动 等推广视频',
+      desc: '广告/购物/游戏/汽车/咨询/一键出片/品牌活动/测一测 等推广视频',
       rules: [
         {
           fastQuery: true,
@@ -139,7 +139,7 @@ export default defineGkdApp({
           },
           activityIds: 'com.yxcorp.gifshow.HomeActivity',
           matches:
-            '[vid="ad_detail_content_layout" || vid="plc_tv_biz_text" && (text="游戏" || text="购物" || text="购买" || text="汽车" || text="咨询" || text="品牌活动" || text="一键出片")][visibleToUser=true]',
+            '[vid="ad_detail_content_layout" || vid="plc_tv_biz_text" && (text="游戏" || text="购物" || text="购买" || text="汽车" || text="咨询" || text="品牌活动" || text="一键出片" || text="测一测")][visibleToUser=true]',
           snapshotUrls: [
             'https://i.gkd.li/i/29213590', // 广告 i   [vid="ad_detail_content_layout"]
             'https://i.gkd.li/i/29029850', //购物
@@ -149,6 +149,7 @@ export default defineGkdApp({
             'https://i.gkd.li/i/29031982', //咨询
             'https://i.gkd.li/i/29031736', //品牌活动
             'https://i.gkd.li/i/29031815', //一键出片
+            'https://i.gkd.li/i/30347040', //测一测
           ],
           exampleUrls: 'https://e.gkd.li/629b0f6b-49e7-4ca9-8487-5df7d530756f',
           excludeSnapshotUrls: [
