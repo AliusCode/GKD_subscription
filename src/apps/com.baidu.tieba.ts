@@ -268,12 +268,13 @@ export default defineGkdApp({
         {
           key: 0,
           matches:
-            '@ImageView <2 [childCount=2] <4 [index=0][childCount=4] +(1,2) FrameLayout > [text*="定档" || text*="预约" || text^="测试招募"][text*="《"]',
+            '@ImageView <2 [childCount=2] <4 [index=0][childCount=4] +(1,2) FrameLayout > [text*="定档" || text*="预约" || text*="测试"][text*="《"]',
           snapshotUrls: [
             'https://i.gkd.li/i/30164473', //定档
             'https://i.gkd.li/i/30164474', //定档
             'https://i.gkd.li/i/30164475', //测试招募
             'https://i.gkd.li/i/30165036', //预约
+            'https://i.gkd.li/i/30346796', //测试
           ],
           exampleUrls: 'https://e.gkd.li/45efc73b-e2e4-4c61-af95-607d500b8ac7',
         },
