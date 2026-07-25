@@ -7,6 +7,7 @@ on:
     types: [created]
 
 permissions:
+  actions: write
   contents: read
   issues: write
 
@@ -193,8 +194,6 @@ jobs:
       github.event_name == 'issues' &&
       needs.analyze.result == 'success'
     continue-on-error: true
-    permissions:
-      actions: write
     runs-on: ubuntu-latest
     steps:
       - name: 还原缓存文件
