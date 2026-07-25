@@ -68,6 +68,9 @@ class URLChecker(ABC):
         """
         self.timeout = timeout
         self.cache = cache
+        # 启动时从文件加载缓存，使 actions/cache/restore 恢复的数据生效
+        if self.cache:
+            self.cache.load()
 
     def extract_links(self, text: str) -> list[LinkInfo]:
         """

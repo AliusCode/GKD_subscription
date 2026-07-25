@@ -43,6 +43,7 @@ jobs:
       comment_uncertain: ${{ steps.analyze.outputs.comment_uncertain }}
       comment_recovery: ${{ steps.analyze.outputs.comment_recovery }}
       comment_bot: ${{ steps.analyze.outputs.comment_bot }}
+      cache_data: ${{ steps.export-cache.outputs.cache_data }}
     steps:
       - name: 预检查是否需要分析（仅 issue_comment 事件）
         id: pre-check
@@ -173,9 +174,41 @@ jobs:
             python scripts/python/entry/check_issue.py
           fi
 
-      # 保存快照缓存（仅 issues 事件有写权限，issue_comment 事件只读）
-      - name: 保存快照缓存
-        if: github.event_name == 'issues' && !cancelled()
+      # 导出缓存数据到 job output（由 save-cache job 负责持久化）
+      - name: 导出缓存数据
+        id: export-cache
+        if: github.event_name == 'issues'
+        run: |
+          if [ -f /tmp/snapshot_cache/snapshots.json ]; then
+            echo "cache_data<<GKD_CACHE_EOF" >> "$GITHUB_OUTPUT"
+            cat /tmp/snapshot_cache/snapshots.json >> "$GITHUB_OUTPUT"
+            echo "GKD_CACHE_EOF" >> "$GITHUB_OUTPUT"
+          fi
+
+  # ── 缓存持久化：独立 job，仅此 job 需要 actions: write ──
+
+  save-cache:
+    name: 保存快照缓存
+    needs: analyze
+    if: >-
+      always() &&
+      github.event_name == 'issues' &&
+      needs.analyze.result == 'success'
+    continue-on-error: true
+    permissions:
+      actions: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: 还原缓存文件
+        if: needs.analyze.outputs.cache_data != ''
+        run: |
+          mkdir -p /tmp/snapshot_cache
+          cat > /tmp/snapshot_cache/snapshots.json << 'RESTORE_EOF'
+          ${{ needs.analyze.outputs.cache_data }}
+          RESTORE_EOF
+
+      - name: 保存到 GitHub Actions 缓存
+        if: hashFiles('/tmp/snapshot_cache/snapshots.json') != ''
         uses: actions/cache/save@v6
         with:
           path: /tmp/snapshot_cache
