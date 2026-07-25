@@ -114,7 +114,7 @@ class SnapshotCache:
 
 # ── 便捷函数 ──
 
-# CI 环境缓存目录
+# CI 环境缓存目录（绝对路径，actions/cache 支持 workspace 外的路径）
 CI_CACHE_DIR = "/tmp/snapshot_cache"
 
 # 本地调试缓存目录

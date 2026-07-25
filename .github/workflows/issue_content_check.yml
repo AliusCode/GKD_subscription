@@ -202,8 +202,17 @@ jobs:
           mkdir -p /tmp/snapshot_cache
           echo "${{ needs.analyze.outputs.cache_data }}" | base64 -d > /tmp/snapshot_cache/snapshots.json
 
+      - name: 检查缓存文件是否存在
+        id: check-cache
+        run: |
+          if [ -f /tmp/snapshot_cache/snapshots.json ]; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: 保存到 GitHub Actions 缓存
-        if: hashFiles('/tmp/snapshot_cache/snapshots.json') != ''
+        if: steps.check-cache.outputs.exists == 'true'
         uses: actions/cache/save@v6
         with:
           path: /tmp/snapshot_cache
