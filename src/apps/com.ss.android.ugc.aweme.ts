@@ -528,19 +528,32 @@ export default defineGkdApp({
       rules: [
         {
           key: 0,
+          name: '购买',
           matches:
-            '[desc="购买"][visibleToUser=true] <n LiveMeasureOnceRelativeLayout < * -2 FrameLayout > [vid="iv_close"][clickable=true]',
+            '[desc="购买"][visibleToUser=true] <n * < * -2 FrameLayout > [vid="iv_close"][clickable=true]',
           snapshotUrls: [
-            'https://i.gkd.li/i/26754062',
+            'https://i.gkd.li/i/26754062', // LiveMeasureOnceRelativeLayout
             'https://i.gkd.li/i/29388290',
+            'https://i.gkd.li/i/30374168', // RelativeLayout
           ],
           exampleUrls: 'https://e.gkd.li/8c5e6526-83e5-4ec6-b532-367ff6045bfc',
         },
         {
           key: 1,
+          name: '打开游戏',
           matches:
             '@[visibleToUser=true] <3 [childCount=5] >5 [text="打开游戏"]',
           snapshotUrls: 'https://i.gkd.li/i/30297510',
+        },
+        {
+          key: 2,
+          name: '全封装',
+          matches:
+            '@ViewGroup[vid=null][text=null][desc=null][width<110 && height<110][visibleToUser=true] <2 ViewGroup[childCount<8] <<5 FrameLayout[index=parent.childCount.minus(2)] <n ViewGroup[childCount>4][left=0 && top=0] +n ViewGroup >5 EditText[text="说点什么..."][clickable=true][visibleToUser=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/30374542',
+            'https://i.gkd.li/i/30374544',
+          ],
         },
       ],
     },
