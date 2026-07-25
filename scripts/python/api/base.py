@@ -11,7 +11,7 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
-from core.checker import check_network_links, gkd_to_gh_attachment_url
+from core.checker import check_network_links, extract_cache_key, gkd_to_gh_attachment_url
 from core.extractor import extract_links
 from core.snapshot_parser import download_and_parse
 from utils.cache import SnapshotCache
@@ -201,9 +201,9 @@ class URLChecker(ABC):
             if not check_url:
                 continue
 
-            # 尝试从缓存读取
+            # 尝试从缓存读取（使用归一化的附件 ID 作为 key）
             if self.cache:
-                snap = self.cache.get(lnk.url)
+                snap = self.cache.get(extract_cache_key(lnk.url))
                 if snap:
                     # 更新 converted_url
                     if lnk.kind == "github_attachment":
@@ -228,9 +228,9 @@ class URLChecker(ABC):
                     gkd_links.append((lnk.display_text or lnk.url, lnk.url))
                 continue
 
-            # 保存到缓存
+            # 保存到缓存（使用归一化的附件 ID 作为 key）
             if self.cache:
-                self.cache.set(lnk.url, snap)
+                self.cache.set(extract_cache_key(lnk.url), snap)
 
             snapshots.append(snap)
 

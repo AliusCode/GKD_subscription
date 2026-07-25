@@ -10,6 +10,7 @@
 本模块只返回检查结果，不做任何业务判断（如是否关闭 Issue）。
 """
 
+import re
 from typing import TYPE_CHECKING
 
 import httpx
@@ -27,8 +28,45 @@ _RE_GKD_ID = gkd_regex(r"/i/(\d+)")
 # 从 GKD 代理链接中提取真实 GitHub 附件 URL
 _RE_GKD_PROXY = gkd_regex(r"/i\?url=(https://github\.com/user-attachments/files/[^\s]+)")
 
+# 从 GitHub 附件 URL 中提取数字 ID
+_RE_GITHUB_ATTACHMENT = re.compile(r"github\.com/user-attachments/files/(\d+)")
+
 # GH 附件 URL 模板：{id} 为 GKD 链接中的数字，file.zip 为固定占位符
 _GH_ATTACHMENT_TEMPLATE = "https://github.com/user-attachments/files/{id}/file.zip"
+
+
+def extract_cache_key(url: str) -> str:
+    """
+    从任意快照 URL 提取附件 ID，作为统一的缓存 key。
+
+    支持三种格式，归一化为同一个数字 ID：
+    - GKD 标准链接：https://i.gkd.li/i/12345 → 12345
+    - GitHub 附件链接：https://github.com/user-attachments/files/12345/file.zip → 12345
+    - GKD 代理链接：https://i.gkd.li/i?url=https://github.com/.../12345/... → 12345
+
+    参数：
+        url: 原始快照 URL
+
+    返回：
+        附件 ID 字符串，无法识别时返回原始 URL
+    """
+    # 优先处理代理链接：提取真实 GH URL
+    proxy_match = _RE_GKD_PROXY.search(url)
+    if proxy_match:
+        url = proxy_match.group(1)
+
+    # GitHub 附件链接 → 提取 ID
+    gh_match = _RE_GITHUB_ATTACHMENT.search(url)
+    if gh_match:
+        return gh_match.group(1)
+
+    # GKD 标准链接（多域名） → 提取数字 ID
+    gkd_match = _RE_GKD_ID.search(url)
+    if gkd_match:
+        return gkd_match.group(1)
+
+    # 无法识别的 URL，回退使用原始值
+    return url
 
 
 def gkd_to_gh_attachment_url(gkd_url: str) -> str | None:
