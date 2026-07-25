@@ -19,10 +19,17 @@ jobs:
   analyze:
     name: 分析 Issue 快照链接
     runs-on: ubuntu-latest
-    # issue_comment 事件仅处理 Issue 作者本人的评论
-    if: >
-      github.event_name != 'issue_comment' ||
-      github.event.comment.user.login == github.event.issue.user.login
+    # 过滤逻辑：
+    # 1. 跳过空白议题（body 为 null，即通过"空白议题"创建的 issue）
+    # 2. 通用豁免：!bot 标签（黑名单，维护者手动豁免）
+    # 3. issues 事件：跳过已关闭的 Issue
+    # 4. issue_comment 事件：仅处理 Issue 作者本人的评论
+    if: >-
+      github.event.issue.body != null &&
+      github.event.issue.body != '' &&
+      !contains(github.event.issue.labels.*.name, '!bot') &&
+      (github.event_name != 'issues' || github.event.issue.state != 'CLOSED') &&
+      (github.event_name != 'issue_comment' || github.event.comment.user.login == github.event.issue.user.login)
     outputs:
       has_snapshot: ${{ steps.analyze.outputs.has_snapshot }}
       has_unreachable: ${{ steps.analyze.outputs.has_unreachable }}
@@ -95,6 +102,7 @@ jobs:
           gh label create "缺失快照(no-snapshot)" --color "#fd1b4d" --description "Issue缺少快照链接" --force
           gh label create "需补充链接(needs-link)" --color "#581598" --description "Issue包含不可访问的快照链接" --force
           gh label create "链接失效(broken-link)" --color "#12f540" --description "Issue中的链接无法访问" --force
+          gh label create "!bot" --color "#000000" --description "豁免Bot自动化分析" --force
 
       # issue_comment 事件时，获取旧 Bot 评论作为历史链接来源
       - name: 查找旧 Bot 评论
