@@ -5,6 +5,8 @@ body:
   - type: markdown
     attributes:
       value: |
+        <!-- gkd-analysis -->
+
         ## ⚠️ 在提交 issue 之前，请您务必确认以下信息，否则此 issue 可能会被关闭❗❗❗
 
         > [!WARNING]
