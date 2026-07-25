@@ -75,13 +75,14 @@ Python (scripts/python/) = Worker（分析器）
 
 | Job 名称                      | 依赖                                | 触发条件                                              | 动作                                   |
 | ----------------------------- | ----------------------------------- | ----------------------------------------------------- | -------------------------------------- |
-| `analyze`                     | 无                                  | 始终执行（issue_comment 仅处理作者评论）              | 运行 Python 分析 + 预创建标签          |
+| `analyze`                     | 无                                  | 始终执行（issue_comment 仅处理作者评论）              | 运行 Python 分析 + 预创建标签 + 导出缓存数据 |
+| `save-cache`                  | analyze                             | `issues` 事件且 analyze 成功                         | 将缓存持久化到 GitHub Actions Cache    |
 | `handle-missing-snapshot`     | analyze                             | `has_snapshot == 'false'`                             | 标签 + 评论 + 关闭（阻断后续所有 Job） |
 | `handle-unreachable-snapshot` | analyze + handle-missing-snapshot   | missing-skipped && `has_unreachable == 'true'`        | 标签 + 评论（不关闭，不阻断后续）      |
 | `handle-network-404`          | analyze + handle-missing-snapshot   | missing-skipped && `network_status == '404'`          | 标签 + 评论（不关闭，阻断转换）        |
 | `handle-network-uncertain`    | analyze + handle-missing-snapshot   | missing-skipped && `network_status == 'uncertain'`    | 标签 + 折叠评论（不关闭，阻断转换）    |
 | `handle-convert`              | analyze + missing + 404 + uncertain | missing/404/uncertain 均 skipped && `has_convertible` | Bot 评论                               |
-| `handle-recovery`             | analyze + 所有上述 Job              | missing-skipped && `warning_type == 'recovery'`       | 移除标签 + 重新打开 + 评论 + 清理残留  |
+| `handle-recovery`             | analyze + 所有 handle Job           | missing-skipped && `warning_type == 'recovery'`       | 移除标签 + 重新打开 + 评论 + 清理残留  |
 
 ### 多种警告可共存
 
@@ -201,6 +202,7 @@ GKD 分享链接（如 `https://i.gkd.li/i/{id}`）指向审查工具 URL，无�
 | `comment_uncertain`   | string | 网络不确定评论 Markdown（含 `<!-- gkd-warning-uncertain -->` 标记）                    |
 | `comment_recovery`    | string | 恢复评论 Markdown（含 `<!-- gkd-warning-recovery -->` 标记）                           |
 | `comment_bot`         | string | Bot 评论 Markdown（含 `<!-- gkd-bot-comment -->` 标记）                                |
+| `cache_data`          | string | 快照缓存 JSON（heredoc 多行），供 save-cache job 持久化                              |
 
 ---
 

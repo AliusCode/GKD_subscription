@@ -55,14 +55,14 @@ scripts/python/
 | ----------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | `models.py` | 数据结构定义       | `LinkInfo`, `NetworkResult`, `SnapshotInfo`, `CheckReport`                                                                                 |
 | `common.py` | 通用工具函数与常量 | `SNAPSHOT_KINDS`, `GKD_DOMAINS`, `gkd_regex()`, `GKD_PROXY_TEMPLATE`, `extract_filename()`, `short_activity_name()`, `merge_links_dedup()` |
-| `cache.py`  | 缓存管理           | `SnapshotCache`, `get_ci_cache()`, `get_debug_cache()`                                                                                     |
+| `cache.py`  | 缓存管理           | `SnapshotCache`（含 `load()`/`save()`/`get()`/`set()`）, `get_ci_cache()`, `get_debug_cache()`                                            |
 | `utils.py`  | 工具函数           | `write_output()`                                                                                                                           |
 
 ### api/ - 高层 API 层
 
 | 文件               | 职责             | 主要函数/类                                 |
 | ------------------ | ---------------- | ------------------------------------------- |
-| `base.py`          | URL 检查器基类   | `URLChecker` 抽象类（支持继承扩展）         |
+| `base.py`          | URL 检查器基类   | `URLChecker` 抽象类（`__init__` 中自动调用 `cache.load()` 加载缓存） |
 | `issue_checker.py` | Issue 场景检查器 | `IssueChecker` 类, `check_issue()` 便捷函数 |
 
 ### entry/ - 入口脚本层
