@@ -69,7 +69,7 @@ class SnapshotCache:
         cache_path = self.cache_dir / self.cache_file
 
         with open(cache_path, "w", encoding="utf-8") as f:
-            json.dump(self._cache, f, ensure_ascii=False, indent=2)
+            json.dump(self._cache, f, ensure_ascii=False, separators=(",", ":"))
 
     def get(self, url: str, snapshot_cls: type | None = None) -> "SnapshotInfo | None":
         """
