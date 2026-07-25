@@ -174,15 +174,13 @@ jobs:
             python scripts/python/entry/check_issue.py
           fi
 
-      # 导出缓存数据到 job output（由 save-cache job 负责持久化）
+      # 导出缓存数据到 job output（base64 编码避免 heredoc 大内容解析失败）
       - name: 导出缓存数据
         id: export-cache
         if: github.event_name == 'issues'
         run: |
           if [ -f /tmp/snapshot_cache/snapshots.json ]; then
-            echo "cache_data<<GKD_CACHE_EOF" >> "$GITHUB_OUTPUT"
-            cat /tmp/snapshot_cache/snapshots.json >> "$GITHUB_OUTPUT"
-            echo "GKD_CACHE_EOF" >> "$GITHUB_OUTPUT"
+            echo "cache_data=$(base64 -w 0 /tmp/snapshot_cache/snapshots.json)" >> "$GITHUB_OUTPUT"
           fi
 
   # ── 缓存持久化：独立 job，仅此 job 需要 actions: write ──
@@ -203,9 +201,7 @@ jobs:
         if: needs.analyze.outputs.cache_data != ''
         run: |
           mkdir -p /tmp/snapshot_cache
-          cat > /tmp/snapshot_cache/snapshots.json << 'RESTORE_EOF'
-          ${{ needs.analyze.outputs.cache_data }}
-          RESTORE_EOF
+          echo "${{ needs.analyze.outputs.cache_data }}" | base64 -d > /tmp/snapshot_cache/snapshots.json
 
       - name: 保存到 GitHub Actions 缓存
         if: hashFiles('/tmp/snapshot_cache/snapshots.json') != ''
