@@ -132,6 +132,7 @@ jobs:
           ISSUE_BODY: ${{ github.event.issue.body }}
           ISSUE_COMMENT_BODY: ${{ github.event.comment.body || '' }}
           ISSUE_USER: ${{ github.event.issue.user.login }}
+          ISSUE_LABELS: ${{ join(github.event.issue.labels.*.name, ',') }}
           ISSUE_ACTION: ${{ github.event_name == 'issue_comment' && 'comment' || github.event.action }}
           SKIP_ANALYSIS: ${{ github.event_name == 'issue_comment' && false }}
           HISTORY_CONTENT: ${{ steps.get-history.outputs.history_content || '' }}

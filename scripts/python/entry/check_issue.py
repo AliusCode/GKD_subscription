@@ -50,6 +50,8 @@ def main():
     issue_action = os.environ.get("ISSUE_ACTION", "")
     history_content = os.environ.get("HISTORY_CONTENT", "") or ""
     history_source = os.environ.get("HISTORY_SOURCE", "") or ""
+    # Issue 标签列表（逗号分隔），用于判断是否触发 recovery
+    issue_labels = [label.strip() for label in os.environ.get("ISSUE_LABELS", "").split(",") if label.strip()]
 
     # 创建检查器并执行分析
     checker = IssueChecker()
@@ -60,6 +62,7 @@ def main():
         history_source=history_source,
         issue_action=issue_action,
         issue_user=issue_user,
+        issue_labels=issue_labels,
     )
 
     # 输出结果到 GITHUB_OUTPUT
