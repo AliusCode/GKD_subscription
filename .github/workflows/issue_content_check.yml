@@ -66,9 +66,6 @@ jobs:
           echo "needs_analysis=$needs" >> "$GITHUB_OUTPUT"
 
       - name: 检出代码仓库
-        if: >-
-          github.event_name != 'issue_comment' ||
-          steps.pre-check.outputs.needs_analysis != 'false'
         uses: actions/checkout@v7
 
       - name: 配置 Python 运行环境
@@ -122,10 +119,6 @@ jobs:
 
       # 恢复快照缓存（所有事件都可读取）
       - name: 恢复快照缓存
-        if: >-
-          github.event_name != 'issue_comment' ||
-          steps.pre-check.outputs.needs_analysis != 'false'
-
         uses: actions/cache/restore@v6
         with:
           path: /tmp/snapshot_cache
