@@ -79,6 +79,12 @@ class IssueChecker(URLChecker):
         # 初始化结果
         result = self._init_result()
 
+        # 评论事件：如果评论中无新链接，跳过所有分析，避免干扰正常交流
+        if issue_action == "comment" and comment_body:
+            new_links = self.extract_links(comment_body)
+            if not new_links:
+                return result
+
         # Step 1: 检查是否缺少快照（唯一致命）
         if not self.has_snapshot(links):
             result["has_snapshot"] = "false"
