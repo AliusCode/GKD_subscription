@@ -291,8 +291,7 @@ export default defineGkdApp({
       key: 7,
       name: '更新提示',
       fastQuery: true,
-      matchTime: 10000,
-      forcedTime: 10000,
+      // matchTime: 10000,  // 和 resetMatch=app 同时用, 可能会 超出匹配时间
       actionMaximum: 1,
       resetMatch: 'app',
       priorityTime: 10000,
