@@ -179,5 +179,30 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 7,
+      name: '功能类-自动保存图片',
+      desc: '建议使用[分享]方式来保存',
+      fastQuery: true,
+      activityIds: 'com.openai.chatgpt.MainActivity',
+      rules: [
+        {
+          key: 0,
+          name: '分享页',
+          matches:
+            'Button - TextView[text="下载"] <2 @View[childCount=3] <(5-n) View[childCount=3] <3 View[childCount>=3] <<(18-n) [id="android:id/content"]',
+          snapshotUrls: 'https://i.gkd.li/i/30373387',
+          exampleUrls: 'https://e.gkd.li/2a8e43ed-d457-4f60-818e-b74b2148da5d',
+        },
+        {
+          key: 1,
+          name: '图片预览页',
+          actionMaximum: 1, // 防止重复点击
+          matches:
+            '[desc="保存"] < @View[childCount=2][clickable=true] <<3 View <3 View[childCount>=3] <<(18-n) [id="android:id/content"]',
+          snapshotUrls: 'https://i.gkd.li/i/30373379',
+        },
+      ],
+    },
   ],
 });
