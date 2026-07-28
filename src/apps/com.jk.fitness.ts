@@ -37,6 +37,22 @@ export default defineGkdApp({
       ],
     },
     {
+      key: 3,
+      name: '全屏广告-获取设备',
+      desc: '获取AI体脂秤-> 暂不',
+      matchDelay: 14000, // 应该是开屏广告后紧接着出现的
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: 'com.jk.fitness.MainActivity',
+          matches:
+            '@View[desc="暂不"][clickable=true][visibleToUser=true] -2 ImageView < View[childCount=3][left=0 && top=0] <<(6-n) FrameLayout <<(4-n) [id="android:id/content"]',
+          snapshotUrls: 'https://i.gkd.li/i/30460157',
+          exampleUrls: 'https://e.gkd.li/82711399-cc15-4cab-acc2-f6d359b9d349',
+        },
+      ],
+    },
+    {
       key: 2,
       name: '其他-开屏误触后的返回操作',
       desc: '配合开屏广告规则使用',
