@@ -33,5 +33,20 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 3,
+      name: '局部广告-首页卡片',
+      desc: '邮件页顶部[试用Google Woekspace]',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: 'com.google.android.gm.ui.MailActivityGmail',
+          matches:
+            'Button - View[desc=""] < @View[childCount=2][clickable=true][width=102 && height=102][visibleToUser=true] - TextView <n View[childCount>5 && childCount<10] <<3 ComposeView - LinearLayout <<2 [vid="thread_list_view"]',
+          snapshotUrls: 'https://i.gkd.li/i/30378474',
+          exampleUrls: 'https://e.gkd.li/357dc3c9-cf98-40b3-a01d-35bb8219dae8',
+        },
+      ],
+    },
   ],
 });
