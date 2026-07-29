@@ -174,5 +174,40 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 15,
+      name: '分段广告-搜索结果页广告',
+      desc: '①点击[反馈] ②选一个[理由]',
+      fastQuery: true,
+      activityIds:
+        'com.ss.android.ugc.aweme.search.activity.SearchResultActivity',
+      rules: [
+        {
+          key: 1,
+          name: '①点击[反馈]',
+          matches:
+            '@[desc="广告反馈"] <3 [childCount=3] + [visibleToUser=true] >5 [text="广告"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/30505021',
+            'https://i.gkd.li/i/30505027',
+          ],
+          exampleUrls: 'https://e.gkd.li/35d4bb61-f1d7-46cb-a7df-2a9fdf2136cd',
+        },
+        {
+          key: 20,
+          preKeys: [1],
+          name: '②选一个[理由]',
+          position: {
+            // 点击[该作者]
+            left: 'width * 0.2646',
+            top: 'width * 0.1972',
+          },
+          matches:
+            'ImageView[childCount=0] < @ViewGroup <<8 [id="android:id/content"]',
+          snapshotUrls: 'https://i.gkd.li/i/30505023',
+          exampleUrls: 'https://e.gkd.li/c1314e68-d89a-42e3-af74-c50303f5546a',
+        },
+      ],
+    },
   ],
 });
