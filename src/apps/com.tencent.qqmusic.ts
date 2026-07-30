@@ -152,7 +152,7 @@ export default defineGkdApp({
           resetMatch: 'app',
           activityIds: [
             '.activity.AppStarterActivity',
-            'common.hybrid.HybridViewActivity',
+            'com.tencent.qqmusiccommon.hybrid.HybridViewActivity',
           ],
           matches: '[desc^="关闭弹窗"][clickable=true][visibleToUser=true]',
           exampleUrls: 'https://e.gkd.li/47107dd3-b19a-4486-a0d1-6d9aa62ee722',
@@ -228,7 +228,7 @@ export default defineGkdApp({
           key: 7,
           name: '看广告免费听歌弹窗',
           fastQuery: true,
-          activityIds: 'common.hybrid.HybridViewActivity',
+          activityIds: 'com.tencent.qqmusiccommon.hybrid.HybridViewActivity',
           matches:
             '@ViewGroup[desc="关闭按钮"] - [desc^="看广告"] <2 ViewGroup < ViewGroup < FrameLayout < FrameLayout < FrameLayout < [id="android:id/content"]',
           snapshotUrls: 'https://i.gkd.li/i/13806773',
