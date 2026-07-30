@@ -273,7 +273,7 @@ export default defineGkdApp({
             'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity',
           ],
           matches:
-            '@TextView[id=desc][text=""][visibleToUser=true][width<110][height<110][top>getPrev(1).height.div(2)][left<getPrev(1).width.div(2)][right>getPrev(1).width.div(2)] <2 View[childCount=2] <<n [id="com.alipay.mobile.nebula:id/h5_pc_container"]',
+            '@TextView[id=desc][text=""][visibleToUser=true][width<110][height<110][top>getPrev(1).height.div(2)][left<getPrev(1).width.div(2)][right>getPrev(1).width.div(2)] <(2,3) View[childCount>1] <<n [id="com.alipay.mobile.nebula:id/h5_pc_container"]',
           /**
            * [top>getPrev(1).height.div(2)] ：top大于 1/2的屏幕高度，即限制目标节点在下半屏
            * [left<getPrev(1).width.div(2)][right>getPrev(1).width.div(2)] ：其内的 getPrev(1).width.div(2) 是屏幕的竖中线，即要求 屏幕的竖中线 像串烤串一样穿过目标节点
@@ -283,6 +283,7 @@ export default defineGkdApp({
             'https://i.gkd.li/i/16812751',
             'https://i.gkd.li/i/29666442',
             'https://i.gkd.li/i/29814861',
+            'https://i.gkd.li/i/30511870',
           ],
           excludeSnapshotUrls: 'https://i.gkd.li/i/29814461', // 用 [left<getPrev(1).width.div(2)][right>getPrev(1).width.div(2)] 排除
         },
