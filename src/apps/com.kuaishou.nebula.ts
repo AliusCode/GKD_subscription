@@ -160,5 +160,42 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 8,
+      name: '局部广告-用户资料页广告',
+      desc: '①点击x掉 ②点击[不感兴趣] ③选一个[理由]',
+      fastQuery: true,
+      activityIds: 'com.yxcorp.gifshow.profile.activity.UserProfileActivity', //用户资料页
+      rules: [
+        {
+          key: 1,
+          name: '①点击x掉',
+          matches:
+            '@ImageView[clickable=true] < [index=3] - [visibleToUser=true] > [text="下载" || text="打开" || text="查看"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/30548229', //下载
+            'https://i.gkd.li/i/30548766', //打开
+            'https://i.gkd.li/i/30548907', //查看
+          ],
+          exampleUrls: 'https://e.gkd.li/bce8277d-c2d7-4e5b-8b15-84c7338acfa3',
+        },
+        {
+          key: 2,
+          preKeys: [1],
+          name: '②点击[不感兴趣]',
+          matches: '@[clickable=true] >2 [text="不感兴趣"]',
+          snapshotUrls: 'https://i.gkd.li/i/30548232',
+          exampleUrls: 'https://e.gkd.li/640b5e7b-2960-4791-add6-a07d6cf84fea',
+        },
+        {
+          key: 3,
+          preKeys: [2],
+          name: '③选一个[理由]',
+          matches: '@[clickable=true] >2 [text="不喜欢该位置展示广告"]',
+          snapshotUrls: 'https://i.gkd.li/i/30548235',
+          exampleUrls: 'https://e.gkd.li/efe7800d-896d-4503-8b41-52c5d18775a6',
+        },
+      ],
+    },
   ],
 });
