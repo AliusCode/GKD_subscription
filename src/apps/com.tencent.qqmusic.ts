@@ -125,6 +125,7 @@ export default defineGkdApp({
     {
       key: 2,
       name: '全屏广告-弹窗广告',
+      fastQuery: true,
       rules: [
         {
           key: 0,
@@ -132,66 +133,44 @@ export default defineGkdApp({
             '.activity.TranslucentWebViewActivity',
             '.activity.AppStarterActivity',
             '.business.playernew.view.NewPlayerActivity',
-          ],
-          matches: '[desc="关闭"][visibleToUser=true]',
-          snapshotUrls: [
-            'https://i.gkd.li/i/13115121',
-            'https://i.gkd.li/i/14549936',
-            'https://i.gkd.li/i/14798904',
-            'https://i.gkd.li/i/15209764',
-            'https://i.gkd.li/i/15261116',
-            'https://i.gkd.li/i/17459008',
-            'https://i.gkd.li/i/23930628',
-            'https://i.gkd.li/i/23930853',
-          ],
-        },
-        {
-          key: 1,
-          matchTime: 10000,
-          actionMaximum: 1,
-          resetMatch: 'app',
-          activityIds: [
-            '.activity.AppStarterActivity',
             'com.tencent.qqmusiccommon.hybrid.HybridViewActivity',
           ],
-          matches: '[desc^="关闭弹窗"][clickable=true][visibleToUser=true]',
-          exampleUrls: 'https://e.gkd.li/47107dd3-b19a-4486-a0d1-6d9aa62ee722',
+          matches:
+            '@[desc^="关闭"][desc.length<10][visibleToUser=true][width>50 && width<177] <<(25-n) [id="android:id/content"]',
           snapshotUrls: [
-            'https://i.gkd.li/i/17057551',
-            'https://i.gkd.li/i/23495699',
+            'https://i.gkd.li/i/13115121', //关闭
+            'https://i.gkd.li/i/14549936',
+            'https://i.gkd.li/i/14798904',
+            'https://i.gkd.li/i/15209764', // <<n , n=20
+            'https://i.gkd.li/i/15261116',
+            'https://i.gkd.li/i/17459008',
+            'https://i.gkd.li/i/23930628', // [clickable=false]
+            'https://i.gkd.li/i/23930853', // [clickable=false]
+            'https://i.gkd.li/i/17057551', //关闭弹窗
+            'https://i.gkd.li/i/23495699', //关闭弹窗，按钮
+            'https://i.gkd.li/i/13806773', //关闭按钮
           ],
+          exampleUrls: 'https://e.gkd.li/47107dd3-b19a-4486-a0d1-6d9aa62ee722',
         },
         {
           key: 2,
-          fastQuery: true,
-          matchTime: 10000,
-          actionMaximum: 1,
           activityIds: [
             '.activity.AppStarterActivity',
             '.business.playernew.view.NewPlayerActivity',
           ],
           matches:
-            '@ImageView[childCount=0][visibleToUser=true][width<130 && height<130] <n FrameLayout <2 FrameLayout < FrameLayout < FrameLayout < FrameLayout < [id="android:id/content"]',
-          exampleUrls: 'https://e.gkd.li/881cddd2-e4ec-472e-8bf8-00f26f61cbc4',
+            '@ImageView[childCount=0][visibleToUser=true][width<130 && height<130] <<(7,8,9) [id="android:id/content"]',
           snapshotUrls: [
             'https://i.gkd.li/i/18439138',
             'https://i.gkd.li/i/22924866',
+            'https://i.gkd.li/i/20745872',
+            'https://i.gkd.li/i/22699223',
+            'https://i.gkd.li/i/30530361',
           ],
-        },
-        {
-          key: 3,
-          fastQuery: true,
-          matchTime: 10000,
-          actionMaximum: 1,
-          resetMatch: 'app',
-          activityIds: '.activity.AppStarterActivity',
-          matches:
-            '@ImageView[childCount=0][visibleToUser=true][width<120 && height<120] < FrameLayout < FrameLayout < FrameLayout <2 FrameLayout < FrameLayout < FrameLayout < FrameLayout < [id="android:id/content"]',
-          snapshotUrls: 'https://i.gkd.li/i/20745872',
+          exampleUrls: 'https://e.gkd.li/881cddd2-e4ec-472e-8bf8-00f26f61cbc4',
         },
         {
           key: 4,
-          fastQuery: true,
           matchTime: 10000,
           actionMaximum: 1,
           resetMatch: 'app',
@@ -202,18 +181,8 @@ export default defineGkdApp({
           snapshotUrls: 'https://i.gkd.li/i/22699207',
         },
         {
-          key: 5,
-          fastQuery: true,
-          activityIds: '.activity.AppStarterActivity',
-          matches:
-            '@ImageView[childCount=0][visibleToUser=true][width<150 && height<150] < FrameLayout <2 FrameLayout < FrameLayout < FrameLayout < FrameLayout < FrameLayout < [id="android:id/content"]',
-          exampleUrls: 'https://e.gkd.li/eb920de7-7f15-4398-b9a9-99ece0ab4ed6',
-          snapshotUrls: 'https://i.gkd.li/i/22699223',
-        },
-        {
           key: 6,
           name: '免流弹窗',
-          fastQuery: true,
           activityIds: [
             '.activity.AppStarterActivity',
             '.business.playernew.view.NewPlayerActivity',
@@ -225,17 +194,7 @@ export default defineGkdApp({
           ],
         },
         {
-          key: 7,
-          name: '看广告免费听歌弹窗',
-          fastQuery: true,
-          activityIds: 'com.tencent.qqmusiccommon.hybrid.HybridViewActivity',
-          matches:
-            '@ViewGroup[desc="关闭按钮"] - [desc^="看广告"] <2 ViewGroup < ViewGroup < FrameLayout < FrameLayout < FrameLayout < [id="android:id/content"]',
-          snapshotUrls: 'https://i.gkd.li/i/13806773',
-        },
-        {
           key: 8,
-          fastQuery: true,
           activityIds: '.activity.AppStarterActivity',
           matches:
             '@ViewGroup[childCount=0][clickable=true] <2 ViewGroup[childCount=2] < FrameLayout < FrameLayout < [id="android:id/content"]',
@@ -247,7 +206,7 @@ export default defineGkdApp({
           actionMaximum: 1,
           resetMatch: 'app',
           activityIds: '.activity.AppStarterActivity',
-          matches: '[desc$="不再提示"][visibleToUser=true]',
+          matches: '[visibleToUser=true][desc$="不再提示"]',
           exampleUrls: 'https://e.gkd.li/e3d904e1-dfe5-4d12-b8c8-b1eead8459c9',
           snapshotUrls: 'https://i.gkd.li/i/18428240',
         },
