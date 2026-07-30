@@ -229,5 +229,20 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 7,
+      name: '功能类-消息已读自动[确定]',
+      desc: '点击[确定]',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.view.notification.v18.NotificationV18Activity',
+          matches:
+            '[text="确定"] < @[clickable=true] <6 View[getChild(0).text$="已读"] < View < ComposeView < [id="android:id/content"]',
+          snapshotUrls: 'https://i.gkd.li/i/30532352',
+          exampleUrls: 'https://e.gkd.li/dbf91283-a342-416e-a009-5b7e67301c77',
+        },
+      ],
+    },
   ],
 });
