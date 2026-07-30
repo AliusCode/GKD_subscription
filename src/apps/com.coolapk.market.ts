@@ -21,13 +21,14 @@ export default defineGkdApp({
           key: 0,
           actionMaximum: 1,
           matches:
-            '@View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0] <n FrameLayout[childCount>2][text=null][desc=null] >(n+6) [text*="第三方应用" || text*="扭动手机" || text*="点击或上滑" || text*="省钱好物" || text*="扭一扭" || text*="Shake"]',
+            'TextView - @View[clickable=true][width<200] <(2,3) FrameLayout <2 FrameLayout < FrameLayout < [vid="ad_container"]',
+          // matches: '@View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0] <n FrameLayout[childCount>2][text=null][desc=null] >(n+6) [text*="第三方应用" || text*="扭动手机" || text*="点击或上滑" || text*="省钱好物" || text*="扭一扭" || text*="Shake"]',
           snapshotUrls: [
-            'https://i.gkd.li/i/12503773',
             'https://i.gkd.li/i/13247610',
             'https://i.gkd.li/i/13264779',
             'https://i.gkd.li/i/13826359',
             'https://i.gkd.li/i/13827095',
+            'https://i.gkd.li/i/30529874',
           ],
         },
         {
