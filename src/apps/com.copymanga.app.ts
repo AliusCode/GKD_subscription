@@ -7,23 +7,19 @@ export default defineGkdApp({
     {
       key: 1,
       name: '全屏广告-弹窗广告',
-      actionDelay: 400,
+      fastQuery: true,
       rules: [
         {
           key: 0,
           name: '快手广告-1',
-          fastQuery: true,
-          activityIds: '.MainActivity',
-          matches: [
-            '[text="广告"]',
-            '@ImageView[clickable=true] - [text="|"] - [text$="s"]',
-          ],
+          activityIds: 'com.miui.home.launcher.Launcher',
+          matches:
+            '@ImageView[clickable=true][width<78] <n [visibleToUser=true] -2 * >2 [text="广告"]',
           snapshotUrls: 'https://i.gkd.li/i/13259085',
         },
         {
           key: 1,
           name: '快手广告-2',
-          fastQuery: true,
           activityIds: ['.MainActivity', 'com.kwad.components.ad.interstitial'],
           matches:
             'ImageView[childCount=0][text=null] < @ViewGroup[childCount=1][clickable=true][visibleToUser=true] < ViewGroup +n ViewGroup[childCount=2] > [text="广告"]',
@@ -36,7 +32,6 @@ export default defineGkdApp({
         {
           key: 2,
           name: '快手广告-3',
-          fastQuery: true,
           activityIds: '.MainActivity',
           matches: [
             'ViewGroup > [text="广告"]',
@@ -47,7 +42,7 @@ export default defineGkdApp({
         {
           key: 3,
           name: '腾讯广告-1',
-          fastQuery: true,
+          actionDelay: 400, //目标节点不是 [clickable=true] 的,加一点延迟
           activityIds: '.MainActivity',
           matches:
             '@ImageView[childCount=0][text=null][desc=null][id=null][visibleToUser=true][width<90 && height<90] < FrameLayout[childCount=1][text=null][desc=null][id=null][parent.childCount>3] <n FrameLayout >(2,3) [text^="立即" || text$="详情" || text^="了解" || text="去微信看看" || text$="应用" || text="进入小程序" || text="领取优惠" || text="跳转微信"]',
@@ -63,7 +58,7 @@ export default defineGkdApp({
         {
           key: 4,
           name: '腾讯广告-2',
-          fastQuery: true,
+          actionDelay: 400,
           matches:
             '@ImageView[childCount=0][text=null][desc=null][id=null][visibleToUser=true][width<90 && height<90] < FrameLayout[childCount=1][text=null][desc=null][id=null] - FrameLayout[childCount>2] >3 [text^="立即" || text$="应用" || text="了解更多" || text="查看详情"]',
           snapshotUrls: 'https://i.gkd.li/i/13246786',
@@ -71,7 +66,6 @@ export default defineGkdApp({
         {
           key: 5,
           name: '腾讯广告-3',
-          fastQuery: true,
           activityIds: '.MainActivity',
           matches: '[vid="interact_ad_root"] > [vid="iv_close"]',
           snapshotUrls: [
@@ -82,7 +76,7 @@ export default defineGkdApp({
         {
           key: 6,
           name: '腾讯广告-4',
-          fastQuery: true,
+          actionDelay: 400,
           matches:
             '@ImageView[childCount=0][text=null][visibleToUser=true] < FrameLayout[childCount=1] <2 FrameLayout[childCount=2] <2 FrameLayout[childCount=2] <2 FrameLayout[childCount=2] - FrameLayout > [text^="扭动或点击"]',
           snapshotUrls: 'https://i.gkd.li/i/13233178',
@@ -90,7 +84,6 @@ export default defineGkdApp({
         {
           key: 7,
           name: '字节广告-1',
-          fastQuery: true,
           activityIds:
             'com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Portrait_Activity',
           matches:
@@ -99,7 +92,6 @@ export default defineGkdApp({
         },
         {
           key: 8,
-          fastQuery: true,
           activityIds: 'com.beizi.ad.v2.activity.BeiZiNewInterstitialActivity',
           matches:
             '@[clickable=true] > ImageView[vid="beizi_interstitial_ad_close_iv"]',
@@ -108,6 +100,7 @@ export default defineGkdApp({
         {
           key: 9,
           name: '字节广告-3',
+          actionDelay: 400,
           activityIds:
             'com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Portrait_Activity',
           matches:
@@ -120,11 +113,16 @@ export default defineGkdApp({
         {
           key: 10,
           name: '百度广告-1',
-          fastQuery: true,
           activityIds: 'com.baidu.mobads.sdk.api.MobRewardVideoActivity',
           matches:
             '@ImageView[clickable=true] - RelativeLayout >2 [text="反馈"]',
           snapshotUrls: 'https://i.gkd.li/i/25189723',
+        },
+        {
+          key: 11,
+          // activityIds: null,  // #282
+          matches: '[vid="ad_close"]',
+          snapshotUrls: 'https://i.gkd.li/i/30617190',
         },
       ],
     },
