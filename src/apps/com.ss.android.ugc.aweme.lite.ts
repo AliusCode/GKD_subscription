@@ -230,17 +230,20 @@ export default defineGkdApp({
     {
       key: 16,
       name: '功能类-自动切换到[作品]列表',
-      desc: '初进用户主页时,若显示[橱窗],则点击[作品]',
+      desc: '在用户主页时,若存在[橱窗/商品/服务],则点击[作品]',
       rules: [
         {
           fastQuery: true,
-          actionMaximum: 1,
+          actionCd: 10000,
+          // actionMaximum: 1,
           activityIds: 'com.ss.android.ugc.aweme.main.MainActivity',
           matches:
-            '[visibleToUser=false] < ViewPager[childCount>1] - ViewGroup >3 @[desc^="作品"][clickable=true] +n [name$="ActionBar$Tab"] >3 [text="橱窗"][visibleToUser=true]',
+            '[visibleToUser=false] < ViewPager[childCount>1] - ViewGroup >3 @[desc^="作品"][clickable=true] +n [name$="ActionBar$Tab"] >3 [text="橱窗" || text="商品" || text="服务"][visibleToUser=true]',
           snapshotUrls: [
-            'https://i.gkd.li/i/30619207', //正在显示[橱窗]
+            'https://i.gkd.li/i/30619207', // [橱窗]
             'https://i.gkd.li/i/30619569',
+            'https://i.gkd.li/i/30621467', // [商品]
+            'https://i.gkd.li/i/30621712', // [服务]
           ],
           excludeSnapshotUrls: [
             'https://i.gkd.li/i/30619208', //已显示[作品]
