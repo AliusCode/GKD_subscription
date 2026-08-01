@@ -209,5 +209,27 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 16,
+      name: '功能类-自动切换到[作品]列表',
+      desc: '初进用户主页时,若显示[橱窗],则点击[作品]',
+      rules: [
+        {
+          fastQuery: true,
+          actionMaximum: 1,
+          activityIds: 'com.ss.android.ugc.aweme.main.MainActivity',
+          matches: '[visibleToUser=false] < ViewPager[childCount>1] - ViewGroup >3 @[desc^="作品"][clickable=true] +n [name$="ActionBar$Tab"] >3 [text="橱窗"][visibleToUser=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/30619207', //正在显示[橱窗]
+            'https://i.gkd.li/i/30619569',
+          ],
+          excludeSnapshotUrls: [
+            'https://i.gkd.li/i/30619208', //已显示[作品]
+            'https://i.gkd.li/i/30619506', //视频页,存在[橱窗]、[作品]的节点,但未显示
+          ],
+          exampleUrls: 'https://e.gkd.li/966b01bd-3c89-4f19-83af-7e9429ab25ed',
+        },
+      ],
+    },
   ],
 });
