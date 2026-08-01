@@ -218,7 +218,8 @@ export default defineGkdApp({
           fastQuery: true,
           actionMaximum: 1,
           activityIds: 'com.ss.android.ugc.aweme.main.MainActivity',
-          matches: '[visibleToUser=false] < ViewPager[childCount>1] - ViewGroup >3 @[desc^="作品"][clickable=true] +n [name$="ActionBar$Tab"] >3 [text="橱窗"][visibleToUser=true]',
+          matches:
+            '[visibleToUser=false] < ViewPager[childCount>1] - ViewGroup >3 @[desc^="作品"][clickable=true] +n [name$="ActionBar$Tab"] >3 [text="橱窗"][visibleToUser=true]',
           snapshotUrls: [
             'https://i.gkd.li/i/30619207', //正在显示[橱窗]
             'https://i.gkd.li/i/30619569',
