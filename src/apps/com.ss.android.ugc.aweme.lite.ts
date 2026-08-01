@@ -5,6 +5,24 @@ export default defineGkdApp({
   name: '抖音极速版',
   groups: [
     {
+      key: 1,
+      name: '更新提示',
+      // matchTime: 10000, //不确定是否在前10秒内出现弹窗
+      actionMaximum: 1,
+      resetMatch: 'app',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: 'com.ss.android.ugc.aweme.main.MainActivity',
+          matches: [
+            '[text*="更新" || text*="下载" || text*="安装" || text*="升级"][visibleToUser=true]',
+            '[text$="再说" || text^="忽略" || text^="取消"][clickable=true]',
+          ],
+          snapshotUrls: 'https://i.gkd.li/i/30620547',
+        },
+      ],
+    },
+    {
       key: 2,
       name: '功能类-功能体验邀请弹窗',
       rules: [
