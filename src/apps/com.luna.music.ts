@@ -153,8 +153,12 @@ export default defineGkdApp({
         {
           key: 1,
           activityIds: 'com.luna.biz.main.main.MainActivity',
-          matches: '@UIView[clickable=true] +4 [text^="立即解锁"]',
-          snapshotUrls: 'https://i.gkd.li/i/30630741',
+          matches:
+            '@UIView[clickable=true][width>=prev.width] +(4,5) [text*="解锁"][text$="天畅听"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/30630741',
+            'https://i.gkd.li/i/30631201',
+          ],
         },
 
         // 2️⃣第二段
@@ -193,12 +197,21 @@ export default defineGkdApp({
         },
         {
           key: 23,
-          name: '②点击[已领取]',
+          activityIds:
+            'com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Portrait_Activity',
+          matches:
+            'ImageView[width<76] < @[clickable=true] < LinearLayout <2 [childCount=2] >2 TextView[text="反馈"][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/30631357',
+          excludeSnapshotUrls: 'https://i.gkd.li/i/30631469', //倒计时未结束
+        },
+        {
+          key: 24,
+          name: '②点击[跳过]',
           activityIds: [
             'com.bytedance.sdk.openadsdk.core.component.reward.activity.TTRewardVideoActivity',
             'com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Portrait_Activity',
           ],
-          matches: '[visibleToUser=true][text="奖励已领取"]',
+          matches: '@[text*="跳过"] - [visibleToUser=true][text="奖励已领取"]',
           snapshotUrls: [
             'https://i.gkd.li/i/24522627', // 字节AD-SDK
             'https://i.gkd.li/i/30630678',
@@ -346,6 +359,27 @@ export default defineGkdApp({
         },
         {
           key: 3,
+          actionMaximum: 1,
+          activityIds:
+            'com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Portrait_Activity',
+          matches:
+            '@Image[width<90 && height<90][visibleToUser=true][parent.parent.childCount>2][bottom<prev.height.div(10)] <<n [id="android:id/content"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/30631469',
+            'https://i.gkd.li/i/30632784',
+          ],
+        },
+        {
+          key: 4,
+          actionMaximum: 1,
+          activityIds:
+            'com.bytedance.sdk.openadsdk.core.component.reward.activity.TTRewardVideoActivity',
+          matches:
+            '@Image[width<90 && height<90][visibleToUser=true][bottom<prev.height.div(8)] <<n [id="android:id/content"]',
+          snapshotUrls: 'https://i.gkd.li/i/24522627',
+        },
+        {
+          key: 5,
           name: '坐标点击[静音]',
           actionMaximum: 1,
           actionMaximumKey: 1,
