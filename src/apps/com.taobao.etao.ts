@@ -38,23 +38,24 @@ export default defineGkdApp({
     {
       key: 10,
       name: '权限提示-通知权限',
-      desc: '点击关闭',
-      actionMaximum: 1,
+      desc: '点击x掉',
+      actionMaximum: 3,
       resetMatch: 'app',
       rules: [
         {
-          key: 0,
-          activityIds: 'com.taobao.sns.app.message.MessageActivity',
+          fastQuery: true,
+          activityIds: [
+            'com.taobao.sns.app.message.MessageActivity',
+            '.mine.MetaXMineActivity',
+            '.app.homev4.HomeV4Activity',
+          ],
           matches:
-            '[text^="打开消息通知"] + [text="去开启"] + ImageView[clickable=true]',
-          snapshotUrls: 'https://i.gkd.li/i/12684278',
-        },
-        {
-          key: 1,
-          activityIds: '.mine.MetaXMineActivity',
-          matches:
-            '[text^="打开消息通知"] + FrameLayout > [text="去开启"] < FrameLayout + ImageView[clickable=true]',
-          snapshotUrls: 'https://i.gkd.li/i/12684351',
+            '@[text=null][clickable=true][width<150][childCount=0] -(1,2) [text*="开"][text*="通知"][visibleToUser=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/12684278', // 旧快照,无快查属性
+            'https://i.gkd.li/i/12684351', // 旧快照
+            'https://i.gkd.li/i/30634250',
+          ],
         },
       ],
     },
