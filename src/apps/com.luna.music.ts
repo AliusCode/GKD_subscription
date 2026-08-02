@@ -150,6 +150,12 @@ export default defineGkdApp({
             'https://e.gkd.li/9cd0c931-5ae8-4739-8a1a-481d2d5731f4',
           ],
         },
+        {
+          key: 1,
+          activityIds: 'com.luna.biz.main.main.MainActivity',
+          matches: '@UIView[clickable=true] +4 [text^="立即解锁"]',
+          snapshotUrls: 'https://i.gkd.li/i/30630741',
+        },
 
         // 2️⃣第二段
         // 已领取成功,可以x掉
@@ -188,10 +194,15 @@ export default defineGkdApp({
         {
           key: 23,
           name: '②点击[已领取]',
-          activityIds:
+          activityIds: [
             'com.bytedance.sdk.openadsdk.core.component.reward.activity.TTRewardVideoActivity',
+            'com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Portrait_Activity',
+          ],
           matches: '[visibleToUser=true][text="奖励已领取"]',
-          snapshotUrls: 'https://i.gkd.li/i/24522627', // 字节AD-SDK
+          snapshotUrls: [
+            'https://i.gkd.li/i/24522627', // 字节AD-SDK
+            'https://i.gkd.li/i/30630678',
+          ],
         },
 
         // 3️⃣第三段
