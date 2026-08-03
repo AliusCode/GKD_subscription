@@ -109,6 +109,7 @@ export default defineGkdApp({
             '.vip.activity.SecondShowNewUserSevenDayVipActivity',
             '.activity.DictQueryActivity',
             '.vip.activity.FirstShowNewUserSevenDayVipActivity',
+            '.activity.MainActivity',
           ],
           matches: 'ImageView[vid="iv_close"][clickable=true]',
           snapshotUrls: [
@@ -116,6 +117,7 @@ export default defineGkdApp({
             'https://i.gkd.li/i/14381735',
             'https://i.gkd.li/i/16929322',
             'https://i.gkd.li/i/22275220',
+            'https://i.gkd.li/i/30662836',
           ],
         },
         {
