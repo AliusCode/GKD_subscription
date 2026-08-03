@@ -73,6 +73,26 @@ export default defineGkdApp({
       ],
     },
     {
+      key: 4,
+      name: '全屏广告-个人主页弹窗',
+      fastQuery: true,
+      activityIds: 'com.yxcorp.gifshow.HomeActivity',
+      rules: [
+        {
+          key: 1,
+          matches: '[text*="挂件"] - [vid="dialog_close"]',
+          snapshotUrls: 'https://i.gkd.li/i/30645708',
+          exampleUrls: 'https://e.gkd.li/5379291d-3f11-46a9-a4a3-ccba8cc5a7d6',
+        },
+        {
+          key: 2,
+          matches: '[text^="恭喜"] -n [text="不再提醒"]',
+          snapshotUrls: 'https://i.gkd.li/i/30645964',
+          exampleUrls: 'https://e.gkd.li/381e4649-718e-40e7-9d5f-4d2dd7ad8255',
+        },
+      ],
+    },
+    {
       key: 5,
       name: '分段广告-悬浮广告',
       desc: '①点击x掉 ②点击[确定]',
