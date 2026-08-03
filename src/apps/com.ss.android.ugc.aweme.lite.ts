@@ -3,6 +3,12 @@ import { defineGkdApp } from '@gkd-kit/define';
 export default defineGkdApp({
   id: 'com.ss.android.ugc.aweme.lite',
   name: '抖音极速版',
+  /**
+   *  示例快照: https://i.gkd.li/i/30647148  界面: 'com.ss.android.ugc.aweme.main.MainActivity'
+   *  一般此界面的节点较多,节点树加载很慢,截个快照都要等十几 二十秒
+   *  所以对于该界面,不支持快查的规则不要写,
+   *  也尽量别用 << 关系操作符,因为它会 get 所有节点 （ https://github.com/orgs/gkd-kit/discussions/299 ）
+   */
   groups: [
     {
       key: 1,
@@ -109,9 +115,10 @@ export default defineGkdApp({
         {
           key: 2,
           fastQuery: true,
+          matchRoot: true,
           activityIds: 'com.ss.android.ugc.aweme.main.MainActivity',
           matches:
-            '@ImageView[id=null][text=null][width<100][height<100] < ViewGroup[childCount>1] <2 LinearLayout < HorizontalScrollView < ScrollView <<7 [id="android:id/content"]',
+            '@ImageView[id=null][text=null][width<100][height<100] < ViewGroup[childCount>1] <2 LinearLayout < HorizontalScrollView < ScrollView < [childCount=1] < [childCount=1] < [childCount=1] < [childCount=1] < [childCount=1] < [childCount=1] < [childCount=1] < [vid="action_bar_root"]',
           snapshotUrls: [
             'https://i.gkd.li/i/25547227',
             'https://i.gkd.li/i/28449818',
