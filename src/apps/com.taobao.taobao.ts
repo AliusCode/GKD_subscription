@@ -98,6 +98,15 @@ export default defineGkdApp({
             'https://i.gkd.li/i/28312957',
           ],
         },
+        {
+          key: 5,
+          fastQuery: true,
+          activityIds:
+            'com.taobao.android.tbabilitykit.pop.StdPopContainerActivity',
+          matches:
+            'Image[text*=".jpg"][width<150 && height<150] < [visibleToUser=true] < @View[clickable=true][childCount=1] <<n FrameLayout[id=null] - [vid="layermanager_penetrate_webview_container_id"]',
+          snapshotUrls: 'https://i.gkd.li/i/30710740',
+        },
       ],
     },
     {
