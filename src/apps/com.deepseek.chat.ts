@@ -43,5 +43,23 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 3,
+      name: '功能类-选中快速模式时自动切换至专家模式',
+      rules: [
+        {
+          activityIds: '.MainActivity',
+          matches: [
+            '[text="使用快速模式开始对话"]',
+            '@[clickable=true] > [text="专家模式"]',
+          ],
+          snapshotUrls: [
+            'https://i.gkd.li/i/30698460', // 快速模式
+            'https://i.gkd.li/i/30698458', // 专家模式
+            'https://i.gkd.li/i/30698461', // 识图模式
+          ],
+        },
+      ],
+    },
   ],
 });
