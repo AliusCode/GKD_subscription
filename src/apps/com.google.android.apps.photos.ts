@@ -50,5 +50,20 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 2,
+      name: '全屏广告-弹窗广告',
+      desc: '点击[No thanks]',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.home.HomeActivity',
+          matches:
+            '[text="No thanks"] < @[clickable=true] <7 ScrollView < View < View < View < View < View < ViewGroup < [id="android:id/content"]',
+          snapshotUrls: 'https://i.gkd.li/i/30710352',
+          exampleUrls: 'https://e.gkd.li/e9db52c0-597e-4fa2-a936-8affe0d60864',
+        },
+      ],
+    },
   ],
 });
