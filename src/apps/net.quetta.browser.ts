@@ -18,5 +18,18 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 2,
+      name: '功能类-自动[保留]下载文件',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: 'org.chromium.chrome.browser.ChromeTabbedActivity',
+          matches: '[vid="modal_dialog_view"] >2 [text="保留"][clickable=true]',
+          snapshotUrls: 'https://i.gkd.li/i/30702229',
+          exampleUrls: 'https://e.gkd.li/e45a8495-d6dd-4f7c-b324-0364ff0afe7b',
+        },
+      ],
+    },
   ],
 });
