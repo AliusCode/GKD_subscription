@@ -40,8 +40,11 @@ export default defineGkdApp({
         {
           fastQuery: true,
           activityIds: '.ui.UpdateListActivity',
-          matches: '[vid="iv_close_tip"]',
-          snapshotUrls: 'https://i.gkd.li/i/13197334',
+          matches: '[vid="iv_close_tip" || vid="orchard_banner_close"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/13197334',
+            'https://i.gkd.li/i/30699398',
+          ],
         },
       ],
     },
