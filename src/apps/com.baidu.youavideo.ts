@@ -7,39 +7,39 @@ export default defineGkdApp({
     {
       key: 0,
       name: '开屏广告',
+      fastQuery: true,
       matchTime: 10000,
       actionMaximum: 1,
-      resetMatch: 'app',
       actionMaximumKey: 0,
+      resetMatch: 'app',
       priorityTime: 10000,
       rules: [
         {
           key: 0,
-          fastQuery: true,
-          excludeActivityIds:
-            'com.bytedance.sdk.openadsdk.core.component.reward.activity.TTRewardVideoActivity',
           excludeMatches: '[text="开启安全备份"][visibleToUser=true]',
-          anyMatches: [
+          matches:
             '[text*="跳过"][text.length<10][width<500 && height<300][visibleToUser=true]',
-            '[text.length<10][text*="跳过"][visibleToUser=true]',
-          ],
+          snapshotUrls: 'https://i.gkd.li/i/23549481',
+          excludeSnapshotUrls: 'https://i.gkd.li/i/23567868',
           exampleUrls: 'https://e.gkd.li/5185bf9d-70f7-4841-991e-55b1b6768e97',
-          snapshotUrls: [
-            'https://i.gkd.li/i/23549481',
-            'https://i.gkd.li/i/23549490', // 无法快速查询
-          ],
-          excludeSnapshotUrls: [
-            'https://i.gkd.li/i/23549097',
-            'https://i.gkd.li/i/23567868',
-          ],
         },
         {
           key: 1,
-          fastQuery: true,
-          anyMatches: [
+          // excludeActivityIds: 'com.bytedance.sdk.openadsdk.core.component.reward.activity.TTRewardVideoActivity',
+          matches:
+            '@[text*="跳过"] + [visibleToUser=true] >(1,3) [text*="摇一摇" || text*="摇动" || text*="点击"]',
+          snapshotUrls: 'https://i.gkd.li/i/23549490',
+          // excludeSnapshotUrls: 'https://i.gkd.li/i/23549097', // 用 [visibleToUser=true][text*="跳过"] 会误触
+        },
+        {
+          key: 2,
+          matches: '[vid="flash_fragment"] >n [vid="ms_skipView"]',
+          snapshotUrls: 'https://i.gkd.li/i/30690903',
+        },
+        {
+          key: 3,
+          matches:
             '@View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0] <n FrameLayout[childCount>2][text=null][desc=null] >(n+6) [text*="第三方应用" || text*="扭动手机" || text*="点击或上滑" || text*="省钱好物" || text*="扭一扭"][visibleToUser=true]',
-            'FrameLayout > FrameLayout[childCount>2][text=null][desc=null] > @View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0][visibleToUser=true]',
-          ],
           snapshotUrls: [
             'https://i.gkd.li/i/23549504',
             'https://i.gkd.li/i/23549553',
