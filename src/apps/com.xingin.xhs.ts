@@ -469,5 +469,25 @@ export default defineGkdApp({
     //     },
     //   ],
     // },
+    {
+      key: 19,
+      name: '功能类-自动关闭截屏弹窗',
+      desc: '点击x掉',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: [
+            'com.xingin.matrix.notedetail.NoteDetailActivity',
+            'com.xingin.matrix.detail.activity.DetailFeedActivity',
+          ],
+          matches: '@[desc="关闭"] <2 [childCount=2] >3 [text="截屏分享至"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/30751358',
+            'https://i.gkd.li/i/30751625',
+          ],
+          exampleUrls: 'https://e.gkd.li/c4bb2699-8e78-412c-92bd-47d35bb05616',
+        },
+      ],
+    },
   ],
 });
