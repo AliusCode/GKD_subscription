@@ -41,7 +41,8 @@ export default defineGkdApp({
     },
     {
       key: 3,
-      name: '功能类-自动点击查看原图',
+      name: '功能类-自动[查看原图]',
+      desc: '点击[查看原图]',
       rules: [
         {
           fastQuery: true,
@@ -49,6 +50,7 @@ export default defineGkdApp({
             '.module.bbs.post.ui.activitys.WebNewsPostPageActivity',
             '.module.bbs.post.ui.activitys.PicturePostPageActivity',
             '.module.bbs.post.ui.activitys.v2.PicturePostPageActivityV2',
+            '.module.bbs.post.ui.activitys.v2.WebNewsPostPageActivityV2',
           ],
           matches: '[vid="tv_original"][clickable=true]',
           exampleUrls: 'https://e.gkd.li/f7222b21-7037-4614-95ab-cff19ee15d38',
@@ -56,6 +58,7 @@ export default defineGkdApp({
             'https://i.gkd.li/i/16646832',
             'https://i.gkd.li/i/17574462',
             'https://i.gkd.li/i/25336815',
+            'https://i.gkd.li/i/30749472',
           ],
           excludeSnapshotUrls: 'https://i.gkd.li/i/22377026',
         },
