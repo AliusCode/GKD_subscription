@@ -36,9 +36,15 @@ export default defineGkdApp({
       rules: [
         {
           fastQuery: true,
-          activityIds: '.feature.main.MainTabActivity',
-          matches: '[vid="ad_action_close"][clickable=true]',
-          snapshotUrls: 'https://i.gkd.li/i/25404970',
+          activityIds: [
+            '.feature.main.MainTabActivity',
+            '.feature.detail.NewShortVideoDetailActivity',
+          ],
+          matches: '[vid="ad_action_close" || vid="iv_close"][clickable=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/25404970',
+            'https://i.gkd.li/i/30749182',
+          ],
         },
       ],
     },
