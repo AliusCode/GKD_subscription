@@ -290,5 +290,24 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 11,
+      name: '功能类-自动[勾选]原图',
+      desc: '选择发送图片时,点击1次[原图]',
+      rules: [
+        {
+          actionMaximum: 1,
+          resetMatch: 'match',
+          activityIds:
+            'com.idlefish.flutterbridge.flutterboost.boost.FishFlutterBoostActivity',
+          matches: '[clickable=true][desc="原图"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/30770701',
+            'https://i.gkd.li/i/30770836',
+          ],
+          exampleUrls: 'https://e.gkd.li/45d7ad2e-b436-4d30-be4b-a90584c3d2a0',
+        },
+      ],
+    },
   ],
 });
