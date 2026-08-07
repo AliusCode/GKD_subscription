@@ -130,6 +130,20 @@ export default defineGkdApp({
       ],
     },
     {
+      key: 11,
+      name: '全屏广告-关闭公众号提醒',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds:
+            'com.hellobike.hitch.business.match.temp.HitchDriverTempMatchActivity',
+          matches: '[text*="公众号"] - [vid="ivClose"]',
+          snapshotUrls: 'https://i.gkd.li/i/30827751',
+          exampleUrls: 'https://e.gkd.li/84f6f033-7686-439a-b50e-87a2c8409ddf',
+        },
+      ],
+    },
+    {
       key: 12,
       name: '局部广告-右侧悬浮广告',
       fastQuery: true,
