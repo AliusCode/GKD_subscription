@@ -18,16 +18,18 @@ export default defineGkdApp({
           excludeActivityIds: [
             '.music.biz.setting.activity.SettingActivity',
             '.music.biz.search.activity.SearchActivity',
+            '.music.biz.rn.activity.BgMainProcessRNActivity',
           ],
           matches:
             '[text*="跳过" || text*="Skip"][text.length<10][width<500 && height<200][visibleToUser=true]',
           snapshotUrls: [
-            'https://i.gkd.li/i/15092772',
-            'https://i.gkd.li/i/17892200', // 'Skip' for English users.
+            'https://i.gkd.li/i/30857148',
+            'https://i.gkd.li/i/30857149', // 'Skip' for English users.
           ],
           excludeSnapshotUrls: [
             'https://i.gkd.li/i/15092814',
             'https://i.gkd.li/i/16318423',
+            'https://i.gkd.li/i/30857162',
           ],
         },
       ],
