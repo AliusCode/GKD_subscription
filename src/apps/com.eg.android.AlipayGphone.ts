@@ -310,6 +310,18 @@ export default defineGkdApp({
             '@[text="我知道了"][clickable=true] -n [text^="用碰一下支付"]',
           snapshotUrls: 'https://i.gkd.li/i/24563264',
         },
+        {
+          key: 5,
+          name: '⑤坐标点击x掉',
+          activityIds: '.AlipayLogin',
+          position: {
+            left: 'width * 0.5',
+            top: 'width * 1.3792',
+          },
+          matches:
+            'View[width=getPrev(2).width][height=getPrev(2).height] < ViewGroup - * ->2 @ImageView < [visibleToUser=true] < FrameLayout - View < ViewGroup[childCount=3] < * < * < * < FrameLayout - [vid="alipaylogin_layout"]',
+          snapshotUrls: 'https://i.gkd.li/i/26526026',
+        },
       ],
     },
     {
