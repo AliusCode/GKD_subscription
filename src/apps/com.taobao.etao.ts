@@ -7,31 +7,33 @@ export default defineGkdApp({
     {
       key: 2,
       name: '全屏广告-弹窗广告',
-      matchTime: 10000,
-      actionMaximum: 1,
-      resetMatch: 'app',
+      fastQuery: true,
+      activityIds: '.app.homev4.HomeV4Activity',
       rules: [
         {
           key: 0,
-          activityIds: [
-            '.app.home.view.NewHomeActivity',
-            '.app.homev4.HomeV4Activity',
-          ],
           matches:
-            'LinearLayout[childCount=2] > @RelativeLayout[clickable=true][childCount=1] > ImageView[childCount=0]',
-          snapshotUrls: [
-            'https://i.gkd.li/i/12739581',
-            'https://i.gkd.li/i/13670025',
-          ],
+            '@ImageView[width<150 && height<150] <2 FrameLayout < [vid="dialog_container"]',
+          snapshotUrls: 'https://i.gkd.li/i/30859236',
         },
         {
           key: 1,
-          activityIds: '.app.homev4.HomeV4Activity',
           matches:
-            '[text="一淘-首页红包升级-2312wf"] >5 View[childCount=3] > View[index=0][visibleToUser=true]',
-          exampleUrls:
-            'https://m.gkd.li/57941037/db5c7761-3a8b-4bc6-a61c-65dd30f61b9f',
-          snapshotUrls: 'https://i.gkd.li/i/14622468',
+            'ImageView[width<150 && height<150] < @[clickable=true] + [vid="dialog_container"]',
+          snapshotUrls: 'https://i.gkd.li/i/30859577',
+        },
+        {
+          key: 2,
+          matches:
+            '@View[id=null][visibleToUser=true][width<150 && height<150][parent.childCount=3] <<n [vid="dialog_container"]',
+          snapshotUrls: 'https://i.gkd.li/i/30859628',
+        },
+        {
+          key: 3,
+          activityIds: '.app.home.view.NewHomeActivity',
+          matches:
+            'ImageView[width<150 && height<150] < @RelativeLayout[clickable=true][childCount=1] <2 [childCount=2] < [id="android:id/content"]',
+          snapshotUrls: 'https://i.gkd.li/i/30859526', //旧快照,无快查 (已转成webp截图)
         },
       ],
     },
