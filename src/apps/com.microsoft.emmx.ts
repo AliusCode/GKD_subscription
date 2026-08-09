@@ -105,5 +105,19 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 9,
+      name: '功能类-下载确认',
+      desc: '自动点击下载弹窗中的下载按钮',
+      fastQuery: true,
+      rules: [
+        {
+          matches:
+            '[text*="下载" || text*="下載"][visibleToUser=true] +2 [childCount=3] > [vid="button1"]',
+          snapshotUrls: 'https://i.gkd.li/i/30865007',
+          exampleUrls: 'https://e.gkd.li/df8b81cd-1bfa-402a-a317-610f9d713674',
+        },
+      ],
+    },
   ],
 });
