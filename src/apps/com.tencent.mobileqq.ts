@@ -596,5 +596,18 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 39,
+      name: '局部广告-空间相册内广告',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: 'com.qzone.reborn.base.QZoneShellActivity',
+          matches:
+            '@ImageView[clickable=true][width<87] <2 [visibleToUser=true] - [childCount=3] >2 [text="广告"]',
+          snapshotUrls: 'https://i.gkd.li/i/30869035',
+        },
+      ],
+    },
   ],
 });
