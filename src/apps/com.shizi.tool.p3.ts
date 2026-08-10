@@ -7,30 +7,30 @@ export default defineGkdApp({
     {
       key: 1,
       name: '开屏广告',
-      desc: '⚠左上角[跳过按钮]有报告假的/误触',
+      // desc: '⚠️左上角[跳过按钮]有报告假的/误触',
+      fastQuery: true,
       matchRoot: true, // https://github.com/AIsouler/GKD_subscription/issues/1133
       matchTime: 10000,
       actionMaximum: 1,
-      resetMatch: 'app',
       actionMaximumKey: 0,
+      resetMatch: 'app',
       priorityTime: 10000,
       rules: [
         {
           key: 0,
-          fastQuery: true,
-          matches: '[vid="tobid_splash_skip_ll"]',
-          exampleUrls: 'https://e.gkd.li/b10db699-ed34-4619-b3ca-5821321f4b58',
+          matches: '[vid="tobid_splash_skip_ll"][clickable=true]',
           snapshotUrls: 'https://i.gkd.li/i/22136545',
-          excludeSnapshotUrls: [
-            'https://i.gkd.li/i/25509864', // 用户反馈该广告的跳过按钮是假的，点击无法跳过 https://github.com/Lin-arm/GKD_subscription/issues/32
-          ],
         },
         {
           key: 1,
-          fastQuery: true,
           matches: '[vid="ms_skipView"][visibleToUser=true]',
-          exampleUrls: 'https://e.gkd.li/64be8cde-d60d-4c71-ba13-4bcb78842931',
           snapshotUrls: 'https://i.gkd.li/i/23925246',
+        },
+        {
+          key: 2,
+          matches: '[text*="跳过"][text.length<10][clickable=true]',
+          snapshotUrls: 'https://i.gkd.li/i/30903944',
+          excludeSnapshotUrls: 'https://i.gkd.li/i/30905793', //点击 [text*="跳过"][clickable=false] 偶尔会误触, https://github.com/Lin-arm/GKD_subscription/issues/32
         },
       ],
     },
