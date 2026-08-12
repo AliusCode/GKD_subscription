@@ -119,6 +119,7 @@ export default defineGkdGlobalGroups([
           'https://i.gkd.li/i/24158267', // text*="应用市场"
           'https://i.gkd.li/i/27428213', // vid="dialog_close"
           'https://i.gkd.li/i/27470927', // vid="im_dismiss"
+          'https://i.gkd.li/i/30968619', // OPPO天气
         ],
         excludeSnapshotUrls: [
           // 避免误触 (个别快照的appID已在全局更新提示黑名单)

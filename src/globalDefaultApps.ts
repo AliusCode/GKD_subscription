@@ -356,7 +356,6 @@ export const blackListAppIDs: string[] = [
   // 其他机型
   'com.coloros.calculator', // 计算器
   'com.coloros.soundrecorder', // 录音
-  'com.coloros.weather2', // 天气
   'com.coloros.compass2', // 指南针
 
   // 游戏类
@@ -385,6 +384,7 @@ export const openAdBlackListAppIDs = new Set([
   'eu.smartpatient.mytherapy', // MyTherapy_误触 https://i.gkd.li/i/26222977
   'app.revanced.manager.flutter', // ReVanced Manager 为开源app且误触 https://i.gkd.li/i/26644042
   'com.chaoxing.mobile', // 学习通 开屏广告_误触-添加组织邀请码 https://i.gkd.li/i/26644056
+  'com.coloros.weather2', // 天气
 ]);
 
 // 更新提示黑名单
@@ -440,6 +440,7 @@ export const yongBlackListAppIDs = new Set([
   'com.zdanjian.zdanjian', // 自动精灵
   'com.One.WoodenLetter', // 一个木函
   'small.wore', // 一句
+  'com.coloros.weather2', // 天气
 ]);
 
 // 全局规则白名单（由于系统应用默认禁用全局规则，所以对系统应用启用白名单模式）
