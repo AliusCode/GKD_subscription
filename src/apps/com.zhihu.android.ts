@@ -7,13 +7,15 @@ export default defineGkdApp({
     {
       key: -1,
       name: '开屏广告',
+      fastQuery: true,
       matchTime: 10000,
       actionMaximum: 1,
+      actionMaximumKey: 0,
       resetMatch: 'app',
       priorityTime: 10000,
       rules: [
         {
-          fastQuery: true,
+          key: 0,
           excludeActivityIds: [
             '.app.SearchActivity',
             '.comment.ui.activity.CommentListActivity',
@@ -31,6 +33,12 @@ export default defineGkdApp({
             'https://i.gkd.li/i/23141429',
             'https://i.gkd.li/i/24229324',
           ],
+        },
+        {
+          key: 1,
+          matches:
+            '@View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200 && height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0] <n FrameLayout[childCount>2][text=null][desc=null] >(n+6) [text*="第三方应用" || text*="扭动手机" || text*="点击或上滑" || text*="省钱好物" || text*="扭一扭"][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/30968922',
         },
       ],
     },
