@@ -545,6 +545,23 @@ export default defineGkdApp({
       ],
     },
     {
+      key: 27,
+      name: '功能类-收款后自动[返回]',
+      desc: '已收款,点击左上角退出该界面',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.plugin.remittance.ui.RemittanceDetailUI',
+          matches: [
+            '[text*="已收款"] + [text^="¥"]',
+            '[vid="actionbar_up_indicator"][clickable=true]',
+          ],
+          snapshotUrls: 'https://i.gkd.li/i/31040687',
+          exampleUrls: 'https://e.gkd.li/49b2d5ee-74a4-48e2-818a-8d3ef4c98930',
+        },
+      ],
+    },
+    {
       key: 28,
       name: '分段广告-订阅号消息-视频推荐',
       desc: '点击[X]-点击[不喜欢此类视频]-点击[确定]',
