@@ -99,6 +99,7 @@ export default defineGkdApp({
       name: '局部广告-视频页广告',
       desc: '领取大会员月卡,B站免流星卡',
       fastQuery: true,
+      activityIds: 'com.bilibili.ship.theseus.detail.UnitedBizDetailsActivity',
       rules: [
         {
           key: 1,
@@ -117,12 +118,17 @@ export default defineGkdApp({
         },
         {
           key: 2,
-          activityIds:
-            'com.bilibili.ship.theseus.detail.UnitedBizDetailsActivity',
           matches:
             '@[vid="close"][visibleToUser=true] - [text$="免费领B站大会员"]',
           exampleUrls: 'https://e.gkd.li/cd934dfc-666e-4562-8b77-aac95f73694e',
           snapshotUrls: 'https://i.gkd.li/i/18165189',
+        },
+        {
+          key: 3,
+          matches:
+            '[desc="close"] < @[clickable=true] <3 View <2 [childCount=4] < View <2 View < ComposeView < FrameLayout < [vid="fl_tab_pager_container"]',
+          snapshotUrls: 'https://i.gkd.li/i/31067294',
+          exampleUrls: 'https://e.gkd.li/696de68a-489f-4d42-b652-afbdf7351145',
         },
       ],
     },
