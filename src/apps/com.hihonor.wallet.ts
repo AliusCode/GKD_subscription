@@ -18,5 +18,19 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 2,
+      name: '功能类-进广告视频自动关声',
+      actionMaximum: 1, // 限制点击次数为1次
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: 'com.hihonor.adsdk.reward.RewardActivity',
+          matches:
+            '[vid="ad_volume_close"] > [vid="ad_video_volume"][clickable=true][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/31094038',
+        },
+      ],
+    },
   ],
 });
