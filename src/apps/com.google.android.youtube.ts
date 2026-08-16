@@ -357,6 +357,8 @@ export default defineGkdApp({
       rules: [
         {
           fastQuery: true,
+          actionMaximum: 1,
+          resetMatch: 'app',
           activityIds:
             'com.google.android.apps.youtube.app.watchwhile.MainActivity',
           matches: [
