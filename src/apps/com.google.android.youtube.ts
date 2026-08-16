@@ -350,5 +350,23 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 16,
+      name: '其他-xp模块更新提示',
+      desc: 'ReVanced Xposed 有更新,点击[取消]',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds:
+            'com.google.android.apps.youtube.app.watchwhile.MainActivity',
+          matches: [
+            '[text*="ReVanced Xposed"]',
+            '[text="Cancel"][clickable=true]',
+          ],
+          snapshotUrls: 'https://i.gkd.li/i/31118557',
+          exampleUrls: 'https://e.gkd.li/5f07de6a-1e4d-4297-a516-ccc695df72fc',
+        },
+      ],
+    },
   ],
 });
