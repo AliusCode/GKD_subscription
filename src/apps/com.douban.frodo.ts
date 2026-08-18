@@ -171,10 +171,13 @@ export default defineGkdApp({
         },
         {
           key: 5,
-          activityIds: '.group.activity.GroupTopicActivity',
+          activityIds: '.group.activity.GroupTopicActivity', //D
           matches:
-            '@Image[childCount=0][visibleToUser=true][text=""] < View[childCount=1] -2 View >2 [childCount=0][text="广告"] <<n [vid="structure_header_container"]',
-          snapshotUrls: 'https://i.gkd.li/i/18424747',
+            '@Image[childCount=0][visibleToUser=true][text=""] < View[childCount=1] -2 View >2 [childCount=0][text="广告"] <<n [vid="structure_header_container" || vid="llHeaderContainer"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/18424747', //D
+            'https://i.gkd.li/i/31182864', //D2
+          ],
         },
 
         // 第二段
@@ -182,7 +185,7 @@ export default defineGkdApp({
           key: 20,
           preKeys: [1, 2, 3, 4],
           name: '②点击[不感兴趣]',
-          matches: '@[clickable=true] > [text="不感兴趣"]',
+          matches: '@[clickable=true] >(1,2) [text="不感兴趣"]',
           snapshotUrls: [
             'https://i.gkd.li/i/18424404', //A
             'https://i.gkd.li/i/18424419', //B
@@ -190,6 +193,7 @@ export default defineGkdApp({
             'https://i.gkd.li/i/18424711', //D
             'https://i.gkd.li/i/19615333', //E
             'https://i.gkd.li/i/29295746', //G
+            'https://i.gkd.li/i/31182735', //D2
           ],
           activityIds: [
             '.activity.SplashActivity', //A
