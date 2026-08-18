@@ -244,6 +244,27 @@ export default defineGkdApp({
       ],
     },
     {
+      key: 6,
+      name: '功能类-长按图片后[保存]',
+      desc: '点击[保存]',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: [
+            '.group.activity.GroupTopicActivity', //D2
+            '.baseproject.image.ImageActivity',
+          ],
+          matches: '[text="保存" || text="保存图片到相册"][clickable=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/31184441',
+            'https://i.gkd.li/i/31184665',
+            'https://i.gkd.li/i/31184797', //保存图片到相册
+          ],
+          exampleUrls: 'https://e.gkd.li/f6c2dab4-e87e-4ae5-a778-b97d6cc2b760',
+        },
+      ],
+    },
+    {
       key: 8,
       name: '局部广告-卡片广告',
       desc: '点击关闭',
