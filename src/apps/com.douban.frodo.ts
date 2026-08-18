@@ -165,12 +165,22 @@ export default defineGkdApp({
           key: 4,
           activityIds: '.group.activity.GroupTopicActivity',
           matches:
+            '[vid="ad_not_interest" || vid="group_ad_not_interest"][clickable=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/31183170', //D2
+            'https://i.gkd.li/i/31183359', //D2
+          ],
+        },
+        {
+          key: 5,
+          activityIds: '.group.activity.GroupTopicActivity',
+          matches:
             '@View[clickable=true][childCount=0][visibleToUser=true] < FrameLayout[desc^="dislike"] -2 FrameLayout >2 [text="广告"]',
           exampleUrls: 'https://e.gkd.li/11d3ea75-c640-4b91-942e-3bf83b2e5f5e',
           snapshotUrls: 'https://i.gkd.li/i/19621152',
         },
         {
-          key: 5,
+          key: 6,
           activityIds: '.group.activity.GroupTopicActivity', //D
           matches:
             '@Image[childCount=0][visibleToUser=true][text=""] < View[childCount=1] -2 View >2 [childCount=0][text="广告"] <<n [vid="structure_header_container" || vid="llHeaderContainer"]',
@@ -179,11 +189,19 @@ export default defineGkdApp({
             'https://i.gkd.li/i/31182864', //D2
           ],
         },
+        {
+          key: 7,
+          activityIds: '.group.activity.GroupTopicActivity',
+          matches:
+            '@ImageView[visibleToUser=true][width<63 && height<63] <<n [childCount=2] >2 [text^="应​用​名​称​："][text.length>30]',
+          snapshotUrls: 'https://i.gkd.li/i/31183730', //D2
+          excludeSnapshotUrls: 'https://i.gkd.li/i/31183914', // [visibleToUser=false]
+        },
 
         // 第二段
         {
           key: 20,
-          preKeys: [1, 2, 3, 4],
+          preKeys: [1, 2, 3, 4, 5, 6, 7],
           name: '②点击[不感兴趣]',
           matches: '@[clickable=true] >(1,2) [text="不感兴趣"]',
           snapshotUrls: [
