@@ -892,6 +892,7 @@ export default defineGkdApp({
       rules: [
         {
           fastQuery: true,
+          action: 'back',
           activityIds: '.MainActivityV2',
           matches:
             '[vid="design_bottom_sheet"] >2 [vid="title"][text="完善信息，获取精准推荐"]',
