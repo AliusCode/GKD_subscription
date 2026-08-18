@@ -885,5 +885,20 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 33,
+      name: '其他-完善信息弹窗',
+      desc: '按[返回键]',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.MainActivityV2',
+          matches:
+            '[vid="design_bottom_sheet"] >2 [vid="title"][text="完善信息，获取精准推荐"]',
+          snapshotUrls: 'https://i.gkd.li/i/31165755',
+          exampleUrls: 'https://e.gkd.li/d7565e98-d424-49e1-a137-6b7b46c48cc7',
+        },
+      ],
+    },
   ],
 });
