@@ -26,21 +26,17 @@ export default defineGkdApp({
     {
       key: 9,
       name: '局部广告-右侧悬浮广告',
-      actionMaximum: 1,
-      resetMatch: 'app',
       rules: [
         {
           fastQuery: true,
-          position: {
-            left: 'width * 0.8893',
-            top: 'width * 0.4607',
-          },
           activityIds: '.activity.UPActivityMain',
-          matches:
-            '@[vid="frog_float"][visibleToUser=true] >2 [vid="close_view"]',
+          matches: '[vid="frog_float"] >2 [vid="close_view"][clickable=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/14586427',
+            'https://i.gkd.li/i/31259720',
+          ],
           exampleUrls:
             'https://m.gkd.li/57941037/0f4f6a7f-55ce-4f87-a4cb-97e9c7107359',
-          snapshotUrls: 'https://i.gkd.li/i/14586427',
         },
       ],
     },
