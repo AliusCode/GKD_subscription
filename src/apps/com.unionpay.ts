@@ -51,8 +51,11 @@ export default defineGkdApp({
         {
           key: 0,
           activityIds: '.activity.UPActivityMain',
-          matches: '[vid="view_locate_close"]',
-          snapshotUrls: 'https://i.gkd.li/i/13634882',
+          matches: '@[clickable=true] > [vid="locate_iv_close"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/13634882',
+            'https://i.gkd.li/i/31263858', // activityId=null
+          ],
         },
         {
           key: 1,
