@@ -466,6 +466,7 @@ export default defineGkdApp({
         'com.bytedance.ies.ugc.aweme.photos.detail.flow.page.FlowPageActivity',
         '.searcharticle.detail.ArticleDetailActivity',
         '.search.activity.SearchResultActivity',
+        '.detail.ultra.ui.UltraDetailActivity',
       ],
       rules: [
         {
@@ -489,6 +490,7 @@ export default defineGkdApp({
           snapshotUrls: [
             'https://i.gkd.li/i/29811099',
             'https://i.gkd.li/i/29811533',
+            'https://i.gkd.li/i/31308121',
           ],
         },
       ],
