@@ -202,11 +202,12 @@ export default defineGkdApp({
             'com.xingin.matrix.detail.activity.DetailFeedActivity',
           ],
           matches:
-            '@[clickable=true] >(1,2) [vid="loadMoreTV"][text^="展开"][text$="条回复"]',
+            '@[clickable=true] >(1,2) [text^="展开"][text$="条回复"][text.length<12]',
           snapshotUrls: [
             'https://i.gkd.li/i/25048251', // 一层
             'https://i.gkd.li/i/25823242',
             'https://i.gkd.li/i/27204200', // 两层
+            'https://i.gkd.li/i/31308354',
           ],
           exampleUrls: [
             'https://e.gkd.li/a211ebb1-2177-4264-9a60-280a5f8e2777',
@@ -442,12 +443,11 @@ export default defineGkdApp({
             'com.xingin.matrix.notedetail.NoteDetailActivity',
             'com.xingin.matrix.detail.activity.DetailFeedActivity',
           ],
-          matches:
-            '@[clickable=true] >(1,2) [vid="loadMoreTV"][text="展开更多回复"]',
+          matches: '@[clickable=true] >(1,2) [text="展开更多回复"]',
           snapshotUrls: [
             'https://i.gkd.li/i/25048251', // 一层
-            'https://i.gkd.li/i/25823242',
             'https://i.gkd.li/i/27204288', // 两层
+            'https://i.gkd.li/i/31308389',
           ],
           exampleUrls: [
             'https://e.gkd.li/a211ebb1-2177-4264-9a60-280a5f8e2777',
