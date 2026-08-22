@@ -53,22 +53,36 @@ export default defineGkdApp({
       rules: [
         {
           key: 0,
+          name: '评论区',
           matches: '[text="查看翻译"][clickable=true]',
+          snapshotUrls: 'https://i.gkd.li/i/14093211',
           exampleUrls:
             'https://m.gkd.li/57941037/e92702d8-8349-4718-aa4d-664bf3d2f6e5',
-          snapshotUrls: 'https://i.gkd.li/i/14093211',
         },
         {
           key: 1,
+          name: '评论区2',
+          matches:
+            '@[clickable=true][text="查看翻译"] <<n [vid="sticky_header_list"][getChild(0).id=null]',
+          snapshotUrls: 'https://i.gkd.li/i/31329753',
+        },
+        {
+          key: 2,
+          name: '首页',
+          position: {
+            left: 'width * 0.3',
+            top: 'height * 0.45',
+          },
           excludeMatches: '[text="查看翻译"][clickable=true]',
           matches:
             '[text$="查看翻译"][clickable=false][desc!=null][visibleToUser=true]',
-          exampleUrls:
-            'https://m.gkd.li/57941037/7d6da15b-1c3f-4160-a2d3-d8223bc55132',
           snapshotUrls: [
             'https://i.gkd.li/i/14784095',
-            'https://i.gkd.li/i/16776676', // 避免误触
+            'https://i.gkd.li/i/31329663',
           ],
+          excludeSnapshotUrls: 'https://i.gkd.li/i/16776676', // 避免误触 [visibleToUser=false]
+          exampleUrls:
+            'https://m.gkd.li/57941037/7d6da15b-1c3f-4160-a2d3-d8223bc55132',
         },
       ],
     },
