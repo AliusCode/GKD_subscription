@@ -56,6 +56,13 @@ export default defineGkdApp({
         },
         {
           key: 22,
+          preKeys: [2],
+          matches:
+            '[desc*="会员"] -n @ImageView[clickable=true][width<157] <3 View < View < View < View < FrameLayout < FrameLayout < [id="android:id/content"]',
+          snapshotUrls: 'https://i.gkd.li/i/31331586',
+        },
+        {
+          key: 23,
           matches:
             '@ImageView[clickable=true] <2 View < View < View < View < View < FrameLayout < FrameLayout < [id="android:id/content"]',
           snapshotUrls: 'https://i.gkd.li/i/29038568',
