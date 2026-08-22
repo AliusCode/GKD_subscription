@@ -37,8 +37,17 @@ export default defineGkdApp({
         {
           key: 1,
           matches:
+            'TextView[width<114 && height<67] - @View[clickable=true][visibleToUser=true][width<135] <3 FrameLayout[childCount=4][getChild(1).getChild(0).childCount=3] <2 FrameLayout[childCount=2][getChild(0).width=0] < [vid="show_layout"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/30968922',
+            'https://i.gkd.li/i/31332983',
+          ],
+        },
+        {
+          key: 2,
+          matches:
             '@View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200 && height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0] <n FrameLayout[childCount>2][text=null][desc=null] >(n+6) [text*="第三方应用" || text*="扭动手机" || text*="点击或上滑" || text*="省钱好物" || text*="扭一扭"][visibleToUser=true]',
-          snapshotUrls: 'https://i.gkd.li/i/30968922',
+          snapshotUrls: 'https://i.gkd.li/i/30968922', //也符合key1
         },
       ],
     },
