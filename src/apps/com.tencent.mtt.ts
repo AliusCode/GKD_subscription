@@ -31,6 +31,36 @@ export default defineGkdApp({
       ],
     },
     {
+      key: 1,
+      name: '分段广告-文件界面-卡片广告',
+      desc: '①点击[广告] ②点击[不感兴趣]',
+      fastQuery: true,
+      actionCd: 5000,
+      activityIds: '.MainActivity',
+      rules: [
+        {
+          key: 1,
+          name: '①点击[广告]',
+          // actionDelay: 300,
+          matches:
+            'ImageView[visibleToUser=true] < @[clickable=true] < [childCount=1] <3 [childCount=5] >6 [vid="video_wonder_video_view"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/31367445',
+            'https://i.gkd.li/i/31367447',
+          ],
+          exampleUrls: 'https://e.gkd.li/a8d89cb8-fa33-4400-a4e1-e8cceb148ac5',
+        },
+        {
+          key: 2,
+          preKeys: [1],
+          name: '②点击[不感兴趣]',
+          matches:
+            '[desc="不感兴趣"] < @[clickable=true] <n ViewGroup < ViewGroup < ViewGroup < ViewGroup < FrameLayout < FrameLayout < [id="android:id/content"]',
+          snapshotUrls: 'https://i.gkd.li/i/31371556',
+        },
+      ],
+    },
+    {
       key: 10,
       name: '分段广告-小说阅读页面-卡片广告',
       activityIds: '.MainActivity',
