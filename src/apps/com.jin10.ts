@@ -20,26 +20,19 @@ export default defineGkdApp({
     },
     {
       key: 2,
-      name: '全屏广告-首页弹窗广告',
-      matchTime: 10000,
-      actionMaximum: 1,
-      resetMatch: 'app',
+      name: '全屏广告-弹窗广告',
+      desc: '点击x掉',
       rules: [
         {
+          fastQuery: true,
           activityIds: '.lgd.biz.MainActivity',
-          matches: '[vid="iv_body"] + [vid="iv_close"]',
-          snapshotUrls: 'https://i.gkd.li/i/12706045',
-        },
-      ],
-    },
-    {
-      key: 3,
-      name: '全屏广告-快讯页面弹窗广告',
-      rules: [
-        {
-          activityIds: '.lgd.biz.MainActivity',
-          matches: '@[vid="iv_close"] + [vid="iv_pic"]',
-          snapshotUrls: 'https://i.gkd.li/i/12706047',
+          matches:
+            '[id$="iv_body" || id$="iv_pic" || vid="body_ad"] <n [visibleToUser=true] > [vid="iv_close"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/12706045', //旧快照 iv_body
+            'https://i.gkd.li/i/12706047', //旧快照 iv_pic
+            'https://i.gkd.li/i/31375320', // body_ad
+          ],
         },
       ],
     },
