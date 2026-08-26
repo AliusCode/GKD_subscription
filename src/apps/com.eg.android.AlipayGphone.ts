@@ -806,22 +806,5 @@ export default defineGkdApp({
         },
       ],
     },
-    {
-      key: 35,
-      name: '功能类-进入阿宝AI助手自动点击退出',
-      rules: [
-        {
-          fastQuery: true,
-          activityIds: '.AlipayLogin',
-          actionDelay: 200,
-          actionCd: 200,
-          matches:
-            '[id="com.alipay.android.phone.product_jinni_assistant:id/fl_close"]',
-          snapshotUrls: 'https://i.gkd.li/i/30699639',
-          exampleUrls:
-            'https://github.com/user-attachments/assets/ef38deb5-dd80-4194-8206-38ffc06b9bbe',
-        },
-      ],
-    },
   ],
 });
