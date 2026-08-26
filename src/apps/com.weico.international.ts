@@ -9,7 +9,8 @@ export default defineGkdApp({
       name: '开屏广告',
       fastQuery: true,
       matchTime: 10000,
-      actionMaximum: 1,
+      actionCd: 500,
+      actionMaximum: 3, // https://github.com/Lin-arm/GKD_subscription/issues/324
       resetMatch: 'app',
       actionMaximumKey: 0,
       priorityTime: 10000,
