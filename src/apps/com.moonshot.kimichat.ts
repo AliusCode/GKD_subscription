@@ -16,5 +16,17 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 2,
+      name: '权限提示-通知权限',
+      rules: [
+        {
+          activityIds: '.MainActivity',
+          matches:
+            '[text="稍后再说"] < @View[clickable=true] -n [text="开启通知"]',
+          snapshotUrls: 'https://i.gkd.li/i/31450087',
+        },
+      ],
+    },
   ],
 });
