@@ -47,6 +47,20 @@ export default defineGkdApp({
       ],
     },
     {
+      key: 3,
+      name: '局部广告-打招呼表情',
+      desc: '聊天界面,朋友在线,打个招呼... 点击x掉',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: 'com.ss.android.ugc.aweme.main.MainActivity',
+          matches: '@[desc="关闭"][clickable=true] - [text*="打个招呼"]',
+          snapshotUrls: 'https://i.gkd.li/i/31596787',
+          exampleUrls: 'https://e.gkd.li/0e381602-a24a-45fa-839d-e20999ad30f9',
+        },
+      ],
+    },
+    {
       key: 8,
       name: '全屏广告-朋友推荐弹窗',
       fastQuery: true,
