@@ -63,34 +63,34 @@ export default defineGkdApp({
           matches: '[vid="btnEnterTeen"] + [vid="btnCancel"]',
           snapshotUrls: [
             'https://i.gkd.li/i/12640241',
-            'https://i.gkd.li/i/12709168',
             'https://i.gkd.li/i/12905817',
-            'https://i.gkd.li/i/17879416',
+            'https://i.gkd.li/i/31594056',
           ],
         },
       ],
     },
     {
       key: 3,
-      name: '全屏广告',
-      fastQuery: true,
+      name: '全屏广告-弹窗广告',
+      desc: '点击x掉',
       rules: [
         {
+          fastQuery: true,
           activityIds: [
-            '.ui.activity.MainGroupActivity',
-            'com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI',
-            '.framework.widget.dialog.judian',
-            '.ui.activity.BookLastPageNewActivity',
+            '.ui.activity.MainGroupActivity', //A
+            '.framework.widget.dialog.judian', //B
+            '.ui.activity.BookLastPageNewActivity', //C
+            'com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI', //D
           ],
           matches: '[vid="imgClose" || vid="btnClose"][visibleToUser=true]',
           snapshotUrls: [
-            'https://i.gkd.li/i/12640195',
-            'https://i.gkd.li/i/12640158',
-            'https://i.gkd.li/i/12818198',
-            'https://i.gkd.li/i/13469004',
-            'https://i.gkd.li/i/23210736',
-            'https://i.gkd.li/i/23249358',
+            'https://i.gkd.li/i/12640158', //D
+            'https://i.gkd.li/i/12818198', //B
+            'https://i.gkd.li/i/13469004', //C
+            'https://i.gkd.li/i/23210736', //A
+            'https://i.gkd.li/i/23249358', //A   btnClose
           ],
+          exampleUrls: 'https://e.gkd.li/79947364-3b02-4113-a7de-2c26cca14286',
         },
       ],
     },
@@ -122,16 +122,55 @@ export default defineGkdApp({
       name: '局部广告-悬浮广告',
       rules: [
         {
-          key: 1,
           fastQuery: true,
           activityIds: [
             '.ui.activity.QDBookDetailActivity',
             '.ui.activity.MainGroupActivity',
           ],
-          matches: '[vid="ivAdClose"]',
+          matches: '[vid="ivAdClose"][clickable=true]',
           snapshotUrls: [
             'https://i.gkd.li/i/12717032',
-            'https://i.gkd.li/i/13459031',
+            'https://i.gkd.li/i/31591781',
+          ],
+        },
+      ],
+    },
+    {
+      key: 6,
+      name: '评价提示',
+      desc: '点击x掉',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.ui.activity.CircleHomePageActivity',
+          matches:
+            '@[vid="fClose"] - [visibleToUser=true] > [text*="给个好评"]',
+          snapshotUrls: 'https://i.gkd.li/i/31592429',
+          exampleUrls: 'https://e.gkd.li/4a4e064a-742b-41d3-8cce-8fc9ab54528c',
+        },
+      ],
+    },
+    {
+      key: 7,
+      name: '功能类-自动[展开]书籍简介',
+      desc: '书单列表页/书籍详情页',
+      rules: [
+        {
+          fastQuery: true,
+          actionCd: 500,
+          activityIds: [
+            '.ui.activity.RecomBookListDetailActivity',
+            '.ui.activity.QDBookDetailActivity',
+          ],
+          matches:
+            '[vid="etvBookRecomWord" || vid="tvIntro"][text$="...展开"][clickable=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/31593523',
+            'https://i.gkd.li/i/31593865',
+          ],
+          exampleUrls: [
+            'https://e.gkd.li/48250906-5ae1-448e-84f8-900cdfbff970',
+            'https://e.gkd.li/7f933b03-487c-48ad-825a-bb3a1ff08154',
           ],
         },
       ],
@@ -155,12 +194,13 @@ export default defineGkdApp({
     {
       key: 11,
       name: '局部广告-信息流广告',
-      desc: '点击关闭',
+      desc: '每日导读页-游戏广告',
       rules: [
         {
           activityIds: '.flutter.DailyReadingMainPageActivity',
-          matches: 'View[desc="更多游戏"] - ImageView[clickable=true]',
-          snapshotUrls: 'https://i.gkd.li/i/13406169',
+          matches: '@ImageView[clickable=true] < [desc^="游戏广告"]',
+          snapshotUrls: 'https://i.gkd.li/i/31592925',
+          exampleUrls: 'https://e.gkd.li/84123bd4-a6d5-4186-88fe-e35320a241cb',
         },
       ],
     },
@@ -186,13 +226,22 @@ export default defineGkdApp({
     {
       key: 13,
       name: '全屏广告-红包弹窗',
-      desc: '点击X',
+      desc: '点击x掉',
       rules: [
         {
           fastQuery: true,
-          activityIds: '.ui.activity.hongbao_square.NewHongBaoSquareActivity',
+          activityIds: [
+            '.ui.activity.hongbao_square.NewHongBaoSquareActivity',
+            '.ui.activity.MainGroupActivity',
+            '.flutter.HongBaoSquareActivity',
+          ],
           matches: '[vid="rootView"] > [vid="btnHongbaoClose"]',
-          snapshotUrls: 'https://i.gkd.li/i/13918466',
+          snapshotUrls: [
+            'https://i.gkd.li/i/13918466', // 326
+            'https://i.gkd.li/i/23291755', // 422
+            'https://i.gkd.li/i/28931164', // 428
+          ],
+          exampleUrls: 'https://e.gkd.li/a11d58b2-70fd-420c-86f1-7a11a8603ee7',
         },
       ],
     },
