@@ -301,6 +301,23 @@ export default defineGkdApp({
             '@[childCount=2] + ImageView[index=parent.childCount.minus(1)] <n [childCount=5] <<5 [id="android:id/content"]',
           snapshotUrls: 'https://i.gkd.li/i/27359717',
         },
+        {
+          key: 44,
+          preKeys: [22],
+          name: '④弹窗-坐标点击[领取奖励]2',
+          versionCode: { minimum: 100201000 },
+          position: {
+            left: 'width * 0.5000',
+            top: 'width * 0.6117',
+          },
+          matches: '@ImageView[visibleToUser=true][width>500][height<400][top>getPrev(3).height.div(3)][bottom<getPrev(3).height.div(3).times(2)] - ScrollView <<(10-n) [childCount=1] <2 [childCount=3] <<5 [id="android:id/content"]',
+          /*
+           ** 从选择器右侧 [id="android:id/content"] 节点获取屏幕高度, 要求目标节点上下居中
+           ** [top>getPrev(3).height.div(3)] 表示目标节点的 top 要大于屏幕高度的 1/3
+           ** [bottom<getPrev(3).height.div(3).times(2)] 表示目标节点的 bottom 要小于屏幕高度的 2/3
+           */
+          snapshotUrls: 'https://i.gkd.li/i/31580853',
+        },
 
         // 5️⃣第五段
         // 其他
