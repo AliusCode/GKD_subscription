@@ -98,17 +98,24 @@ export default defineGkdApp({
     },
     {
       key: 3,
-      name: '功能类-自动继续安装高危风险应用',
+      name: '功能类-继续安装高风险应用',
+      desc: '点击[仍要继续/无视风险安装]',
       rules: [
         {
           fastQuery: true,
-          activityIds: '.PackageInterceptActivity',
+          activityIds: '.PackageInterceptActivity', //C
           matches: [
-            '[text="该应用存在高危风险"][visibleToUser=true]',
-            '@[clickable=true] >2 [text="仍要继续"][visibleToUser=true]',
+            '[text*="风险"][text*="发现" || text*="存在"][visibleToUser=true]',
+            '@[clickable=true][focusable=true] >2 [text="仍要继续" || text="无视风险安装"]',
           ],
-          exampleUrls: 'https://e.gkd.li/2961e749-6aac-4f74-b7f7-268ecc0e14f4',
-          snapshotUrls: 'https://i.gkd.li/i/24540505',
+          snapshotUrls: [
+            'https://i.gkd.li/i/24540505',
+            'https://i.gkd.li/i/31602264',
+          ],
+          exampleUrls: [
+            'https://e.gkd.li/2961e749-6aac-4f74-b7f7-268ecc0e14f4',
+            'https://e.gkd.li/f23d301b-22d0-4c9f-b208-c1d9b6425b9d',
+          ],
         },
       ],
     },
