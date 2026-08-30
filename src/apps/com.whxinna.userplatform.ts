@@ -23,11 +23,12 @@ export default defineGkdApp({
         {
           key: 1,
           matches:
-            '@[name$="View"][clickable=true][width<500 && height<300] <3 FrameLayout[childCount=4] <<(2,4) [vid="adsFl"]',
+            '@[name$="View"][clickable=true][width<500 && height<300] <3 FrameLayout[childCount=4] <<(2,3,4) [vid="adsFl"]',
           snapshotUrls: [
             // 'https://i.gkd.li/i/26462136', // key0也能匹配
             'https://i.gkd.li/i/26332230',
             'https://i.gkd.li/i/26462322',
+            'https://i.gkd.li/i/31610751',
           ],
         },
       ],
