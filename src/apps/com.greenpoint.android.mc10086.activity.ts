@@ -59,9 +59,14 @@ export default defineGkdApp({
       resetMatch: 'app',
       rules: [
         {
+          fastQuery: true,
           activityIds: 'com.mc10086.cmcc.view.tabs.AppTabFragment',
-          matches: '[vid="ad_image"] < RelativeLayout + [vid="close_btn"]',
-          snapshotUrls: 'https://i.gkd.li/i/12662361',
+          matches:
+            '@[vid="close_btn" || vid="iv_close_top"] <n LinearLayout >2 [vid="ad_image" || vid="ll_ad_logo"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/12662361', //旧快照 close_btn
+            'https://i.gkd.li/i/31612036', // iv_close_top
+          ],
         },
       ],
     },
