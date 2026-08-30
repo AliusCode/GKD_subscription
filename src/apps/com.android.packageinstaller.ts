@@ -127,6 +127,7 @@ export default defineGkdApp({
       rules: [
         {
           fastQuery: true,
+          forcedTime: 10000,
           activityIds: [
             '.PackageInstallerActivity', //A
             '.PackageInterceptActivity', //C
