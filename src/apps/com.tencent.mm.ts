@@ -533,13 +533,17 @@ export default defineGkdApp({
         {
           key: 1,
           versionCode: { minimum: 2980 },
-          activityIds: '.plugin.lite.ui.WxaLiteAppTransparentLiteUI',
+          activityIds: [
+            '.plugin.lite.ui.WxaLiteAppTransparentLiteUI',
+            '.plugin.lite.ui.WxaLiteAppLiteUI',
+          ],
           matches:
             '@Button[desc="完成" || desc="返回商家" || desc="Done"][visibleToUser=true] -n [desc="支付成功"] < * <<6 FrameLayout <<3 [id="android:id/content"]',
           exampleUrls: 'https://e.gkd.li/e7acbb38-c602-4ea4-88ec-7604c3aeae06',
           snapshotUrls: [
             'https://i.gkd.li/i/24141842', // 返回商家
             'https://i.gkd.li/i/29681932', // 完成
+            'https://i.gkd.li/i/31693084', // 完成
           ],
         },
       ],
