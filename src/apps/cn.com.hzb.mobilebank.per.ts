@@ -24,16 +24,17 @@ export default defineGkdApp({
     },
     {
       key: 2,
-      name: '功能类-未登录时自动点击登录',
-      desc: '仅限财富版',
+      name: '功能类-朗读版未登录时自动点击登录',
       rules: [
         {
+          fastQuery: true,
           matchTime: 10000,
           actionMaximum: 1,
           resetMatch: 'app',
           activityIds: '.MainActivity',
-          matches: '@[clickable=true] > [text^="立即登录"]',
-          snapshotUrls: 'https://i.gkd.li/i/25150391',
+          matches:
+            '@TextView[text*="登录"][clickable=true] <<5 [vid="h5_pc_container"]',
+          snapshotUrls: 'https://i.gkd.li/i/31796888',
         },
       ],
     },
