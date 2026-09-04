@@ -333,5 +333,18 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 17,
+      name: '功能类-书友圈自动[打卡]',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.ui.activity.CircleHomePageActivity',
+          matches: '[text="打卡"] < [vid="layoutTopButton"]',
+          snapshotUrls: 'https://i.gkd.li/i/31843604',
+          exampleUrls: 'https://e.gkd.li/a1fe7a7d-3863-4e5f-befc-47eae3a505f0',
+        },
+      ],
+    },
   ],
 });
