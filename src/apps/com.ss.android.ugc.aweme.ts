@@ -59,6 +59,19 @@ export default defineGkdApp({
       ],
     },
     {
+      key: 9,
+      name: '功能类-自动[查看原图]',
+      desc: '聊天查看图片时,点击[查看原图]',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.detail.ui.DetailActivity',
+          matches: '[text^="查看原图"][clickable=true][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/31837818',
+        },
+      ],
+    },
+    {
       key: 10,
       name: '权限提示-通知权限',
       desc: '点击[暂不]/[以后再说]/[禁止]/[保持现状]',
@@ -94,26 +107,34 @@ export default defineGkdApp({
       key: 11,
       name: '功能类-自动勾选原图',
       desc: '聊天发送图片时自动勾选原图',
+      fastQuery: true,
       actionMaximum: 1,
+      resetMatch: 'match', // 防止从多选图进入单选图模式又给取消勾选
       rules: [
         {
-          fastQuery: true,
-          resetMatch: 'match', // 防止从多选图进入单选图模式又给取消勾选
-          activityIds: [
+          key: 1,
+          activityIds:
             '.ecommerce.im.choosemedia.ECommerceIMMediaChooseActivity',
-            '.im.business.mediaselectpage.edit.IMEditPreviewActivity',
-            '.im.business.mediaselectpage.choose.MediaChooseActivity',
-          ],
-          anyMatches: [
-            '@ImageView[clickable=true][visibleToUser=true] + [text="原图"]',
-            '@[clickable=true] > TextView[text="原图"][visibleToUser=true]',
-          ],
+          matches:
+            '@ImageView[clickable=true] + [text="原图"][visibleToUser=true]',
           snapshotUrls: [
             'https://i.gkd.li/i/18637952', // 未选中
             'https://i.gkd.li/i/18637948', // 已选中
+          ],
+        },
+        {
+          key: 2,
+          activityIds: [
+            '.im.business.mediaselectpage.edit.IMEditPreviewActivity',
+            '.im.business.mediaselectpage.choose.MediaChooseActivity',
+            '.main.MainActivity',
+          ],
+          matches: '@[clickable=true] > [text="原图"][visibleToUser=true]',
+          snapshotUrls: [
             'https://i.gkd.li/i/25401995', // 多选图片页
             'https://i.gkd.li/i/25401998', // 单图片页
             'https://i.gkd.li/i/25402432', // 单图片页_已选中
+            'https://i.gkd.li/i/31837568',
           ],
         },
       ],
