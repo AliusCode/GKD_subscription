@@ -64,5 +64,25 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 4,
+      name: '功能类-自动隐藏cy评论',
+      desc: '进入帖子点击一次[Cy]按钮',
+      rules: [
+        {
+          fastQuery: true,
+          actionMaximum: 1,
+          activityIds: [
+            '.module.bbs.post.ui.activitys.v2.WebNewsPostPageActivityV2',
+            '.module.bbs.post.ui.activitys.v2.PicturePostPageActivityV2',
+          ],
+          matches: '[vid="tb_cy_filter"][text="关闭"][visibleToUser=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/31803161',
+            'https://i.gkd.li/i/31818275',
+          ],
+        },
+      ],
+    },
   ],
 });
