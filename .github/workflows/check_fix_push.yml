@@ -21,6 +21,16 @@ jobs:
           corepack enable
           corepack prepare pnpm@latest --activate
 
+      - name: 设置 Python 环境
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.10'
+
+      - name: 安装 Python 依赖
+        run: |
+          pip install --upgrade pip
+          pip install -r scripts/python/requirements.txt
+
       - name: 配置 Node.js 运行环境
         uses: actions/setup-node@v6
         with:
