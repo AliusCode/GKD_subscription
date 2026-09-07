@@ -339,6 +339,10 @@ export default defineGkdApp({
       rules: [
         {
           fastQuery: true,
+          actionDelay: 300,
+          forcedTime: 10000, //偶尔进了界面但不触发
+          actionMaximum: 1,
+          resetMatch: 'match',
           activityIds: '.ui.activity.CircleHomePageActivity',
           matches: '[text="打卡"] < [vid="layoutTopButton"]',
           snapshotUrls: 'https://i.gkd.li/i/31843604',
