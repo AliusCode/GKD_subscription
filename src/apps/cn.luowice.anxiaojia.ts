@@ -43,5 +43,23 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 3,
+      name: '局部广告',
+      desc: '点击x掉',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: 'com.example.anxiaojia.MainActivity',
+          matches:
+            '@ImageView[clickable=true][width<91] - [text$="详情"][text.length<10]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/31909604',
+            'https://i.gkd.li/i/31909610',
+          ],
+          exampleUrls: 'https://e.gkd.li/48938d69-52df-4da8-b387-715fd5ee03a3',
+        },
+      ],
+    },
   ],
 });
