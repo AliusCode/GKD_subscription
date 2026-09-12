@@ -132,10 +132,12 @@ export default defineGkdApp({
         {
           key: 10,
           fastQuery: true,
-          activityIds: '.mvi.me.VipPayActivity',
           matches:
-            '@[desc="top_close_button"][clickable=true] < * + * > [text="广告"]',
-          snapshotUrls: 'https://i.gkd.li/i/23255102',
+            '@[desc="top_close_button"][clickable=true] <<n * + * >(1,3) [text="广告"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/23255102',
+            'https://i.gkd.li/i/32145596',
+          ],
         },
         {
           key: 11,
@@ -151,6 +153,14 @@ export default defineGkdApp({
             'https://i.gkd.li/i/28790670',
             'https://i.gkd.li/i/28834493',
           ],
+        },
+        {
+          key: 12,
+          fastQuery: true,
+          activityIds: '.mvi.home.HomeActivity',
+          matches:
+            '@ImageView[childCount=0][text=null][desc=null][id=null][visibleToUser=true][width<90 && height<90] < FrameLayout[childCount=1][text=null][desc=null][id=null][parent.childCount>3] <n * +n FrameLayout >(2,3) [text^="立即" || text$="详情" || text*="了解" || text="去微信看看" || text$="应用" || text="进入小程序" || text="领取优惠" || text="跳转微信"]',
+          snapshotUrls: 'https://i.gkd.li/i/32145803',
         },
       ],
     },
