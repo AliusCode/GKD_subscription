@@ -385,6 +385,7 @@ export const openAdBlackListAppIDs = new Set([
   'app.revanced.manager.flutter', // ReVanced Manager 为开源app且误触 https://i.gkd.li/i/26644042
   'com.chaoxing.mobile', // 学习通 开屏广告_误触-添加组织邀请码 https://i.gkd.li/i/26644056
   'com.coloros.weather2', // 天气
+  'com.yingyonghui.market', // 应用汇 (误触的节点较多 https://i.gkd.li/i/32155468 )
 ]);
 
 // 更新提示黑名单
