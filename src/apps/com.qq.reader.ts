@@ -5,6 +5,23 @@ export default defineGkdApp({
   name: 'QQ阅读',
   groups: [
     {
+      key: 0,
+      name: '开屏广告',
+      fastQuery: true,
+      matchTime: 10000,
+      actionMaximum: 1,
+      resetMatch: 'app',
+      activityIds: '.activity.SplashADVActivity',
+      rules: [
+        {
+          matches:
+            '@ImageView[width<140 && height<140][visibleToUser=true][vid=null][text=null] < * < ViewGroup +n ViewGroup[index=parent.childCount.minus(1)] >2 [text="广告"]',
+          snapshotUrls: 'https://i.gkd.li/i/32193204', // 微粒贷
+          exampleUrls: 'https://e.gkd.li/384711c3-c996-4919-bde6-28355a6e48c3',
+        },
+      ],
+    },
+    {
       key: 3,
       name: '局部广告-右下角悬浮卡片广告',
       desc: '点击关闭',
