@@ -4,7 +4,7 @@
 
 [![SVG Banners](https://svg-banners.vercel.app/api?type=origin&text1=GKD第三方订阅规则&text2=💖%20GKD_subscription&width=800&height=350)](https://github.com/Lin-arm/GKD_subscription)
 
-[![Release](https://img.shields.io/badge/发行版-v587-blue)](https://github.com/Lin-arm/GKD_subscription/releases/latest)
+[![Release](https://img.shields.io/badge/发行版-v588-blue)](https://github.com/Lin-arm/GKD_subscription/releases/latest)
 [![已适配应用](https://img.shields.io/badge/已适配应用-977-brightgreen)](./dist/README.md#应用规则)
 [![全局规则组](https://img.shields.io/badge/全局规则组-3-blueviolet)](./dist/README.md#全局规则)
 [![应用规则组](https://img.shields.io/badge/应用规则组-2427-orange)](./dist/README.md#应用规则)
@@ -56,7 +56,7 @@
 
 </details>
 
-<!-- > 当前版本: v587
+<!-- > 当前版本: v588
 > 
 > 当前订阅文件已适配 977 个应用，共有 2427 应用规则组，3 全局规则组
 > 
@@ -84,8 +84,6 @@
 
 - 安装 VS Code 插件 [GKD Toolkit](https://github.com/tianfangyetan1/vscode-gkd-toolkit) ，可以更方便的一次性打开多个快照
 
-- 体验 Plus 版的快照审查工具 [inspect-plus](https://github.com/cjy0812/inspect-plus)
-
 - 使用 [GKD订阅模板](https://github.com/gkd-kit/subscription-template) 快速构建自己的订阅
 
 - 相关教程/贡献此项目 -> 查看 [贡献指南](./CONTRIBUTING.md)
@@ -97,7 +95,7 @@
 
 ## 🥇感谢以下开发者的贡献
 
-![img](https://contrib.rocks/image?repo=Lin-arm/GKD_subscription&max=200&_v=587)
+![img](https://contrib.rocks/image?repo=Lin-arm/GKD_subscription&max=200&_v=588)
 
 <!-- repobeats 已失效 -->
 <!-- ![Alt](https://repobeats.axiom.co/api/embed/db6f46a4bdc4e760fb51976db276f1febef5bdce.svg "报告分析图") -->
