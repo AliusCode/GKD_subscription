@@ -85,6 +85,15 @@ export default defineGkdApp({
             'https://i.gkd.li/i/25041632',
           ],
         },
+        {
+          key: 2,
+          name: '局部横幅',
+          activityIds:
+            'com.alipay.mobile.nebulax.xriver.activity.XRiverActivity',
+          matches:
+            '@[clickable=true][id$="iv_close"] -2 [text*="权限"][text*="定位" || text*="位置"][visibleToUser=true]',
+          snapshotUrls: 'https://i.gkd.li/i/32203447',
+        },
       ],
     },
     {
