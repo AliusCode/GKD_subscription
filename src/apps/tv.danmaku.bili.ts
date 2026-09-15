@@ -174,10 +174,11 @@ export default defineGkdApp({
         },
         {
           key: 1,
+          forcedTime: 120000, // 主动查询2分钟
           matches:
             '@[vid="close" || vid="iv_close"] - [vid="up_avatar" || vid="gift_icon" || vid="follow_container"][visibleToUser=true]',
           snapshotUrls: [
-            'https://i.gkd.li/i/14782965',
+            'https://i.gkd.li/i/32246446',
             'https://i.gkd.li/i/18046573',
             'https://i.gkd.li/i/22990105',
           ],
