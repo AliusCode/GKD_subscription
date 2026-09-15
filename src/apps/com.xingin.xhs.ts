@@ -105,11 +105,13 @@ export default defineGkdApp({
         },
         {
           key: 1,
-          matches: 'Button[text="立即安装"] + Button[text="稍后再说"]',
+          matches:
+            'Button[text="立即安装" || text="Install now"] + Button[text="稍后再说" || text="Later"]',
           exampleUrls: 'https://e.gkd.li/7064a569-fcdd-44e2-b4d1-c55e093f4a02',
           snapshotUrls: [
             'https://i.gkd.li/i/15283162',
             'https://i.gkd.li/i/30352967',
+            'https://i.gkd.li/i/32207987', // Later
           ],
         },
       ],
