@@ -2,8 +2,22 @@ import { defineGkdApp } from '@gkd-kit/define';
 
 export default defineGkdApp({
   id: 'com.samsung.android.packageinstaller',
-  name: '软件包安装程序',
+  name: '(三星)软件包安装程序',
   groups: [
+    {
+      key: 1,
+      name: '局部广告',
+      desc: 'x掉',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: 'com.android.packageinstaller.PackageInstallerActivity',
+          matches: '@[clickable=true][id$="close"] - [text="广告"]',
+          snapshotUrls: 'https://i.gkd.li/i/32292609',
+          exampleUrls: 'https://e.gkd.li/03f085e3-c1ca-4d0a-9b54-8dfadcbf2c8e',
+        },
+      ],
+    },
     {
       key: 2,
       name: '功能类-跳过安全使用协议',
