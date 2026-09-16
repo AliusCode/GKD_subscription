@@ -47,26 +47,31 @@ export default defineGkdApp({
     {
       key: 3,
       name: '功能类-鸣潮自动签到',
+      desc: '①点击签到 ②签到成功-点击x掉 ③按[返回键]',
       activityIds: '.profile.ui.activity.WebViewShareActivity',
       rules: [
         {
-          key: 0,
+          key: 1,
+          name: '①点击签到',
           matches:
-            '[text="《鸣潮》每日签到工具"] >6 ListView[childCount=12] > @View[childCount=3][visibleToUser=true] > TextView[width<150] <3 * + View[childCount=2]',
+            '[childCount=1][getChild(0).getChild(1).text="《鸣潮》每日签到工具"] +3 View >3 @View[childCount=3][getChild(2).width<150][visibleToUser=true] + View[childCount=2]',
           snapshotUrls: [
             'https://i.gkd.li/i/15632005',
-            'https://i.gkd.li/i/15632902', // 避免误触
+            'https://i.gkd.li/i/32262391',
           ],
+          excludeSnapshotUrls: 'https://i.gkd.li/i/15632902', //已签到,用 [getChild(2).width<150] 避免误触
         },
         {
-          preKeys: [0],
-          key: 1,
+          key: 2,
+          preKeys: [1],
+          name: '②签到成功-点击x掉',
           matches: '@TextView - * > [text="签到成功！"]',
           snapshotUrls: 'https://i.gkd.li/i/15632138',
         },
         {
-          preKeys: [1],
-          key: 2,
+          key: 3,
+          preKeys: [2],
+          name: '③按[返回键]',
           action: 'back',
           matches: 'View[text="《鸣潮》每日签到工具"][visibleToUser=true]',
           snapshotUrls: 'https://i.gkd.li/i/15632250',
