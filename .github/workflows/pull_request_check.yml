@@ -7,7 +7,7 @@ on:
 
 jobs:
   check:
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-latest
     steps:
       - name: 检出仓库代码
         uses: actions/checkout@v7
