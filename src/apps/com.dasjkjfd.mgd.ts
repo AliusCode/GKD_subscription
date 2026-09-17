@@ -53,5 +53,19 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 3,
+      name: '全屏广告-插屏广告',
+      desc: '视频暂停时出现, 点击[跳过]',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: 'com.windmill.sdk.widget.InterstitialView',
+          matches: '[vid="tobid_interstitial_skip_ll"]',
+          snapshotUrls: 'https://i.gkd.li/i/32318689',
+          exampleUrls: 'https://e.gkd.li/67e9c8a2-f9ed-477b-ae46-39f493035a20',
+        },
+      ],
+    },
   ],
 });
