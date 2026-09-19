@@ -25,8 +25,7 @@ export default defineGkdGlobalGroups([
         key: 0,
         // 防止误触
         excludeMatches:
-          '[text="Submit" || text="书签" || text="NEXT" || text="覆盖" || text*="阅读并同意" || ((text*="搜索" || text="历史记录" || text$="在搜") && text.length>3 && text.length<7) || ((text$="设置" || text*="跳过片" || (text^="选择" && (text*="偏好" || text*="兴趣" || text*="喜好" || text*="行业"))) && text.length<10)][visibleToUser=true]',
-        // '([text*="搜索" || text="历史记录" || text$="在搜"][text.length>3 && text.length<7][visibleToUser=true]) || ([text="Submit" || text*="阅读并同意" || text="书签" || text="NEXT" || text="覆盖"][visibleToUser=true]) || ([text$="设置" || text$="选好了" || text^="下一步" || text^="完成" || text*="跳过片"][text.length<10][visibleToUser=true]) || ([text^="选择"][text*="偏好" || text*="兴趣" || text*="喜好"][text.length<10][visibleToUser=true])',
+          '([text="Submit" || text="书签" || text="NEXT" || text="覆盖" || text*="阅读并同意" || text="跳过空白"][visibleToUser=true]) || ([text*="搜索" || text="历史记录" || text$="在搜"][text.length>3 && text.length<7][visibleToUser=true]) || ([text$="设置" || text*="跳过片"][text.length<10][visibleToUser=true]) || ([text^="选择"][text*="偏好" || text*="兴趣" || text*="喜好" || text*="行业"][text.length<10][visibleToUser=true])',
         anyMatches: [
           '[text*="跳过"][text.length<10][width<500 && height<300][visibleToUser=true]',
           '@[name$="View" || name$="LinearLayout"][clickable=true][childCount<2][width<300 && height<200] - [text="互动广告"][visibleToUser=true]',
@@ -55,6 +54,7 @@ export default defineGkdGlobalGroups([
           'https://i.gkd.li/i/23225609', // text="NEXT"
           'https://i.gkd.li/i/27801562', // text="覆盖"
           'https://i.gkd.li/i/22634992', // text*="阅读并同意" , (text.length=40)
+          'https://i.gkd.li/i/32416687', // text="跳过空白"
           'https://i.gkd.li/i/20946730', // text$="设置" text*="跳过片"
           'https://i.gkd.li/i/23741801', // text$="设置"
           'https://i.gkd.li/i/23741779', // text$="设置"
