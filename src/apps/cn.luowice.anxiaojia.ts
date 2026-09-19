@@ -29,24 +29,46 @@ export default defineGkdApp({
         {
           key: 3,
           matches:
-            '@View[id=""][text=null][clickable=true][width<107][height<107] - ImageView[width>540] < [childCount=2] < View < View < View < FrameLayout < [id="android:id/content"]',
-          snapshotUrls: 'https://i.gkd.li/i/27126440',
+            '@[clickable=true][id*="close"] +n [visibleToUser=true] > [text="广告"]',
+          snapshotUrls: 'https://i.gkd.li/i/32418085',
         },
         {
           key: 4,
-          activityIds: 'com.byazt.x.Stub_Standard_Portrait_Activity',
           matches:
-            '@Image[width<72] < View < View - View > [visibleToUser=true][text="反馈"]',
-          snapshotUrls: 'https://i.gkd.li/i/30507034',
+            '@View[id=""][text=null][clickable=true][width<107][height<107] - ImageView[width>540] < [childCount=2] < View < View < View < FrameLayout < [id="android:id/content"]',
+          snapshotUrls: 'https://i.gkd.li/i/27126440',
+        },
+
+        // 其他 activityId
+        {
+          key: 10,
+          forcedTime: 10000,
+          activityIds: 'com.byazt.az.Stub_Standard_Portrait_Activity',
+          matches:
+            '@ImageView[width<71] < [visibleToUser=true] < [childCount=1] < [childCount=1] <2 [childCount=2] >6 [text="点击到落地页或三方APP"]',
+          snapshotUrls: 'https://i.gkd.li/i/32418708',
         },
         {
-          key: 5,
+          key: 11,
+          activityIds: [
+            'com.byazt.x.Stub_Standard_Portrait_Activity',
+            'com.byazt.az.Stub_Standard_Portrait_Activity',
+          ],
+          matches:
+            '@Image[width<72] < View < View - View > [visibleToUser=true][text="反馈"]', //无快查
+          snapshotUrls: [
+            'https://i.gkd.li/i/30507034',
+            'https://i.gkd.li/i/32418089',
+          ],
+        },
+        {
+          key: 12,
           activityIds: 'cj.mobile.fw.activity.PtgInteractionPortraitActivity',
           matches: '[vid="closeAdvertLayout"]',
           snapshotUrls: 'https://i.gkd.li/i/32036987',
         },
         {
-          key: 6,
+          key: 13,
           activityIds: 'com.beizi.ad.v2.activity.BeiZiNewInterstitialActivity',
           matches: '[vid="beizi_interstitial_ad_close_container_rl"]',
           snapshotUrls: 'https://i.gkd.li/i/32038130',
@@ -96,6 +118,16 @@ export default defineGkdApp({
           snapshotUrls: [
             'https://i.gkd.li/i/32036977', //快手
             'https://i.gkd.li/i/32037625', //红果
+          ],
+        },
+        {
+          key: 3, //无快查
+          matches:
+            'ImageView[width>parent.width.minus(120)] - @ImageView[clickable=true][width<91 && height<91] -(1,2) TextView[text.length>9] <(1,2,3) FrameLayout[childCount>4][visibleToUser=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/32418084',
+            'https://i.gkd.li/i/32418087',
+            'https://i.gkd.li/i/32418478',
           ],
         },
       ],
