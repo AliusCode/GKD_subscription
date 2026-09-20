@@ -314,5 +314,23 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 8,
+      name: '功能类-自动进入应用更新界面',
+      desc: '点击[右下角火箭图标]',
+      matchTime: 10000,
+      actionMaximum: 1,
+      resetMatch: 'app',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: 'info.muge.appshare.MainActivity',
+          matches:
+            'Button - [desc="应用更新"] < @View[clickable=true] <5 View < View < View < View < ComposeView < [id="android:id/content"]',
+          snapshotUrls: 'https://i.gkd.li/i/32435116',
+          exampleUrls: 'https://e.gkd.li/362e7d1e-d4a4-4a27-90ca-b53af995d9f8',
+        },
+      ],
+    },
   ],
 });
