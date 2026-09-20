@@ -154,18 +154,6 @@ export default defineGkdApp({
           exampleUrls: 'https://e.gkd.li/c29c5647-e2ee-460f-87aa-8717779645ec',
           snapshotUrls: 'https://i.gkd.li/i/23621776',
         },
-        {
-          key: 8,
-          name: '坐标点击[关闭]',
-          activityIds: '.reader.ui.ReaderActivity',
-          position: {
-            left: 'width * 0.9141',
-            top: 'width * 0.0687',
-          },
-          matches:
-            '@ViewGroup[visibleToUser=true] < [childCount=2] - [childCount=1] >6 [vid="ttlive_player_render_view"]',
-          snapshotUrls: 'https://i.gkd.li/i/27706770',
-        },
       ],
     },
     {
@@ -240,12 +228,16 @@ export default defineGkdApp({
           key: 3,
           name: '坐标点击[反馈]',
           position: {
-            top: 'width * 0.0617',
-            left: 'width * 0.7885',
+            left: 'width * 0.77',
+            top: 'height * 0.64',
           },
           matches:
-            '@ViewGroup[visibleToUser=true][height<150][width=prev.width] < [childCount=2] <3 FrameLayout[childCount=3] >7 [vid="ttlive_player_render_view"]',
-          snapshotUrls: 'https://i.gkd.li/i/28834344',
+            '@ViewGroup[visibleToUser=true][height<150][width=prev.width] < [childCount=2] <(2,3) FrameLayout[childCount<4] >7 [vid="ttlive_player_render_view"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/27706770',
+            'https://i.gkd.li/i/28834344',
+            'https://i.gkd.li/i/32435385',
+          ],
           exampleUrls: 'https://e.gkd.li/aef38288-d84b-4e13-8161-ebebc27b822b',
         },
         {
@@ -280,6 +272,7 @@ export default defineGkdApp({
             'https://i.gkd.li/i/24128392', //不感兴趣
             'https://i.gkd.li/i/24189605', //关闭此广告
             'https://i.gkd.li/i/14540281', //关闭此条广告
+            'https://i.gkd.li/i/32435735', //不感兴趣
           ],
           exampleUrls: 'https://e.gkd.li/e04bcb90-ad61-43d9-97e9-b4f6e3873320',
         },
