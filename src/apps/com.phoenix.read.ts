@@ -51,15 +51,19 @@ export default defineGkdApp({
             },
             duration: 200,
           },
-          excludeMatches: '[text="选集"][visibleToUser=true]', //显示[选集]时,停止匹配
+          excludeMatches:
+            '([text="选集"][visibleToUser=true]) || ([text="发条友善的弹幕吧"])',
           matches: '[text="选集"][visibleToUser=false]',
           snapshotUrls: [
             'https://i.gkd.li/i/32429827', //A [直播间]
-            'https://i.gkd.li/i/32429882', //B 倒计时未结束
-            'https://i.gkd.li/i/32429877', //B
+            'https://i.gkd.li/i/32429882', //B 横屏 倒计时未结束
+            'https://i.gkd.li/i/32429877', //B 横屏
             'https://i.gkd.li/i/32429830', //C [游戏]
           ],
-          excludeSnapshotUrls: 'https://i.gkd.li/i/32430107', //A
+          excludeSnapshotUrls: [
+            'https://i.gkd.li/i/32430107', //A 显示[选集]时,停止匹配
+            'https://i.gkd.li/i/32434872', //B 横屏,排除 [发条友善的弹幕吧]
+          ],
           exampleUrls: [
             'https://e.gkd.li/0128820c-4e8d-44ed-9ebc-ef2d5a062e26',
             'https://e.gkd.li/b70813b8-1377-4210-be6c-fe04f3c9c701',
