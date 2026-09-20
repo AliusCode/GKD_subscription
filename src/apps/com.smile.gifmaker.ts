@@ -6,7 +6,7 @@ export default defineGkdApp({
   groups: [
     {
       key: 10,
-      name: '全屏广告-首页红包弹窗',
+      name: '全屏广告-红包弹窗',
       desc: '点击关闭',
       matchTime: 10000,
       actionMaximum: 1,
@@ -29,6 +29,15 @@ export default defineGkdApp({
           matches:
             '@ImageView[id=null][clickable=true] < ViewGroup + ViewGroup >2 [text="立即领取"]',
           snapshotUrls: 'https://i.gkd.li/i/12708681',
+        },
+        {
+          key: 3,
+          name: '新人红包弹窗',
+          fastQuery: true,
+          activityIds: 'com.yxcorp.plugin.search.SearchActivity', //搜索页
+          matches:
+            'ImageView[width<128] < [childCount=1] < @[clickable=true] - HorizontalScrollView >5 [text="恭喜你获得"]',
+          snapshotUrls: 'https://i.gkd.li/i/32433383',
         },
       ],
     },
