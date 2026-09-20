@@ -38,6 +38,7 @@ export default defineGkdApp({
           key: 2,
           name: '②4.5秒[上滑]1次',
           actionCd: 4500,
+          actionDelay: 1000, //防止自动切集的过程中误触
           // forcedTime: 60000,
           swipeArg: {
             start: {
