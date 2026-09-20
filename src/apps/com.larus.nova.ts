@@ -15,12 +15,23 @@ export default defineGkdApp({
       resetMatch: 'app',
       rules: [
         {
-          key: 0,
-          matches: '[vid="back_icon"][desc="对话列表"][clickable=true]',
-          snapshotUrls: 'https://i.gkd.li/i/26175174',
+          key: 1,
+          name: '①直接[创建新对话]',
+          matches:
+            '[vid="larus_chat_top_left_create_new_cvs"][desc="创建新对话"]',
+          snapshotUrls: 'https://i.gkd.li/i/32434802',
         },
         {
-          preKeys: [0],
+          key: 2,
+          name: '①展开[对话列表]',
+          matches:
+            '[!(desc="创建新对话")] - [vid="back_icon"][desc="对话列表"][clickable=true]',
+          snapshotUrls: 'https://i.gkd.li/i/26175174',
+          excludeSnapshotUrls: 'https://i.gkd.li/i/32434802',
+        },
+        {
+          preKeys: [2],
+          name: '②点击[创建新对话]',
           matches:
             '[vid="side_bar_create_conversation"][desc="创建新对话"][clickable=true]',
           snapshotUrls: 'https://i.gkd.li/i/26175178',
