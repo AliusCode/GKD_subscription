@@ -379,6 +379,34 @@ export default defineGkdApp({
       ],
     },
     {
+      key: 25,
+      name: '功能类-刷到直播时[上滑]',
+      desc: '不想看直播,划掉',
+      rules: [
+        {
+          fastQuery: true,
+          actionCd: 300,
+          actionDelay: 200, //刷视频时,让下一个视频完整显示才触发[上滑]
+          swipeArg: {
+            start: {
+              x: 'screenWidth/2',
+              y: 'screenHeight * 0.6',
+            },
+            end: {
+              x: 'screenWidth/2',
+              y: 'screenHeight * 0.3',
+            },
+            duration: 200,
+          },
+          activityIds: '.main.MainActivity',
+          matches:
+            '[desc*="点击进入直播间"] < [childCount>1] < FrameLayout < [childCount=1] < [visibleToUser=true] < [vid="root_view"] <2 [vid="viewpager"]',
+          snapshotUrls: 'https://i.gkd.li/i/32612015',
+          exampleUrls: 'https://e.gkd.li/9f3f9eb2-4e56-4744-874c-223e28f5ddfe',
+        },
+      ],
+    },
+    {
       key: 26,
       name: '功能类-自动领取别人发的红包',
       desc: '点击 ①抖音红包 ②弹窗-开红包 ③返回 ④x掉已领完弹窗',
