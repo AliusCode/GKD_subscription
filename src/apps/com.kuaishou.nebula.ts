@@ -217,5 +217,37 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 9,
+      name: '功能类-刷到直播时[上滑]',
+      desc: '不想看直播,划掉',
+      rules: [
+        {
+          fastQuery: true,
+          matchRoot: true,
+          actionCd: 300,
+          actionDelay: 200, //完整直播显示需要时间
+          swipeArg: {
+            start: {
+              x: 'screenWidth/2',
+              y: 'screenHeight * 0.6',
+            },
+            end: {
+              x: 'screenWidth/2',
+              y: 'screenHeight * 0.3',
+            },
+            duration: 200, //滑动时长
+          },
+          activityIds: 'com.yxcorp.gifshow.HomeActivity',
+          matches:
+            '[vid="layout_root_hot_live_play" || text="直播中" || text="直播卖货"][visibleToUser=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/29029433',
+            'https://i.gkd.li/i/29211656',
+            'https://i.gkd.li/i/30167631',
+          ],
+        },
+      ],
+    },
   ],
 });
