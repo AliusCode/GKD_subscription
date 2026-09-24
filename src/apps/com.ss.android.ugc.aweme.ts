@@ -333,7 +333,7 @@ export default defineGkdApp({
     {
       key: 24,
       name: '功能类-刷到推广视频时[上滑]',
-      desc: '广告/应用/购物/游戏/咨询/服务/预约/子薇剧场 等推广视频',
+      desc: '广告/应用/购物/咨询/服务/预约/子薇剧场 等推广视频',
       rules: [
         {
           fastQuery: true,
@@ -352,7 +352,7 @@ export default defineGkdApp({
           },
           activityIds: '.main.MainActivity',
           matches:
-            '([visibleToUser=true] > [text$="广告" || text$="（推广）"][vid="desc" || desc="广告"]) || ([text="应用" || text="购物" || text$="游戏" || text="咨询" || text="服务" || text="预约" || text="子薇剧场"][text.length<6][index=1][visibleToUser=true]) || (ViewGroup[childCount=5] > ImageView +3 [text^="已售" || text^=" 已售"] - TextView - [text="讲解中 丨 "][index=1][visibleToUser=true])', // (选择器A) || (选择器B) || (选择器C)
+            '([visibleToUser=true] > [text$="广告" || text$="（推广）"][vid="desc" || desc="广告"]) || ([text="应用" || text="购物" || text="咨询" || text="服务" || text="预约" || text="子薇剧场"][text.length<6][index=1][visibleToUser=true]) || (ViewGroup[childCount=5] > ImageView +3 [text^="已售" || text^=" 已售"] - TextView - [text="讲解中 丨 "][index=1][visibleToUser=true])', // (选择器A) || (选择器B) || (选择器C)
           snapshotUrls: [
             // 选择器A
             'https://i.gkd.li/i/21142063', // [text$="广告"][vid="desc"]
@@ -363,8 +363,6 @@ export default defineGkdApp({
             // 选择器B
             'https://i.gkd.li/i/21142589', //应用
             'https://i.gkd.li/i/21142249', //购物
-            'https://i.gkd.li/i/21142871', //游戏
-            'https://i.gkd.li/i/21725628', //小游戏
             'https://i.gkd.li/i/25355868', //咨询
             'https://i.gkd.li/i/29403479', //服务
             'https://i.gkd.li/i/21765934', //预约
@@ -374,6 +372,35 @@ export default defineGkdApp({
             'https://i.gkd.li/i/29605791',
             'https://i.gkd.li/i/29605901', //[text^=" 已售"]
             'https://i.gkd.li/i/29707532', //[text="已售1"](没有"+")
+          ],
+        },
+      ],
+    },
+    {
+      key: 2401, // 拆分于key24, 功能相似, 故让其俩挨在一起
+      name: '功能类-刷到游戏视频时[上滑]',
+      desc: '游戏类推广视频',
+      rules: [
+        {
+          fastQuery: true,
+          actionCd: 300,
+          actionDelay: 200,
+          swipeArg: {
+            start: {
+              x: 'screenWidth/2',
+              y: 'screenHeight * 0.6',
+            },
+            end: {
+              x: 'screenWidth/2',
+              y: 'screenHeight * 0.3',
+            },
+            duration: 200,
+          },
+          activityIds: '.main.MainActivity',
+          matches: '[text$="游戏"][text.length<6][index=1][visibleToUser=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/21142871', //游戏
+            'https://i.gkd.li/i/21725628', //小游戏
           ],
         },
       ],
