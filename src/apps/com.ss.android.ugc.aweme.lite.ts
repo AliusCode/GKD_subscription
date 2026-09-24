@@ -243,8 +243,11 @@ export default defineGkdApp({
             top: 'width * 0.1972',
           },
           matches:
-            'ImageView[childCount=0] < @ViewGroup <<8 [id="android:id/content"]',
-          snapshotUrls: 'https://i.gkd.li/i/30505023',
+            'ImageView[childCount=0] < @ViewGroup <<(7,8) [id="android:id/content"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/30505023',
+            'https://i.gkd.li/i/32619430',
+          ],
           exampleUrls: 'https://e.gkd.li/c1314e68-d89a-42e3-af74-c50303f5546a',
         },
       ],
