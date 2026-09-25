@@ -565,21 +565,40 @@ export default defineGkdApp({
     {
       key: 37,
       name: '分段广告-QQ空间空友爱看',
-      desc: '①点击卡片右侧[推荐] ②点击[关闭推荐]',
+      desc: '①点击[更多操作] ②点击[不感兴趣] ③选择原因 ④点击[提交]',
       fastQuery: true,
       activityIds:
         'com.qzone.reborn.feedpro.activity.QzoneFriendFeedProActivity',
       rules: [
         {
           key: 0,
-          matches: '[text="推荐"] < * < @[clickable=true] -2 [text="空友爱看"]',
-          snapshotUrls: 'https://i.gkd.li/i/27521340',
+          name: '①更多操作',
+          matches:
+            '@[desc="更多操作"][clickable=true][visibleToUser=true] <3 * +4 * >5 [text="空友爱看"]',
+          snapshotUrls: 'https://i.gkd.li/i/32656065',
         },
         {
           key: 1,
-          preKeys: 0,
-          matches: '@[clickable=true] >2 [text="关闭推荐"]',
-          snapshotUrls: 'https://i.gkd.li/i/27521350',
+          preKeys: [0],
+          name: '②不感兴趣',
+          matches: '@[clickable=true] >2 [text="不感兴趣"]',
+          snapshotUrls: 'https://i.gkd.li/i/32656067',
+        },
+        {
+          key: 2,
+          preKeys: [1],
+          name: '③选择原因',
+          activityIds: '.activity.QPublicTransFragmentActivity',
+          matches: '[desc="没有我想看的类型 未选中"]',
+          snapshotUrls: 'https://i.gkd.li/i/32656073',
+        },
+        {
+          key: 3,
+          preKeys: [2],
+          name: '④提交',
+          activityIds: '.activity.QPublicTransFragmentActivity',
+          matches: '[desc$="已选中"] +n * > [desc="提交"]',
+          snapshotUrls: 'https://i.gkd.li/i/32656070',
         },
       ],
     },
