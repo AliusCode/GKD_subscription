@@ -10,7 +10,11 @@
     --rect X1,Y1,X2,Y2          在截图上按坐标打码，可重复
     --color RRGGBB              打码颜色，默认 000000（黑色）
     --out 路径                  写到新文件；省略时原地覆盖，并先备份为 <原名>.bak.zip
-    --preview 路径              另存一份处理后的截图，方便用图片查看器检查
+    --preview 路径              另存一份处理后的截图，方便用图片查看器检查；扩展名会自动改成与截图格式一致
+
+截图格式：
+    png 截图用纯标准库处理；新版 GKD 的 webp 截图打码需要 Pillow（pip install Pillow），
+    只替换节点文本时不需要。
 
 示例：
     python desensitize.py 快照/QQ_xxx.zip --node 18 --node 23:desc=动态内容 --mask-node 76 --preview out.png
@@ -23,6 +27,7 @@ import io
 import json
 import re
 import shutil
+import struct
 import sys
 from pathlib import Path
 
@@ -30,6 +35,9 @@ import png_rgba
 from snapshot_io import read_zip, write_zip
 
 TEXT_FIELDS = ("text", "desc")
+SCREENSHOT_SUFFIXES = (".png", ".webp")
+# 有损 webp 重新编码的质量
+WEBP_QUALITY = 90
 
 
 def parse_node_arg(value: str) -> tuple[int, str | None, str | None]:
@@ -89,6 +97,66 @@ def node_rect(snapshot: dict, node_id: int) -> tuple[int, int, int, int]:
     raise SystemExit(f"节点 #{node_id} 不存在")
 
 
+def webp_is_lossless(data: bytes) -> bool:
+    """遍历 RIFF chunk，图像数据为 VP8L 时是无损 webp。"""
+    pos = 12
+    while pos + 8 <= len(data):
+        kind = data[pos : pos + 4]
+        (length,) = struct.unpack("<I", data[pos + 4 : pos + 8])
+        if kind in (b"VP8 ", b"VP8L"):
+            return kind == b"VP8L"
+        pos += 8 + length + (length & 1)
+    return False
+
+
+def mask_webp(
+    data: bytes, rects: list[tuple[int, int, int, int]], rgb: tuple[int, int, int]
+) -> tuple[bytes, list[tuple[int, int, int, int]]]:
+    """用 Pillow 给 webp 截图打码，保持原有的有损/无损编码和 ICC 配置，返回 (新图片, 实际填充区域)。"""
+    try:
+        from PIL import Image, ImageDraw
+    except ImportError:
+        raise SystemExit(
+            "截图是 webp 格式，打码需要 Pillow，请先安装：pip install Pillow"
+        ) from None
+
+    img = Image.open(io.BytesIO(data))
+    img.load()
+    draw = ImageDraw.Draw(img)
+    fill = rgb if img.mode == "RGB" else (*rgb, 255)
+    filled = []
+    for left, top, right, bottom in rects:
+        left, right = max(0, left), min(img.width, right)
+        top, bottom = max(0, top), min(img.height, bottom)
+        if left >= right or top >= bottom:
+            filled.append((left, top, left, top))
+            continue
+        # Pillow 的矩形包含右、下边界，和 png_rgba.fill_rect 保持一致需要减 1
+        draw.rectangle((left, top, right - 1, bottom - 1), fill=fill)
+        filled.append((left, top, right, bottom))
+
+    out = io.BytesIO()
+    options = (
+        {"lossless": True} if webp_is_lossless(data) else {"quality": WEBP_QUALITY}
+    )
+    img.save(out, "WEBP", icc_profile=img.info.get("icc_profile"), **options)
+    return out.getvalue(), filled
+
+
+def mask_screenshot(
+    name: str,
+    data: bytes,
+    rects: list[tuple[int, int, int, int]],
+    rgb: tuple[int, int, int],
+) -> tuple[bytes, list[tuple[int, int, int, int]]]:
+    """按截图格式打码，返回 (新图片, 实际填充区域)。"""
+    if name.endswith(".webp"):
+        return mask_webp(data, rects, rgb)
+    img = png_rgba.decode(data)
+    filled = [png_rgba.fill_rect(img, *rect, rgb) for rect in rects]
+    return png_rgba.encode(img), filled
+
+
 def main() -> None:
     """命令行入口。"""
     parser = argparse.ArgumentParser(
@@ -118,17 +186,19 @@ def main() -> None:
     ).encode("utf-8")
 
     rects = [node_rect(snapshot, i) for i in args.mask_node] + list(args.rect)
-    png_name = next((n for n in data if n.endswith(".png")), None)
+    shot_name = next((n for n in data if n.endswith(SCREENSHOT_SUFFIXES)), None)
     if rects:
-        if png_name is None:
-            raise SystemExit("快照内没有截图，无法打码")
-        img = png_rgba.decode(data[png_name])
-        for rect in rects:
-            print("打码", png_rgba.fill_rect(img, *rect, args.color))
-        data[png_name] = png_rgba.encode(img)
-    if args.preview and png_name:
-        args.preview.write_bytes(data[png_name])
-        print("截图预览 ->", args.preview)
+        if shot_name is None:
+            raise SystemExit("快照内没有 png / webp 截图，无法打码")
+        data[shot_name], filled = mask_screenshot(
+            shot_name, data[shot_name], rects, args.color
+        )
+        for rect in filled:
+            print("打码", rect)
+    if args.preview and shot_name:
+        preview = args.preview.with_suffix(Path(shot_name).suffix)
+        preview.write_bytes(data[shot_name])
+        print("截图预览 ->", preview)
 
     target = args.out or args.zip
     if args.out is None:
