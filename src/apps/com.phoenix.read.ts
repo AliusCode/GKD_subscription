@@ -7,7 +7,7 @@ export default defineGkdApp({
     {
       key: 1,
       name: '功能类-自动[上滑]继续看短剧',
-      desc: '①读秒结束后[上滑] ②4.5秒[上滑]1次',
+      desc: '①读秒结束后[上滑] ②未显示[选集]时,每5秒[上滑]1次',
       fastQuery: true,
       activityIds: [
         'com.dragon.read.component.shortvideo.impl.ShortSeriesActivity', //A
@@ -36,8 +36,8 @@ export default defineGkdApp({
         },
         {
           key: 2,
-          name: '②4.5秒[上滑]1次',
-          actionCd: 4500,
+          name: '②5秒[上滑]1次',
+          actionCd: 4000,
           actionDelay: 1000, //防止自动切集的过程中误触
           // forcedTime: 60000,
           swipeArg: {
@@ -52,17 +52,17 @@ export default defineGkdApp({
             duration: 200,
           },
           excludeMatches:
-            '([text="选集"][visibleToUser=true]) || ([text="发条友善的弹幕吧"])',
+            '([text="选集"][visibleToUser=true]) || ([text*="网微剧备字"][height>0])',
           matches: '[text="选集"][visibleToUser=false]',
           snapshotUrls: [
             'https://i.gkd.li/i/32429827', //A [直播间]
-            'https://i.gkd.li/i/32429882', //B 横屏 倒计时未结束
             'https://i.gkd.li/i/32429877', //B 横屏
             'https://i.gkd.li/i/32429830', //C [游戏]
           ],
           excludeSnapshotUrls: [
             'https://i.gkd.li/i/32430107', //A 显示[选集]时,停止匹配
-            'https://i.gkd.li/i/32434872', //B 横屏,排除 [发条友善的弹幕吧]
+            'https://i.gkd.li/i/32434872', //B 横屏 当前视频存在备案号时(即表示不是广告),停止匹配
+            'https://i.gkd.li/i/32683026', //B 横屏 同上
           ],
           exampleUrls: [
             'https://e.gkd.li/0128820c-4e8d-44ed-9ebc-ef2d5a062e26',
