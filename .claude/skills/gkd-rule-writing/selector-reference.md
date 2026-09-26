@@ -38,7 +38,8 @@
 `=` `!=` `>` `>=` `<` `<=` `^=`（开头是）`*=`（包含）`$=`（结尾是）`~=`（正则）以及它们的否定形式 `!^=` `!*=` `!$=` `!~=`。
 
 - 除了 `=` 和 `!=`，其他运算符在属性值为 null 时一律返回 false。比如 `[text!*="x"]` 对 text=null 的节点**不成立**；需要把 null 也算进来时，写成 `[text=null || text!*="x"]`。
-- 常用属性：`id` `vid` `name` `text` `desc` `clickable` `visibleToUser` `checked` `index` `depth` `childCount` `left` `top` `right` `bottom` `width` `height` `parent`
+- 常用属性：`id` `vid` `name` `text` `desc` `clickable` `visibleToUser` `checked` `index` `depth` `childCount` `parent`
+- 坐标属性 `left` `top` `right` `bottom` `width` `height` 是像素值，随屏幕比例和分辨率变化，一般不在规则里使用
 - 常用方法：`text.length`、`parent.childCount.minus(1)`、`getChild(0)`
 
 ## 快速查询（fastQuery）

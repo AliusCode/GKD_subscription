@@ -5,7 +5,8 @@
 //
 // 说明：
 // - 使用项目已安装的 @gkd-kit/selector（@gkd-kit/tools 的依赖），不新增依赖。
-// - 只模拟普通遍历查询；快速查询是否可用，看输出的 fastQuery 列表是否为空。
+// - 先按普通遍历查询；选择器支持快速查询（fastQuery 列表非空）时，再按快照里实测的
+//   idQf/textQf 模拟真机上的快速查询，并标出快速查询找不到的节点。
 import console from 'node:console';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -132,11 +133,63 @@ function buildTransform(lib) {
   );
 }
 
+/**
+ * 在普通 Transform 的基础上补充 traverseFastQueryDescendants，模拟真机上的快速查询：
+ * 只有抓快照时实测 idQf/textQf 为 true 的节点，才能被 findAccessibilityNodeInfosByViewId/ByText 找到。
+ */
+function buildFastQueryTransform(lib, base) {
+  // 借用 multiplatformBuild 里 getChildren 的包装，把 JS 数组转成 Kotlin Sequence
+  const toSequence = lib.Transform.Companion.multiplatformBuild(
+    () => null,
+    () => null,
+    () => null,
+    (arr) => arr,
+    () => null,
+  ).getChildren;
+  const accept = (n, q) => {
+    if (q instanceof lib.FastQuery.Id)
+      return n.idQf === true && n.attr.id === q.value;
+    if (q instanceof lib.FastQuery.Vid)
+      return n.idQf === true && n.attr.vid === q.value;
+    return (
+      n.textQf === true && n.attr.text != null && q.acceptText(n.attr.text)
+    );
+  };
+  const traverse = (node, fastQueryList) => {
+    const list = fastQueryList.asJsReadonlyArrayView();
+    const result = [];
+    const stack = [...node.children].reverse();
+    while (stack.length) {
+      const n = stack.pop();
+      if (list.some((q) => accept(n, q))) result.push(n);
+      for (let i = n.children.length - 1; i >= 0; i--)
+        stack.push(n.children[i]);
+    }
+    return toSequence(result);
+  };
+  // Transform 的构造函数在类型声明里是 private，但 JS 中可以直接调用；未传的参数按默认实现
+  return new base.constructor(
+    base.getAttr,
+    base.getInvoke,
+    base.getName,
+    base.getChildren,
+    base.getParent,
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+    traverse,
+  );
+}
+
 /** 生成节点的简短描述 */
 function describe(n) {
   const a = n.attr;
   const label = [
-    a.vid && `vid=${a.vid}`,
+    a.vid ? `vid=${a.vid}` : a.id && `id=${a.id}`,
     a.text && `text=${JSON.stringify(a.text)}`,
     a.desc && `desc=${JSON.stringify(a.desc)}`,
   ]
@@ -156,7 +209,9 @@ async function main() {
   const selectors = args.slice(sep + 1);
   const lib = await loadSelectorLib();
   const option = new lib.MatchOption(false);
+  const fastOption = new lib.MatchOption(true);
   const transform = buildTransform(lib);
+  const fastTransform = buildFastQueryTransform(lib, transform);
   const typeInfo = lib.initDefaultTypeInfo(true).globalType;
 
   const parsed = selectors.map((source) => {
@@ -187,14 +242,31 @@ async function main() {
     );
     for (const { p, snapshot, root } of trees) {
       // 与审查工具的 querySelfOrSelectorAll 一致：根节点自身也参与匹配
-      const self = selector.match(root, transform, option) ? [root] : [];
-      const result = self.concat(
-        transform.querySelectorAllArray(root, selector, option),
-      );
+      const query = (t, o) =>
+        (selector.match(root, t, o) ? [root] : []).concat(
+          t.querySelectorAllArray(root, selector, o),
+        );
+      const result = query(transform, option);
+      // 旧版 GKD 的快照没有 idQf/textQf，无法模拟快速查询
+      const hasQf = snapshot.nodes.some((n) => 'idQf' in n || 'textQf' in n);
+      let fastInfo = '';
+      let missed = [];
+      if (result.length && fastQuery.length && hasQf) {
+        const fastResult = new Set(query(fastTransform, fastOption));
+        missed = result.filter((n) => !fastResult.has(n));
+        fastInfo = missed.length
+          ? `  ⚠ 快速查询只命中 ${fastResult.size} 个`
+          : '  快速查询一致';
+      } else if (result.length && fastQuery.length) {
+        fastInfo = '  快照无 idQf/textQf，未检查快速查询';
+      }
       console.log(
-        `  [${result.length}] ${path.basename(p)} (${snapshot.activityId})`,
+        `  [${result.length}] ${path.basename(p)} (${snapshot.activityId})${fastInfo}`,
       );
-      for (const n of result) console.log(`      ${describe(n)}`);
+      for (const n of result)
+        console.log(
+          `      ${describe(n)}${missed.includes(n) ? '  ← 快速查询找不到' : ''}`,
+        );
     }
   }
 }

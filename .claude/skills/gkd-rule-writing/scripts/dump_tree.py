@@ -3,7 +3,9 @@
 用法：
     python dump_tree.py <快照.zip | 解压目录 | .json> [...] [-o 输出目录]
 
-每行格式：#节点id 类名 vid=.. text=.. desc=.. [C=可点击] [INV=不可见] [left,top,right,bottom] cc=子节点数 i=index
+每行格式：#节点id 类名 vid=..(没有 vid 时显示 id=..) text=.. desc=.. [C=可点击] [INV=不可见] [QF=..] [NQF=..] [left,top,right,bottom] cc=子节点数 i=index
+QF=id/text 表示该节点可以按 id(vid)/text 快速查询（即 i.gkd.li 上加粗的节点），NQF 表示实测不支持；
+旧版 GKD 的快照没有这两个字段，不会显示。
 不指定 -o 时直接打印到标准输出。
 """
 
@@ -21,13 +23,24 @@ def format_node(node: dict) -> str:
     """把单个节点格式化为一行文本（不含缩进）。"""
     a = node["attr"]
     parts = [f"#{node['id']}", (a.get("name") or "").split(".")[-1]]
-    for key in ("vid", "text", "desc"):
+    # 没有 vid 时（如 android:id/xxx 这类非本应用的 id）显示完整 id
+    for key in ("vid" if a.get("vid") else "id", "text", "desc"):
         if a.get(key):
             parts.append(f"{key}={a[key]!r}")
     if a.get("clickable"):
         parts.append("C")
     if not a.get("visibleToUser"):
         parts.append("INV")
+    # idQf/textQf 是抓快照时在真机上实测的结果：True 可快速查询，False 不可，None 未测
+    qf = {True: [], False: []}
+    for key in ("id", "text"):
+        value = node.get(f"{key}Qf")
+        if value is not None:
+            qf[value].append(key)
+    if qf[True]:
+        parts.append("QF=" + ",".join(qf[True]))
+    if qf[False]:
+        parts.append("NQF=" + ",".join(qf[False]))
     parts.append(
         f"[{a.get('left')},{a.get('top')},{a.get('right')},{a.get('bottom')}] cc={a.get('childCount')} i={a.get('index')}"
     )
