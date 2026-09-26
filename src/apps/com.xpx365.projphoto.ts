@@ -7,6 +7,7 @@ export default defineGkdApp({
     {
       key: 0,
       name: '开屏广告',
+      fastQuery: true,
       matchTime: 10000,
       actionMaximum: 1,
       resetMatch: 'app',
@@ -15,16 +16,6 @@ export default defineGkdApp({
       rules: [
         {
           key: 0,
-          fastQuery: true,
-          anyMatches: [
-            '@View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0] <n FrameLayout[childCount>2][text=null][desc=null] >(n+6) [text*="第三方应用" || text*="扭动手机" || text*="点击或上滑" || text*="省钱好物" || text*="扭一扭"][visibleToUser=true]',
-            'FrameLayout > FrameLayout[childCount>2][text=null][desc=null] > @View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0][visibleToUser=true]',
-          ],
-          snapshotUrls: 'https://i.gkd.li/i/13827755',
-        },
-        {
-          key: 1,
-          fastQuery: true,
           matches:
             '[text*="跳过"][text.length<10][width<500 && height<300][visibleToUser=true]',
           snapshotUrls: [
@@ -34,11 +25,23 @@ export default defineGkdApp({
           ],
         },
         {
+          key: 1,
+          matches: '[vid="ms_skipView"][visibleToUser=true][width<165]',
+          snapshotUrls: 'https://i.gkd.li/i/32683549',
+        },
+        {
           key: 2,
-          fastQuery: true,
           matches:
             '@ImageView[clickable=true][visibleToUser=true] - [text="|"]',
           snapshotUrls: 'https://i.gkd.li/i/16030413',
+        },
+        {
+          key: 3, //有慢查,放后面
+          anyMatches: [
+            '@View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0] <n FrameLayout[childCount>2][text=null][desc=null] >(n+6) [text*="第三方应用" || text*="扭动手机" || text*="点击或上滑" || text*="省钱好物" || text*="扭一扭"][visibleToUser=true]',
+            'FrameLayout > FrameLayout[childCount>2][text=null][desc=null] > @View[text=null][clickable=true][childCount=0][visibleToUser=true][width<200&&height<200] +(1,2) TextView[index=parent.childCount.minus(1)][childCount=0][visibleToUser=true]',
+          ],
+          snapshotUrls: 'https://i.gkd.li/i/13827755',
         },
       ],
     },
