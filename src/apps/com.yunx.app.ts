@@ -13,8 +13,11 @@ export default defineGkdApp({
           fastQuery: true,
           activityIds: '.MainActivity',
           matches:
-            '[text="暂不"] < @View[clickable=true] <3 View[getChild(0).text="保持后台下载"] < View < View < View < ViewGroup < [id="android:id/content"]',
-          snapshotUrls: 'https://i.gkd.li/i/32522962',
+            '[text="暂不"] < @View[clickable=true] <(3,4) View[getChild(0).text="保持后台下载"] < View < View < View < ViewGroup < [id="android:id/content"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/32522962',
+            'https://i.gkd.li/i/32700890',
+          ],
           exampleUrls: 'https://e.gkd.li/6fc05152-c83a-488b-b74d-2a4fe247ee58',
         },
       ],
