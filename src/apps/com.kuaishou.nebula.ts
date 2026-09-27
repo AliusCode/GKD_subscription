@@ -159,11 +159,12 @@ export default defineGkdApp({
           },
           activityIds: 'com.yxcorp.gifshow.HomeActivity',
           matches:
-            '[vid="ad_detail_content_layout" || vid="plc_tv_biz_text" && (text="游戏" || text="购物" || text="购买" || text="汽车" || text="咨询" || text="应用" || text="品牌活动" || text="一键出片" || text="测一测")][visibleToUser=true]',
+            '([vid="ad_detail_content_layout"][visibleToUser=true]) || ([vid="plc_tv_biz_text"][text="游戏" || text="小游戏" || text="购物" || text="购买" || text="汽车" || text="咨询" || text="应用" || text="品牌活动" || text="一键出片" || text="测一测"][visibleToUser=true])',
           snapshotUrls: [
             'https://i.gkd.li/i/29213590', // 广告 i   [vid="ad_detail_content_layout"]
             'https://i.gkd.li/i/29029850', //购物
             'https://i.gkd.li/i/29029852', //游戏
+            'https://i.gkd.li/i/32701451', //小游戏
             'https://i.gkd.li/i/29029853', //购买
             'https://i.gkd.li/i/29030087', //汽车
             'https://i.gkd.li/i/29031982', //咨询
