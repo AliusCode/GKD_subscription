@@ -1,6 +1,0 @@
-{
-  "id": "667",
-  "name": "GKD快捷选择器",
-  "description": "用于测试一些全局规则的选择器能否匹配",
-  "selectors": "https://gkd-subscription-667.pages.dev/selectors.subscription.json"
-}
