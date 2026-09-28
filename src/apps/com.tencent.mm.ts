@@ -1210,5 +1210,23 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 57,
+      name: '功能类-登录-平板同时登',
+      desc: '自动点击[平板和手机同时登录]',
+      fastQuery: true,
+      actionMaximum: 1,
+      resetMatch: 'app',
+      matchTime: 10000,
+      activityIds: '.plugin.account.ui.LoginPasswordUI',
+      rules: [
+        {
+          matches:
+            '@Button[text="平板和手机同时登录"] - LinearLayout >3 [text="登录"]',
+          snapshotUrls: 'https://i.gkd.li/i/32757828',
+          exampleUrls: 'https://e.gkd.li/c3ca6901-9b7d-47d3-b879-69b615f8d09b',
+        },
+      ],
+    },
   ],
 });
