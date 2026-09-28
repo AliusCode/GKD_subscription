@@ -79,16 +79,25 @@ export default defineGkdApp({
       name: '权限提示-通知权限',
       desc: '点击暂不开启',
       fastQuery: true,
-      matchTime: 10000,
       actionMaximum: 1,
       resetMatch: 'app',
+      activityIds: [
+        '.main.MainActivity',
+        '.detail.ui.DetailActivity',
+        '.profile.ui.UserProfileActivity',
+        'com.ss.android.ugc.aweme.main.MainActivity',
+        '.setting.serverpush.ui.PushSettingManagerActivity',
+      ],
       rules: [
         {
-          activityIds: 'com.ss.android.ugc.aweme.main.MainActivity',
-          matches: '[text^="及时获得"][text$="提醒"] +(2,5) [text="暂不开启"]',
+          matches: [
+            'TextView[text$="提醒" || text$="通知"][text.length>5][visibleToUser=true]',
+            '[text="以后再说" || text="暂不开启" || text="禁止" || text="取消" || text="保持现状"][clickable=true]',
+          ],
           snapshotUrls: [
             //及时获得xx提醒
             'https://i.gkd.li/i/13888485', //消息
+            'https://i.gkd.li/i/32760384',
             'https://i.gkd.li/i/32754778', //评论回复(平板)
           ],
           exampleUrls: 'https://e.gkd.li/3916c33e-f0dc-45c3-8d81-db4bddf761ed',
