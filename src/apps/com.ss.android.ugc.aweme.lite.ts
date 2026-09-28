@@ -85,8 +85,13 @@ export default defineGkdApp({
       rules: [
         {
           activityIds: 'com.ss.android.ugc.aweme.main.MainActivity',
-          matches: '[text="及时获得消息提醒"] +2 [text="暂不开启"]',
-          snapshotUrls: 'https://i.gkd.li/i/13888485',
+          matches: '[text^="及时获得"][text$="提醒"] +(2,5) [text="暂不开启"]',
+          snapshotUrls: [
+            //及时获得xx提醒
+            'https://i.gkd.li/i/13888485', //消息
+            'https://i.gkd.li/i/32754778', //评论回复(平板)
+          ],
+          exampleUrls: 'https://e.gkd.li/3916c33e-f0dc-45c3-8d81-db4bddf761ed',
         },
       ],
     },
