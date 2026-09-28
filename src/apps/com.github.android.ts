@@ -21,14 +21,16 @@ export default defineGkdApp({
         {
           preKeys: [0],
           matches:
-            '[text="无法批准" || text="登录已批准"] +n @[clickable=true] > [text="关闭"][visibleToUser=true]',
+            '[text="登录已批准" || text="无法批准" || text="未找到登录请求"] +n @[clickable=true] > [text="关闭"][visibleToUser=true]',
           snapshotUrls: [
             'https://i.gkd.li/i/25366553', // 已批准
             'https://i.gkd.li/i/25366549', // 未批准
+            'https://i.gkd.li/i/32758660', // 未找到登录请求
           ],
           exampleUrls: [
             'https://e.gkd.li/e18eed95-993a-4148-b486-27e64e709188',
             'https://e.gkd.li/c165be1d-f0d4-47d0-8a39-3aac562885b1',
+            'https://e.gkd.li/4bb620ca-a35a-40c1-ad80-8c777bf86d02',
           ],
         },
       ],
