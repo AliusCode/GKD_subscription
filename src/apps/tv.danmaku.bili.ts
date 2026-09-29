@@ -898,13 +898,16 @@ export default defineGkdApp({
       rules: [
         {
           fastQuery: true,
+          matchRoot: true,
+          // forcedTime: 3600000, // 主动查询1小时
           activityIds:
             'com.bilibili.ship.theseus.detail.UnitedBizDetailsActivity',
           matches:
-            '@[text="取消"] - [text="后将展示广告"] <2 View < View < ComposeView < LinearLayout < RecyclerView < FrameLayout <n FrameLayout < [vid="video_container"]',
+            '@[text="取消"] - [visibleToUser=true][text="后将展示广告"] <<n [vid="video_container"]',
           snapshotUrls: [
             'https://i.gkd.li/i/29379312',
             'https://i.gkd.li/i/32741484',
+            'https://i.gkd.li/i/32783449',
           ],
           exampleUrls: 'https://e.gkd.li/2fed6260-9cd4-4546-a8ea-de89fce88b5d',
         },
