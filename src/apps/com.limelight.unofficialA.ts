@@ -25,7 +25,7 @@ export default defineGkdApp({
         {
           preKeys: [0],
           name: '恢复串流',
-          matches: '[text="恢复串流"][clickable=true]',
+          matches: '[vid="btn_app_actions_resume"][clickable=true]',
           snapshotUrls: 'https://i.gkd.li/i/32877047',
           exampleUrls: 'https://e.gkd.li/b5152b35-a80b-4c8d-a466-278132e93086',
         },
