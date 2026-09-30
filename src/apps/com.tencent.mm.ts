@@ -300,30 +300,32 @@ export default defineGkdApp({
       activityIds: [
         '.plugin.gallery.ui.AlbumPreviewUI',
         '.plugin.gallery.ui.ImagePreviewUI',
+        '.plugin.picker.LocalMediaPickerUI',
       ],
       rules: [
         {
           key: 1,
           fastQuery: true,
           anyMatches: [
-            '@[desc^="未选中" || desc^="未選定" || desc^="Unselected"][visibleToUser=true] + [text="原图" || text="原圖" || text="Full Image"]',
+            '@[desc^="未选中" || desc^="未選定" || desc^="Unselected" || (checkable=true && checked=false)] + [text="原图" || text="原圖" || text="Full Image"][visibleToUser=true]',
             '[desc^="未选中" || desc^="未選定" || desc^="Unselected"][!(desc*="选择")][text=null][visibleToUser=true]', //兜底,无快查的
-          ],
-          exampleUrls: [
-            'https://e.gkd.li/32dc0943-e85f-416d-bb01-6ed610d4bdd8',
-            'https://e.gkd.li/93d41161-ab69-4c2d-83bb-637d7292f5e6',
           ],
           snapshotUrls: [
             'https://i.gkd.li/i/16987145', // 未选中
             'https://i.gkd.li/i/16987144',
             'https://i.gkd.li/i/27852612', // 无快查_En
             'https://i.gkd.li/i/19625049', // 无快查
+            'https://i.gkd.li/i/32857934',
           ],
           excludeSnapshotUrls: [
             'https://i.gkd.li/i/16987141', // 用 [text=null] 排除误触
             'https://i.gkd.li/i/16987147', // 已选中
             'https://i.gkd.li/i/27852606', // Selected
             'https://i.gkd.li/i/29746331', // 用 [!(desc*="选择")] 排除误触
+          ],
+          exampleUrls: [
+            'https://e.gkd.li/32dc0943-e85f-416d-bb01-6ed610d4bdd8',
+            'https://e.gkd.li/93d41161-ab69-4c2d-83bb-637d7292f5e6',
           ],
         },
       ],
