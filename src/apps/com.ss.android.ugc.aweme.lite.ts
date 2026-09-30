@@ -82,10 +82,10 @@ export default defineGkdApp({
       actionMaximum: 1,
       resetMatch: 'app',
       activityIds: [
-        '.main.MainActivity',
+        '.com.ss.android.ugc.aweme.main.MainActivity',
         '.detail.ui.DetailActivity',
         '.profile.ui.UserProfileActivity',
-        'com.ss.android.ugc.aweme.main.MainActivity',
+        '.com.ss.android.ugc.aweme.main.MainActivity',
         '.setting.serverpush.ui.PushSettingManagerActivity',
       ],
       rules: [
@@ -299,8 +299,8 @@ export default defineGkdApp({
       fastQuery: true,
       activityIds: [
         '.detail.ui.DetailActivity',
-        '.main.MainActivity',
-        'com.bytedance.ies.ugc.aweme.photos.detail.flow.page.FlowPageActivity',
+        '.com.ss.android.ugc.aweme.main.MainActivity',
+        '.com.bytedance.ies.ugc.aweme.photos.detail.flow.page.FlowPageActivity',
         '.searcharticle.detail.ArticleDetailActivity',
         '.search.activity.SearchResultActivity',
         '.detail.ultra.ui.UltraDetailActivity',
@@ -332,8 +332,8 @@ export default defineGkdApp({
       fastQuery: true,
       activityIds: [
         '.detail.ui.DetailActivity',
-        '.main.MainActivity',
-        'com.bytedance.ies.ugc.aweme.photos.detail.flow.page.FlowPageActivity',
+        '.com.ss.android.ugc.aweme.main.MainActivity',
+        '.com.bytedance.ies.ugc.aweme.photos.detail.flow.page.FlowPageActivity',
         '.searcharticle.detail.ArticleDetailActivity',
         '.search.activity.SearchResultActivity',
         '.detail.ultra.ui.UltraDetailActivity',
