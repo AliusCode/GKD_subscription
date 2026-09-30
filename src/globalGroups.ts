@@ -113,12 +113,13 @@ export default defineGkdGlobalGroups([
         matches: [
           '[text*="内测" || text*="测试版" || text*="新版" || text*="更新" || text*="升级" || text*="体验" || text*="內測" || text*="測試版" || text*="升級" || text*="體驗" || text*="Update" || text*="Upgrade" || text*="Experience"][text!*="自动" && text!*="自動" && text!*="成功" && text!*="失败" && text!*="失敗" && text!*="检查更新" && text!*="检测更新" && text!*="卸载" && name!$="EditText"][childCount=0][visibleToUser=true]', //1️⃣
           '[text*="更新" || text*="下载" || text*="安装" || text*="升级" || text*="查看" || text*="体验" || text*="确定" || text*="确认" || text*="应用市场"][text.length<6][childCount=0][visibleToUser=true]', //2️⃣
-          '([text*="不再提醒" || text$="再说" || text$="拒绝" || text$="再想想" || text*="再看看" || text^="忽略" || text^="暂不" || text^="放弃" || text^="取消" || text$="不要" || text$="再說" || text$="暫不" || text$="拒絕" || text*="稍后" || text^="关闭" || text$="Later" || text^="Ignore" || text^="Not now" || text^="Cancel"][!(text*="取消"&&text*="忽略")][text.length<6][childCount=0][visibleToUser=true]) || ([vid="closeIv" || vid="iv_close" || vid="iv_cancel" || vid="close" || vid="Close" || vid="img_close" || vid="btn_close" || vid="ivCancel" || vid="tvCancel" || vid="cancel" || vid="Cancel" || vid="ivClose" || vid="imgClose" || vid="iv_negative" || vid="update_close_icon" || vid="dialog_close" || vid="im_dismiss"][childCount=0][visibleToUser=true])', //3️⃣
+          '([text*="不再提醒" || text$="再说" || text$="拒绝" || text$="再想想" || text*="再看看" || text^="忽略" || text^="暂不" || text^="放弃" || text^="取消" || text$="不要" || text$="再說" || text$="暫不" || text$="拒絕" || text*="稍后" || text^="关闭" || text$="Later" || text^="Ignore" || text^="Not now" || text^="Cancel"][!(text*="取消"&&text*="忽略")][text.length<6][childCount=0][visibleToUser=true]) || ([vid="closeIv" || vid="iv_close" || vid="iv_cancel" || vid="close" || vid="Close" || vid="img_close" || vid="btn_close" || vid="ivCancel" || vid="tvCancel" || vid="cancel" || vid="Cancel" || vid="ivClose" || vid="imgClose" || vid="iv_negative" || vid="update_close_icon" || vid="btn_skip_update" || vid="dialog_close" || vid="im_dismiss"][childCount=0][visibleToUser=true])', //3️⃣
         ],
         snapshotUrls: [
           'https://i.gkd.li/i/24158267', // text*="应用市场"
           'https://i.gkd.li/i/27428213', // vid="dialog_close"
           'https://i.gkd.li/i/27470927', // vid="im_dismiss"
+          'https://i.gkd.li/i/32878161', // vid="btn_skip_update"
           'https://i.gkd.li/i/30968619', // OPPO天气
         ],
         excludeSnapshotUrls: [
