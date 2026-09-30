@@ -31,5 +31,21 @@ export default defineGkdApp({
         },
       ],
     },
+    {
+      key: 2,
+      name: '功能类-串流自动选择默认卡片',
+      desc: '选择Disktop卡片连接',
+      rules: [
+        {
+          key: 2,
+          fastQuery: true,
+          activityIds: 'com.limelight.AppView',
+          matches:
+            'GridView[vid="fragmentView"] @[clickable=true][index=0] > * > [vid="grid_image"]',
+          snapshotUrls: 'https://i.gkd.li/i/32877372',
+          exampleUrls: 'https://e.gkd.li/a03b46ea-df92-40dd-b30c-b3887f390db4',
+        },
+      ],
+    },
   ],
 });
