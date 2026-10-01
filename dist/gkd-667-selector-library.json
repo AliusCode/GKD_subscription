@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "items": [
     {
       "id": "d33c79de-56c3-49c0-a58c-508bb89e3e30",
@@ -68,7 +68,7 @@
     {
       "id": "8995eaa8-4a37-4f91-9b4c-f65de29d377b",
       "name": "更新提示3",
-      "selector": "([text*=\"不再提醒\" || text$=\"再说\" || text$=\"拒绝\" || text$=\"再想想\" || text*=\"再看看\" || text^=\"忽略\" || text^=\"暂不\" || text^=\"放弃\" || text^=\"取消\" || text$=\"不要\" || text$=\"再說\" || text$=\"暫不\" || text$=\"拒絕\" || text*=\"稍后\" || text^=\"关闭\" || text$=\"Later\" || text^=\"Ignore\" || text^=\"Not now\" || text^=\"Cancel\"][!(text*=\"取消\"&&text*=\"忽略\")][text.length<6][childCount=0][visibleToUser=true]) || ([vid=\"closeIv\" || vid=\"iv_close\" || vid=\"iv_cancel\" || vid=\"close\" || vid=\"Close\" || vid=\"img_close\" || vid=\"btn_close\" || vid=\"ivCancel\" || vid=\"tvCancel\" || vid=\"cancel\" || vid=\"Cancel\" || vid=\"ivClose\" || vid=\"imgClose\" || vid=\"iv_negative\" || vid=\"update_close_icon\" || vid=\"dialog_close\" || vid=\"im_dismiss\"][childCount=0][visibleToUser=true])",
+      "selector": "([text*=\"不再提醒\" || text$=\"再说\" || text$=\"拒绝\" || text$=\"再想想\" || text*=\"再看看\" || text^=\"忽略\" || text^=\"暂不\" || text^=\"放弃\" || text^=\"取消\" || text$=\"不要\" || text$=\"再說\" || text$=\"暫不\" || text$=\"拒絕\" || text*=\"稍后\" || text^=\"关闭\" || text$=\"Later\" || text^=\"Ignore\" || text^=\"Not now\" || text^=\"Cancel\"][!(text*=\"取消\"&&text*=\"忽略\")][text.length<6][childCount=0][visibleToUser=true]) || ([vid=\"closeIv\" || vid=\"iv_close\" || vid=\"iv_cancel\" || vid=\"close\" || vid=\"Close\" || vid=\"img_close\" || vid=\"btn_close\" || vid=\"ivCancel\" || vid=\"tvCancel\" || vid=\"cancel\" || vid=\"Cancel\" || vid=\"ivClose\" || vid=\"imgClose\" || vid=\"iv_negative\" || vid=\"update_close_icon\" || vid=\"btn_skip_update\" || vid=\"dialog_close\" || vid=\"im_dismiss\"][childCount=0][visibleToUser=true])",
       "description": "需同时满足 更新提示1、更新提示2 才触发,点击的是 更新提示3 的目标节点",
       "tags": ["667"],
       "scope": "global"
