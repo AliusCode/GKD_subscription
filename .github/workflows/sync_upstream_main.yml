@@ -1,0 +1,250 @@
+name: Sync upstream main
+
+on:
+  # 默认每天北京时间 06:00 检查一次。
+  # 是否真正执行，由仓库变量 SYNC_UPSTREAM 控制。
+  schedule:
+    - cron: '0 6 * * *'
+      timezone: Asia/Shanghai
+
+  # 支持手动运行。
+  workflow_dispatch:
+
+# 需要：
+# 1. 创建 backup 分支
+# 2. 更新下游 main
+permissions:
+  contents: write
+
+# 防止手动运行和定时运行同时操作 main。
+concurrency:
+  group: sync-upstream-main
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    # Fork 仓库：
+    # - 定时执行需要 SYNC_UPSTREAM=true
+    # - 手动执行始终允许
+    if: >-
+      ${{
+        github.event.repository.fork &&
+        (
+          github.event_name == 'workflow_dispatch' ||
+          vars.SYNC_UPSTREAM == 'true'
+        )
+      }}
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    env:
+      UPSTREAM_REPO: Lin-arm/GKD_subscription
+      TARGET_BRANCH: main
+      SYNC_WORKFLOW: .github/workflows/sync_upstream_main.yml
+
+    steps:
+      # ------------------------------------------------------------
+      # 1. 检出下游 main
+      # ------------------------------------------------------------
+      - name: Checkout downstream main
+        uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
+
+      # ------------------------------------------------------------
+      # 2. 配置 Git
+      # ------------------------------------------------------------
+      - name: Configure Git
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
+      # ------------------------------------------------------------
+      # 3. 获取上下游仓库
+      # ------------------------------------------------------------
+      - name: Fetch upstream and origin
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git remote remove upstream 2>/dev/null || true
+          git remote add upstream "https://github.com/${UPSTREAM_REPO}.git"
+
+          git fetch --prune origin "${TARGET_BRANCH}"
+          git fetch --prune upstream "${TARGET_BRANCH}"
+
+          # 明确以当前远程 main 为本次操作起点。
+          git switch "${TARGET_BRANCH}"
+          git reset --hard "origin/${TARGET_BRANCH}"
+
+      # ------------------------------------------------------------
+      # 4. 检查上游是否有新的提交
+      # ------------------------------------------------------------
+      - name: Check whether upstream has changes
+        id: check
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          CURRENT_SHA="$(git rev-parse HEAD)"
+          UPSTREAM_SHA="$(git rev-parse "upstream/${TARGET_BRANCH}")"
+
+          echo "当前下游 main: ${CURRENT_SHA}"
+          echo "当前上游 main: ${UPSTREAM_SHA}"
+
+          # 完全一致
+          if [[ "${CURRENT_SHA}" == "${UPSTREAM_SHA}" ]]; then
+            echo 'has_changes=false' >> "${GITHUB_OUTPUT}"
+            echo '上下游 main 已完全一致，无需同步。'
+            exit 0
+          fi
+
+          # 上游已经是当前 main 历史的一部分：
+          # 说明下游没有落后，不需要再同步。
+          if git merge-base --is-ancestor "upstream/${TARGET_BRANCH}" HEAD; then
+            echo 'has_changes=false' >> "${GITHUB_OUTPUT}"
+            echo '上游 main 已包含在当前下游 main 历史中，无需同步。'
+            exit 0
+          fi
+
+          echo 'has_changes=true' >> "${GITHUB_OUTPUT}"
+          echo '检测到需要同步的上游更新。'
+
+      # ------------------------------------------------------------
+      # 5. 尝试普通 merge
+      # ------------------------------------------------------------
+      - name: Merge upstream main
+        if: steps.check.outputs.has_changes == 'true'
+        id: merge
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # 保存同步前的下游 main。
+          CURRENT_SHA="$(git rev-parse HEAD)"
+          echo "CURRENT_SHA=${CURRENT_SHA}" >> "${GITHUB_ENV}"
+
+          # --no-ff --no-commit：
+          # 即使能够 Fast-forward，也先停在未提交状态，
+          # 这样可以恢复下游自己的 workflow 文件。
+          if git merge --no-ff --no-commit --no-edit "upstream/${TARGET_BRANCH}"; then
+            echo 'merge_ok=true' >> "${GITHUB_OUTPUT}"
+
+            # ------------------------------------------------------
+            # 非常重要：
+            # 保留下游自己的同步 Workflow。
+            # 否则上游没有这个文件时，正常同步会把它删除。
+            # ------------------------------------------------------
+            if git cat-file -e "${CURRENT_SHA}:${SYNC_WORKFLOW}" 2>/dev/null; then
+              git checkout "${CURRENT_SHA}" -- "${SYNC_WORKFLOW}"
+            fi
+
+            if git diff --cached --quiet && git diff --quiet; then
+              echo 'merge_has_changes=false' >> "${GITHUB_OUTPUT}"
+              echo '合并后没有实际文件变化，无需提交。'
+            else
+              echo 'merge_has_changes=true' >> "${GITHUB_OUTPUT}"
+              echo '普通合并成功，准备提交。'
+            fi
+
+          else
+            # 普通 merge 失败：
+            # 说明已经无法直接合并，进入备份 + 强制同步流程。
+            git merge --abort || true
+
+            echo 'merge_ok=false' >> "${GITHUB_OUTPUT}"
+            echo '普通合并失败，将创建永久备份分支后强制同步上游 main。'
+          fi
+
+      # ------------------------------------------------------------
+      # 6. 普通同步：提交 merge 结果
+      # ------------------------------------------------------------
+      - name: Commit normal sync
+        if: >-
+          steps.merge.outputs.merge_ok == 'true' &&
+          steps.merge.outputs.merge_has_changes == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git add -A
+          git commit -m 'chore: sync upstream main'
+          git push origin "${TARGET_BRANCH}"
+
+          echo "::notice title=同步成功::上游 main 已合并到下游 main。"
+
+      # ------------------------------------------------------------
+      # 7. 普通 merge 失败：创建永久备份分支
+      # ------------------------------------------------------------
+      - name: Create permanent backup branch
+        if: steps.merge.outputs.merge_ok == 'false'
+        id: backup
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          BASE_BRANCH="backup-$(date +%Y%m%d)"
+          BACKUP_BRANCH="${BASE_BRANCH}"
+          SUFFIX=2
+
+          # --------------------------------------------------------
+          # 备份保留策略：
+          #
+          # 1. 已创建的 backup-* 分支 NEVER 自动删除。
+          # 2. 从不覆盖已有备份分支。
+          # 3. 同一天再次发生强制同步时自动递增后缀：
+          #      backup-20261005
+          #      backup-20261005-2
+          #      backup-20261005-3
+          # 4. 后续如需清理，由仓库所有者手动删除。
+          # --------------------------------------------------------
+          while git ls-remote --exit-code --heads origin "${BACKUP_BRANCH}" >/dev/null 2>&1; do
+            BACKUP_BRANCH="${BASE_BRANCH}-${SUFFIX}"
+            SUFFIX=$((SUFFIX + 1))
+          done
+
+          # 当前 HEAD 就是执行同步前的下游 main。
+          # 因此这个分支可以完整保留灾备点。
+          git switch -c "${BACKUP_BRANCH}" "${CURRENT_SHA}"
+          git push --set-upstream origin "${BACKUP_BRANCH}"
+
+          echo "backup_branch=${BACKUP_BRANCH}" >> "${GITHUB_OUTPUT}"
+          echo "已创建永久备份分支: ${BACKUP_BRANCH}"
+          echo "此 workflow 不会自动删除任何 backup-* 分支。"
+
+      # ------------------------------------------------------------
+      # 8. 强制同步：main -> upstream/main
+      # ------------------------------------------------------------
+      - name: Force sync main to upstream
+        if: steps.merge.outputs.merge_ok == 'false'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          BACKUP_BRANCH_NAME="${{ steps.backup.outputs.backup_branch }}"
+
+          git switch "${TARGET_BRANCH}"
+
+          # 把 main 重置到上游最新状态。
+          git reset --hard "upstream/${TARGET_BRANCH}"
+
+          # --------------------------------------------------------
+          # 恢复下游自己的同步 Workflow。
+          # 上游没有的话，必须恢复。
+          # --------------------------------------------------------
+          if git cat-file -e "${CURRENT_SHA}:${SYNC_WORKFLOW}" 2>/dev/null; then
+            git checkout "${CURRENT_SHA}" -- "${SYNC_WORKFLOW}"
+            git add "${SYNC_WORKFLOW}"
+            git commit -m 'chore: preserve upstream sync workflow'
+          fi
+
+          # 使用 force-with-lease，而不是 --force。
+          # 如果本次任务运行期间远程 main 被其他人修改，
+          # push 会失败，从而避免误覆盖最新提交。
+          git push origin "${TARGET_BRANCH}" --force-with-lease
+
+          echo "::warning title=已执行强制同步::普通合并失败，已先创建永久备份 ${BACKUP_BRANCH_NAME}，然后将 main 同步到 upstream/${TARGET_BRANCH}。"
