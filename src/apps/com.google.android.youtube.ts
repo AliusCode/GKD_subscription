@@ -36,20 +36,14 @@ export default defineGkdApp({
         {
           key: 0,
           matches:
-            '@[desc="关闭广告面板" || desc="Close ad panel"][clickable=true] - ImageView <<3 FrameLayout < [vid="panel_header"][visibleToUser=true]',
+            '@[clickable=true][index>0][desc="关闭广告面板" || desc="Close ad panel" || desc="隐藏广告"] <<(10-n) [vid="panel_header"]',
           snapshotUrls: [
             'https://i.gkd.li/i/13797491',
             'https://i.gkd.li/i/13705106', // 纯id？
             'https://i.gkd.li/i/14784199',
-          ],
-        },
-        {
-          key: 1,
-          matches:
-            '@[clickable=true][index=parent.childCount.minus(1)] -n [text$="广告" || text*="ad " || desc$="广告" || desc*="ad "] <<3 [vid="panel_header"]',
-          snapshotUrls: [
             'https://i.gkd.li/i/27373744',
             'https://i.gkd.li/i/27373748',
+            'https://i.gkd.li/i/33054103',
           ],
           exampleUrls: [
             'https://e.gkd.li/e1655855-8497-4b92-8919-4fdb4f6f00b1',
