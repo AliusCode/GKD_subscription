@@ -2,7 +2,8 @@ name: build_release
 
 on:
   schedule:
-    - cron: '0 19 * * *'
+    - cron: '30 2 * * *'
+      timezone: Asia/Shanghai
   workflow_dispatch:
 
 jobs:

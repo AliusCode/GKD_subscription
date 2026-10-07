@@ -1,10 +1,10 @@
 name: Sync upstream main
 
 on:
-  # 默认每天北京时间 06:00 检查一次。
+  # 默认每天北京时间 05:27 检查一次。
   # 是否真正执行，由仓库变量 SYNC_UPSTREAM 控制。
   schedule:
-    - cron: '0 6 * * *'
+    - cron: '27 5 * * *'
       timezone: Asia/Shanghai
 
   # 支持手动运行。
