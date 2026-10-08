@@ -52,7 +52,7 @@ export default defineGkdApp({
             duration: 200,
           },
           excludeMatches:
-            '([text="选集"][visibleToUser=true]) || ([text*="网微剧备字"][height>0])',
+            '([text="选集"][visibleToUser=true]) || ([text*="剧备字"][height>0])',
           matches: '[text="选集"][visibleToUser=false]',
           snapshotUrls: [
             'https://i.gkd.li/i/32429827', //A [直播间]
@@ -61,8 +61,9 @@ export default defineGkdApp({
           ],
           excludeSnapshotUrls: [
             'https://i.gkd.li/i/32430107', //A 显示[选集]时,停止匹配
-            'https://i.gkd.li/i/32434872', //B 横屏 当前视频存在备案号时(即表示不是广告),停止匹配
+            'https://i.gkd.li/i/32434872', //B 横屏 [网微剧备字] 当前视频存在备案号时(即表示不是广告),停止匹配
             'https://i.gkd.li/i/32683026', //B 横屏 同上
+            'https://i.gkd.li/i/33193929', //B 横屏 [微短剧备字]
           ],
           exampleUrls: [
             'https://e.gkd.li/0128820c-4e8d-44ed-9ebc-ef2d5a062e26',
