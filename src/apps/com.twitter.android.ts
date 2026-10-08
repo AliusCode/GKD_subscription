@@ -213,6 +213,7 @@ export default defineGkdApp({
     {
       key: 6,
       name: '功能类-自动点击翻译',
+      desc: '⚠️对于v12.9.1及以上版本的推特失效',
       rules: [
         {
           fastQuery: true,
