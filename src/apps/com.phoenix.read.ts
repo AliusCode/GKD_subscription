@@ -39,7 +39,7 @@ export default defineGkdApp({
           name: '②5秒[上滑]1次',
           actionCd: 4000,
           actionDelay: 1000, //防止自动切集的过程中误触
-          // forcedTime: 60000,
+          versionCode: { maximum: 72932 }, // 排除版本大于 7.2.9.32 的
           swipeArg: {
             start: {
               x: 'screenWidth/2',
@@ -69,6 +69,35 @@ export default defineGkdApp({
             'https://e.gkd.li/0128820c-4e8d-44ed-9ebc-ef2d5a062e26',
             'https://e.gkd.li/b70813b8-1377-4210-be6c-fe04f3c9c701',
             'https://e.gkd.li/38c5c9d1-9962-4e07-a7de-49999d3ddf2b',
+          ],
+        },
+
+        // 作为 key2 的补充, 即 7.2.9.32 以上的版本由key3负责
+        {
+          key: 3,
+          name: '③5秒[上滑]1次',
+          actionCd: 4000,
+          actionDelay: 1000,
+          versionCode: { minimum: 72933 }, // 排除版本小于等于 7.2.9.32 的
+          swipeArg: {
+            start: {
+              x: 'screenWidth/2',
+              y: 'screenHeight * 0.7',
+            },
+            end: {
+              x: 'screenWidth/2',
+              y: 'screenHeight * 0.3',
+            },
+            duration: 200,
+          },
+          excludeMatches: [
+            '([text="选集"][visibleToUser=true]) || ([text*="剧备字"][height>0])',
+            '@TextView[visibleToUser=false][width>2000][height>40] <8 [childCount=8] <<n [vid="fragment_container"]',
+          ],
+          matches: '[text="选集"][visibleToUser=false]',
+          excludeSnapshotUrls: [
+            'https://i.gkd.li/i/32683026', // v7.2.9.32 ,全屏时,还存在可快查的备案号节点 [text*="剧备字"][height>0]
+            'https://i.gkd.li/i/33289353', // v7.3.9.32 ,全屏时,该备案号节点 [text=null]
           ],
         },
       ],
