@@ -212,10 +212,11 @@ export default defineGkdApp({
           key: 2,
           preKeys: [1],
           matches:
-            '@[clickable=true] >(1,2) [vid="list_item_text"][text="关闭"]',
+            '@[clickable=true] >(1,2) [vid="list_item_text"][text="关闭" || text="Dismiss"]',
           snapshotUrls: [
             'https://i.gkd.li/i/23772979',
             'https://i.gkd.li/i/25461885',
+            'https://i.gkd.li/i/33272478', // Dismiss
           ],
         },
       ],
