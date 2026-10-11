@@ -2,8 +2,7 @@ name: build_release
 
 on:
   schedule:
-    - cron: '30 2 * * *'
-      timezone: Asia/Shanghai
+    - cron: '0 19 * * *'
   workflow_dispatch:
 
 jobs:
@@ -37,8 +36,6 @@ jobs:
     needs: check_changes
     if: ${{ needs.check_changes.outputs.changed == 'true' }}
     runs-on: ubuntu-latest
-    env:
-      SKIP_SIMPLE_GIT_HOOKS: 1
     outputs:
       version: ${{ steps.version.outputs.version }}
     steps:
@@ -54,6 +51,16 @@ jobs:
         with:
           node-version: 25
           cache: pnpm
+
+      - name: 设置 Python 环境
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.10'
+
+      - name: 安装 Python 依赖
+        run: |
+          pip install --upgrade pip
+          pip install -r scripts/python/requirements.txt
 
       - name: 安装项目依赖
         run: pnpm install
