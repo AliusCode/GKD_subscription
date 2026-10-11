@@ -81,40 +81,12 @@ export default defineGkdApp({
           ],
         },
         {
-          key: 4,
-          matchRoot: true,
-          matches:
-            '@View[clickable=true][width<174][height<174] -(2,4,5) TextView[text="广告" || (text.length>9 && getChild(0).name$="ImageView")] <n ScrollView < View < DetachableComposeView <<(14,16) FrameLayout <(2,3,4,5) [id="android:id/content"]',
-          exampleUrls: 'https://e.gkd.li/1d81db1b-a722-4800-b6b7-4e5edb470984',
-          snapshotUrls: [
-            // 个人中心页
-            'https://i.gkd.li/i/21139431', // text="广告"
-            'https://i.gkd.li/i/21152859',
-            'https://i.gkd.li/i/23599723', // text.length>9 && getChild(0).name$="ImageView"
-            'https://i.gkd.li/i/23625826',
-            'https://i.gkd.li/i/27021826',
-          ],
-        },
-        {
           key: 5,
           matchRoot: true,
           activityIds: '.kmm.VideoDetailKmmActivityBk', // 视频详情页
           matches:
             '[text*="广告"] -2 @View[clickable=true][getChild(0).height<90] < View[childCount>2] < * < * < * < ViewFactoryHolder <n View < View[index=parent.childCount.minus(1)] <n [childCount>6] < DetachableComposeView <2 FrameLayout <2 [id="android:id/content"]',
           snapshotUrls: 'https://i.gkd.li/i/21152960',
-        },
-        {
-          key: 6,
-          matchRoot: true,
-          matches:
-            '@View[clickable=true][width<174][height<174] -2 TextView[text.length>5][getChild(0).height<78] <2 [childCount=4] <n ScrollView < View < DetachableComposeView <<14 FrameLayout <(4,5) [id="android:id/content"]',
-          exampleUrls: 'https://e.gkd.li/e4e6aca1-e7cb-4346-980b-638f26f61864',
-          snapshotUrls: [
-            // 个人中心页
-            'https://i.gkd.li/i/21379340',
-            'https://i.gkd.li/i/21410460',
-            'https://i.gkd.li/i/21410716',
-          ],
         },
         {
           key: 7,
@@ -144,20 +116,36 @@ export default defineGkdApp({
           ],
           exampleUrls: 'https://e.gkd.li/18c89ee9-fcd5-43eb-805a-ac9e223e3cdc',
         },
+
+        //无快查的放后面
         {
           key: 10,
-          fastQuery: false,
           matches:
-            '@View[clickable=true] <4 View[childCount>4] + [text="广告"][visibleToUser=true]',
+            '@View[clickable=true] <4 View[childCount>4] + [visibleToUser=true][text="广告"]',
           snapshotUrls: [
             'https://i.gkd.li/i/24715171',
             'https://i.gkd.li/i/26660624',
           ],
         },
+        {
+          key: 11,
+          matchRoot: true,
+          matches:
+            '@View[clickable=true][width<174][height<174] -2 TextView[text.length>5] + [childCount=1] > [text.length<7][text^="去浏览" || text^="去微信" || text^="立即" || text*="下载" || text*="了解" || text*="查看" || text*="详情"]',
+          exampleUrls: 'https://e.gkd.li/1d81db1b-a722-4800-b6b7-4e5edb470984',
+          snapshotUrls: [
+            // 个人中心页
+            'https://i.gkd.li/i/21139431', // 去浏览15秒
+            'https://i.gkd.li/i/23625826', // 下载应用
+            'https://i.gkd.li/i/21410460', // 去微信购买
+            'https://i.gkd.li/i/21410716', // 立即领取
+            'https://i.gkd.li/i/33306617', // 去微信看看
+          ],
+        },
 
         // 第二段
         {
-          preKeys: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+          preKeys: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
           key: 50,
           matches: '[text="直接关闭"][visibleToUser=true]',
           snapshotUrls: [
@@ -167,10 +155,10 @@ export default defineGkdApp({
           ],
         },
         {
-          preKeys: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+          preKeys: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
           key: 51,
           matchRoot: true,
-          anyMatches:
+          matches:
             '[text="直接关闭"] < @View[clickable=true] <n View < View < View < View < ViewGroup < [id="android:id/content"]',
           snapshotUrls: 'https://i.gkd.li/i/24715184',
         },
