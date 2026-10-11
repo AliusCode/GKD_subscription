@@ -294,38 +294,55 @@ export default defineGkdApp({
     },
     {
       key: 7,
-      name: '功能类-自动选中发送原图',
+      name: '功能类-自动[选中]发送原图',
       desc: '自动选中底部中间的发送原图，可手动取消勾选',
+      fastQuery: true,
       actionMaximum: 1,
+      actionMaximumKey: 1,
       activityIds: [
-        '.plugin.gallery.ui.AlbumPreviewUI',
-        '.plugin.gallery.ui.ImagePreviewUI',
-        '.plugin.picker.LocalMediaPickerUI',
+        '.plugin.gallery.ui.AlbumPreviewUI', //A
+        '.plugin.gallery.ui.ImagePreviewUI', //B
+        '.plugin.picker.LocalMediaPickerUI', //C
+        '.plugin.picker.preview.LocalMediaPreviewUI', //D
       ],
       rules: [
         {
           key: 1,
-          fastQuery: true,
-          anyMatches: [
-            '@[desc^="未选中" || desc^="未選定" || desc^="Unselected" || (checkable=true && checked=false)] + [text="原图" || text="原圖" || text="Full Image"][visibleToUser=true]',
-            '[desc^="未选中" || desc^="未選定" || desc^="Unselected"][!(desc*="选择")][text=null][visibleToUser=true]', //兜底,无快查的
-          ],
+          matches:
+            '@[clickable=true][desc^="未选中" || desc^="未選定" || desc^="Unselected"] + [text="原图" || text="原圖" || text="Full Image"][visibleToUser=true]',
           snapshotUrls: [
-            'https://i.gkd.li/i/16987145', // 未选中
-            'https://i.gkd.li/i/16987144',
-            'https://i.gkd.li/i/27852612', // 无快查_En
-            'https://i.gkd.li/i/19625049', // 无快查
-            'https://i.gkd.li/i/32857934',
+            'https://i.gkd.li/i/16987145', //A [desc^="未选中"] + [text="原图"]
+            'https://i.gkd.li/i/16987144', //B [desc^="未选中"] + [text="原图"]
           ],
           excludeSnapshotUrls: [
-            'https://i.gkd.li/i/16987141', // 用 [text=null] 排除误触
-            'https://i.gkd.li/i/16987147', // 已选中
-            'https://i.gkd.li/i/27852606', // Selected
-            'https://i.gkd.li/i/29746331', // 用 [!(desc*="选择")] 排除误触
+            'https://i.gkd.li/i/16987147', //A [desc^="已选中"]
+            'https://i.gkd.li/i/27852606', //A [desc^="Selected"]
+          ],
+        },
+        {
+          key: 2,
+          matches:
+            '@[clickable=true] > [checkable=true][checked=false] + [text="原图" || text="原圖" || text="Full Image"][visibleToUser=true]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/32857934', //C [text="原图"]
+            'https://i.gkd.li/i/33297749', //D [text="原图"]
           ],
           exampleUrls: [
-            'https://e.gkd.li/32dc0943-e85f-416d-bb01-6ed610d4bdd8',
-            'https://e.gkd.li/93d41161-ab69-4c2d-83bb-637d7292f5e6',
+            'https://e.gkd.li/150dd5c1-6425-4d36-b4a2-b42a9f27c40c',
+            'https://e.gkd.li/d46da56a-5382-4714-bcfd-89856f9aa309',
+          ],
+        },
+        {
+          key: 3, //兜底,无快查
+          matches:
+            '[clickable=true][desc^="未选中" || desc^="未選定" || desc^="Unselected"][!(desc*="选择")][text=null]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/27852612', //A [desc^="Unselected"]
+            'https://i.gkd.li/i/19625049', //A [desc^="未选中"]
+          ],
+          excludeSnapshotUrls: [
+            'https://i.gkd.li/i/16987141', //B 用 [text=null] 排除误触
+            'https://i.gkd.li/i/29746331', //B 用 [!(desc*="选择")] 排除误触
           ],
         },
       ],
