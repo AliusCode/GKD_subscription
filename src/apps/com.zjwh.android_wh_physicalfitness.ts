@@ -110,7 +110,7 @@ export default defineGkdApp({
           activityIds:
             'com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Portrait_Activity',
           matches:
-            '@Image[childCount=0][width<80 && height<80] < View[childCount=1] < View[childCount=1] - View[childCount=1] > [text="反馈"][visibleToUser=true]',
+            '@Image[childCount=0][width<80 && height<80] < View[childCount=1] < View[childCount=1] - View[childCount=1] > [visibleToUser=true][text="反馈"]',
           snapshotUrls: 'https://i.gkd.li/i/22946236',
         },
         {
@@ -146,12 +146,14 @@ export default defineGkdApp({
           activityIds: [
             'com.bytedance.sdk.openadsdk.core.component.reward.activity.TTFullScreenVideoActivity',
             'com.byazt.qde.Stub_Standard_Portrait_Activity',
+            'com.byazt.cef.Stub_Standard_Portrait_Activity',
           ],
           matches:
-            '@ImageView[visibleToUser=true][width<100 && height<100] <<3 ViewGroup[index=parent.childCount.minus(1)] <n ViewGroup + ViewGroup >3 [text="关闭悬浮球可继续浏览应用"]',
+            '@ImageView[visibleToUser=true][width<100 && height<100] < * < [childCount=1] < ViewGroup <2 [childCount=2] >6 [text*="落地页" || text*="三方APP"]',
           snapshotUrls: [
             'https://i.gkd.li/i/28790670',
             'https://i.gkd.li/i/28834493',
+            'https://i.gkd.li/i/33345377',
           ],
         },
         {
