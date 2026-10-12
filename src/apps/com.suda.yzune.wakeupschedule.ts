@@ -5,6 +5,29 @@ export default defineGkdApp({
   name: 'WakeUp课程表',
   groups: [
     {
+      key: 0,
+      name: '开屏广告',
+      fastQuery: true,
+      matchTime: 10000,
+      actionMaximum: 1,
+      actionMaximumKey: 0,
+      resetMatch: 'app',
+      priorityTime: 10000,
+      rules: [
+        {
+          key: 0,
+          matches:
+            '[text*="跳过"][text.length<10][width<500 && height<300][visibleToUser=true]',
+        },
+        {
+          key: 1,
+          matches:
+            '@ImageView[visibleToUser=true][width<156 && height<156] < * < [width>1000] +2 ViewGroup >2 [text="广告"]',
+          snapshotUrls: 'https://i.gkd.li/i/33348748',
+        },
+      ],
+    },
+    {
       key: 1,
       name: '评价提示',
       rules: [
@@ -53,6 +76,20 @@ export default defineGkdApp({
           activityIds: '.schedule.ScheduleActivity',
           matches: '[vid="iv_close"][clickable=true]',
           snapshotUrls: 'https://i.gkd.li/i/25769013',
+        },
+      ],
+    },
+    {
+      key: 5,
+      name: '局部广告',
+      desc: '点击[关闭]',
+      rules: [
+        {
+          fastQuery: true,
+          activityIds: '.schedule.ScheduleActivity',
+          matches: '[vid="id_ad_close"]',
+          snapshotUrls: 'https://i.gkd.li/i/33348695',
+          exampleUrls: 'https://e.gkd.li/520832d5-ec9b-4436-9095-3157d77a7979',
         },
       ],
     },
