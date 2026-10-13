@@ -66,7 +66,7 @@ export default defineGkdApp({
           activityIds:
             'com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Activity_T',
           matches:
-            '@ImageView < * - FrameLayout >(2,3) [text*="第三方应用" || text*="扭动手机" || text*="点击" && text*="上滑" || text*="省钱好物" || text*="扭一扭"]',
+            '@ImageView < * - FrameLayout >(2,3) [text*="第三方应用" || text*="扭动手机" || text*="点击" || text*="上滑" || text*="省钱好物" || text*="扭一扭"]',
           snapshotUrls: 'https://i.gkd.li/i/25935365',
           exampleUrls: 'https://e.gkd.li/029e1258-ef6c-4474-991b-7925d9e73e9e',
         },
@@ -82,7 +82,7 @@ export default defineGkdApp({
           activityIds:
             'com.bytedance.sdk.openadsdk.stub.activity.Stub_Standard_Activity_T',
           matches:
-            '@ImageView[width<85] < FrameLayout <2 FrameLayout <2 FrameLayout <2 * - FrameLayout > [text*="第三方应用" || text*="扭动" || (text*="点击" && text*="上滑") || text*="省钱好物" || text*="扭一扭"]',
+            '@ImageView[width<85] < FrameLayout <2 FrameLayout <2 FrameLayout <2 * - FrameLayout > [text*="第三方应用" || text*="扭动" || text*="点击" || text*="上滑" || text*="省钱好物" || text*="扭一扭"]',
           snapshotUrls: 'https://i.gkd.li/i/25989677',
         },
         {
