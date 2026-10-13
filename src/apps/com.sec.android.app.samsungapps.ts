@@ -2,7 +2,7 @@ import { defineGkdApp } from '@gkd-kit/define';
 
 export default defineGkdApp({
   id: 'com.sec.android.app.samsungapps',
-  name: '应用商店',
+  name: '(三星)应用商店',
   groups: [
     {
       key: 0,
@@ -25,17 +25,18 @@ export default defineGkdApp({
     },
     {
       key: 1,
-      name: '其他-[您是否年满 18 岁？]弹窗',
+      name: '其他-[是否年满18岁]弹窗',
       desc: '点击[是]',
       rules: [
         {
           fastQuery: true,
-          activityIds: '.SearchResultActivity',
-          matches:
-            '[text="您是否年满 18 岁？"] +4 @[clickable=true] > [text="是"]',
-          exampleUrls:
-            'https://m.gkd.li/57941037/cee78493-fbe1-46a0-8dcf-a8b1f1f61f19',
-          snapshotUrls: 'https://i.gkd.li/i/14473690',
+          activityIds: ['.SearchResultActivity', '.SamsungAppsMainActivity'],
+          matches: '[text*="年满 18 岁"] +4 [vid="positive"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/14473690',
+            'https://i.gkd.li/i/33385203',
+          ],
+          exampleUrls: 'https://e.gkd.li/1417cf6c-e06d-4565-ab2e-eae6a713f1f1',
         },
       ],
     },
