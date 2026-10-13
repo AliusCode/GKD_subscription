@@ -613,7 +613,7 @@ export default defineGkdApp({
       name: '局部广告-直播间右下角浮窗',
       desc: '点击x掉',
       fastQuery: true,
-      activityIds: '.live.LivePlayActivity',
+      activityIds: ['.live.LivePlayActivity', '.detail.ui.DetailActivity'],
       rules: [
         {
           key: 0,
@@ -629,10 +629,13 @@ export default defineGkdApp({
         },
         {
           key: 1,
-          name: '打开游戏',
+          name: '打开游戏/下载',
           matches:
-            '@[visibleToUser=true] <3 [childCount=5] >5 [text="打开游戏"]',
-          snapshotUrls: 'https://i.gkd.li/i/30297510',
+            '@[visibleToUser=true][width<114 && height<114][top=parent.top] <3 [childCount>4] >5 [text="打开游戏" || text="下载"]',
+          snapshotUrls: [
+            'https://i.gkd.li/i/30297510',
+            'https://i.gkd.li/i/33388572',
+          ],
         },
         {
           key: 2,
