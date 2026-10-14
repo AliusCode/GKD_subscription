@@ -537,7 +537,6 @@ export default defineGkdApp({
       rules: [
         {
           key: 0,
-          versionCode: { maximum: 2979 },
           activityIds: '.framework.app.UIPageFragmentActivity',
           matches:
             '[vid="kinda_button_impl_wrapper"][desc="完成" || desc="返回商家"]',
@@ -547,6 +546,7 @@ export default defineGkdApp({
             'https://i.gkd.li/i/14662147', // 返回商家
             'https://i.gkd.li/i/14399355', // 完成
             'https://i.gkd.li/i/24157874',
+            'https://i.gkd.li/i/33430797',
           ],
           excludeSnapshotUrls: 'https://i.gkd.li/i/14532946',
         },
